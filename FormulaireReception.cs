@@ -164,5 +164,10 @@ namespace espaceNetSAV
             BonReceptionList windowObject = new BonReceptionList();
             windowObject.Show();
         }
+
+        private void makePdfButton_Click(object sender, EventArgs e)
+        {
+            PdfGenerator pdfObject = new PdfGenerator();
+        }
     }
 }

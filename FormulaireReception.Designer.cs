@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.diusplayListBtn = new System.Windows.Forms.Button();
             this.clientComboBox = new System.Windows.Forms.ComboBox();
             this.refAchattbox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -51,13 +52,14 @@
             this.telTBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.diusplayListBtn = new System.Windows.Forms.Button();
+            this.makePdfButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.makePdfButton);
             this.groupBox1.Controls.Add(this.diusplayListBtn);
             this.groupBox1.Controls.Add(this.clientComboBox);
             this.groupBox1.Controls.Add(this.refAchattbox);
@@ -86,6 +88,16 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Formulaire";
+            // 
+            // diusplayListBtn
+            // 
+            this.diusplayListBtn.Location = new System.Drawing.Point(155, 345);
+            this.diusplayListBtn.Name = "diusplayListBtn";
+            this.diusplayListBtn.Size = new System.Drawing.Size(123, 23);
+            this.diusplayListBtn.TabIndex = 23;
+            this.diusplayListBtn.Text = "Display List";
+            this.diusplayListBtn.UseVisualStyleBackColor = true;
+            this.diusplayListBtn.Click += new System.EventHandler(this.diusplayListBtn_Click);
             // 
             // clientComboBox
             // 
@@ -298,15 +310,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Client";
             // 
-            // diusplayListBtn
+            // makePdfButton
             // 
-            this.diusplayListBtn.Location = new System.Drawing.Point(155, 345);
-            this.diusplayListBtn.Name = "diusplayListBtn";
-            this.diusplayListBtn.Size = new System.Drawing.Size(123, 23);
-            this.diusplayListBtn.TabIndex = 23;
-            this.diusplayListBtn.Text = "Display List";
-            this.diusplayListBtn.UseVisualStyleBackColor = true;
-            this.diusplayListBtn.Click += new System.EventHandler(this.diusplayListBtn_Click);
+            this.makePdfButton.Location = new System.Drawing.Point(302, 345);
+            this.makePdfButton.Name = "makePdfButton";
+            this.makePdfButton.Size = new System.Drawing.Size(123, 23);
+            this.makePdfButton.TabIndex = 24;
+            this.makePdfButton.Text = "Make pdf";
+            this.makePdfButton.UseVisualStyleBackColor = true;
+            this.makePdfButton.Click += new System.EventHandler(this.makePdfButton_Click);
             // 
             // FormulaireReception
             // 
@@ -351,5 +363,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox clientComboBox;
         private System.Windows.Forms.Button diusplayListBtn;
+        private System.Windows.Forms.Button makePdfButton;
     }
 }

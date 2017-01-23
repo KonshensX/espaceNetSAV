@@ -9,3 +9,5 @@ c:\users\konshensx\documents\visual studio 2013\Projects\espaceNetSAV\espaceNetS
 c:\users\konshensx\documents\visual studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.pdb
 C:\Users\konshensx\Documents\Visual Studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.FormulaireReception.resources
 C:\Users\konshensx\Documents\Visual Studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.BonReceptionList.resources
+C:\Users\konshensx\Documents\Visual Studio 2013\Projects\espaceNetSAV\espaceNetSAV\bin\Debug\itextsharp.dll
+C:\Users\konshensx\Documents\Visual Studio 2013\Projects\espaceNetSAV\espaceNetSAV\bin\Debug\itextsharp.xml
