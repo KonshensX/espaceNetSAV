@@ -254,5 +254,47 @@ namespace espaceNetSAV
             }
             return lastId;
         }
+
+
+        public Client getClientByID(int ID)
+        {
+            Client clientObject = new Client();
+            string query = "SELECT * FROM client WHERE id = @id";
+            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            {
+                myCommand.Parameters.AddWithValue("@id", ID);
+                var myReader = myCommand.ExecuteReader();
+                while (myReader.Read())
+                {
+                    clientObject.id = (int)myReader[0];
+                    clientObject.nom = myReader[1].ToString();
+                    clientObject.tel = myReader[2].ToString();
+                    clientObject.email = myReader[3].ToString();
+                    clientObject.fax = myReader[4].ToString();
+                    clientObject.contact = myReader[5].ToString();
+                    clientObject.clientType = getType((int)myReader[6]);
+                }
+            }
+
+            return clientObject;
+        }
+        
+        /// <summary>
+        /// This will get the client type to an enum
+        /// </summary>
+        /// <param name="id">ID of the client</param>
+        /// <returns></returns>
+        private ClientType getType(int id)
+        {
+            switch (id)
+            {
+                case 0:
+                    return ClientType.Client;
+                case 1:
+                    return ClientType.RasionSociale;
+                default:
+                    return ClientType.Nothing;
+            }
+        }
     }
 }

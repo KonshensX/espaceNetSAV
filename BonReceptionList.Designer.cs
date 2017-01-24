@@ -67,7 +67,7 @@
             this.BonDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.BonDataGrid.Size = new System.Drawing.Size(944, 405);
             this.BonDataGrid.TabIndex = 0;
-            this.BonDataGrid.CellContentClick += new System.EventHandler(this.BonDataGrid_CellContentClick);
+            this.BonDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_CellContentClick);
             // 
             // BonReceptionList
             // 

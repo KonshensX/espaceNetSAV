@@ -44,11 +44,15 @@ namespace espaceNetSAV
         {
             var senderGrid = (DataGridView)sender;
 
-                MessageBox.Show("Buttonwas clicked");
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
                 //TODO - Button Clicked - Execute Code Here
-                
+                BonReception bonObject = new BonReception();
+                bonObject.getDataForPdf((int)BonDataGrid.CurrentRow.Cells[BonDataGrid.Columns["Bon ID"].Index].Value);
+
+                //MessageBox.Show(String.Format("Bon réception ID: {0}", BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells[0].Value));
+                PdfGenerator pdfObject = new PdfGenerator(bonObject);
+
             }
         }
     }

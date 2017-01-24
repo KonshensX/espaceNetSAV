@@ -87,8 +87,6 @@ namespace espaceNetSAV
             // THIS IS THE TESTING AREA! ALL TESTING CODE CODE BELOW
             //#####################################################
             //Checking if the client exists in the database or should we create a new one
-
-
             try
             {
                 Client clientService = new Client();
@@ -167,7 +165,7 @@ namespace espaceNetSAV
 
         private void makePdfButton_Click(object sender, EventArgs e)
         {
-            PdfGenerator pdfObject = new PdfGenerator();
+            //PdfGenerator pdfObject = new PdfGenerator();
         }
     }
 }

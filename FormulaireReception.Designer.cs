@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.makePdfButton = new System.Windows.Forms.Button();
             this.diusplayListBtn = new System.Windows.Forms.Button();
             this.clientComboBox = new System.Windows.Forms.ComboBox();
             this.refAchattbox = new System.Windows.Forms.TextBox();
@@ -52,7 +53,6 @@
             this.telTBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.makePdfButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -88,6 +88,16 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Formulaire";
+            // 
+            // makePdfButton
+            // 
+            this.makePdfButton.Location = new System.Drawing.Point(302, 345);
+            this.makePdfButton.Name = "makePdfButton";
+            this.makePdfButton.Size = new System.Drawing.Size(123, 23);
+            this.makePdfButton.TabIndex = 24;
+            this.makePdfButton.Text = "Make pdf";
+            this.makePdfButton.UseVisualStyleBackColor = true;
+            this.makePdfButton.Click += new System.EventHandler(this.makePdfButton_Click);
             // 
             // diusplayListBtn
             // 
@@ -219,6 +229,7 @@
             // 
             // buttonValider
             // 
+            this.buttonValider.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonValider.Location = new System.Drawing.Point(782, 345);
             this.buttonValider.Name = "buttonValider";
             this.buttonValider.Size = new System.Drawing.Size(123, 23);
@@ -309,16 +320,6 @@
             this.label1.Size = new System.Drawing.Size(41, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Client";
-            // 
-            // makePdfButton
-            // 
-            this.makePdfButton.Location = new System.Drawing.Point(302, 345);
-            this.makePdfButton.Name = "makePdfButton";
-            this.makePdfButton.Size = new System.Drawing.Size(123, 23);
-            this.makePdfButton.TabIndex = 24;
-            this.makePdfButton.Text = "Make pdf";
-            this.makePdfButton.UseVisualStyleBackColor = true;
-            this.makePdfButton.Click += new System.EventHandler(this.makePdfButton_Click);
             // 
             // FormulaireReception
             // 

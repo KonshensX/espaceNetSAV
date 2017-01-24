@@ -9,6 +9,7 @@ namespace espaceNetSAV
 {
     class PdfGenerator
     {
+        BonReception bonObject; 
         FileStream fileStream;
         Document doc = new Document(PageSize.A4, _MARGIN, _MARGIN, _MARGIN, _MARGIN);
         PdfWriter write;
@@ -17,8 +18,9 @@ namespace espaceNetSAV
         const int _MARGIN = 20;
         const float CELLS_MIN_HEIGHT = 120;
 
-        public PdfGenerator(string fileName = "myPDF")
+        public PdfGenerator(BonReception bon, string fileName = "myPDF")
         {
+            bonObject = bon;
             fileStream = new FileStream(fileName + ".pdf", FileMode.Create);
             write  = PdfWriter.GetInstance(doc, fileStream);
             this.constructPdf("thatPDF");
@@ -30,21 +32,20 @@ namespace espaceNetSAV
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
-
                     //Opening the document before starting to write on it
                     doc.Open();
 
                     //I should experiment more with the tables an items aligning on this area down here
-                    var headerText = this.headerTextChunkRefAchat();
-                    PdfPTable myTable = this.createTable();
-                    var headingTable = this.createHeader();
+                    //var headerText = this.headerTextChunkRefAchat();
+                    PdfPTable myTable = this.createTable(bonObject.designationReception.designation, bonObject.designationReception.probleme);
+                    var headingTable = this.createHeader(bonObject.client.nom);
                     var footerSection = this.footerTable();
                     var dateText = this.dateText();
                     //var refAchat = this.refAchatText();
                     //Client table et logo
                     doc.Add(headingTable);
                     //"Bon" text && ref Achat 
-                    doc.Add(headerText);
+                    //doc.Add(headerText);
                     //Date text
                     doc.Add(dateText);
                     doc.Add(myTable);
@@ -73,8 +74,12 @@ namespace espaceNetSAV
 
             return phrase;
         }
-
-        private PdfPTable createHeader()
+        /// <summary>
+        /// This creates the very first table that holds the logo and the client name
+        /// </summary>
+        /// <param name="client">Client name</param>
+        /// <returns></returns>
+        private PdfPTable createHeader(string client)
         {
             /*##########################################################*/
             /* FIRST TABLE SECITON  */
@@ -85,7 +90,7 @@ namespace espaceNetSAV
             };
             PdfPCell espaceNetLogo = new PdfPCell() { Border = 0 };
 
-            PdfPCell clientCell = new PdfPCell(new Phrase("Client: Insert value here"))
+            PdfPCell clientCell = new PdfPCell(new Phrase(String.Format("Client: {0}", client)))
             {
                 FixedHeight = 50,
                 Right = 0,
@@ -100,8 +105,13 @@ namespace espaceNetSAV
 
             return table;
         }
-
-        private PdfPTable createTable()
+        /// <summary>
+        /// This is the main table for designation and probleme 
+        /// </summary>
+        /// <param name="designation">String designation</param>
+        /// <param name="probleme">String problème</param>
+        /// <returns></returns>
+        private PdfPTable createTable(string designation, string probleme)
         {
 
             /*##########################################################*/
@@ -134,8 +144,8 @@ namespace espaceNetSAV
             table.AddCell(designationHeadingCell);
             table.AddCell(problemeHeadingCell);
 
-            PdfPCell designationCell = new PdfPCell(new Phrase("This is a phrase for testing purposes, this field should be filled programatically")) { Padding = 8, BorderWidth = CELL_BORDER_WIDTH };
-            PdfPCell problemeCell = new PdfPCell(new Phrase("This is a phrase for testing purposes, this field should be filled programatically")) { Padding = 8, BorderWidth = CELL_BORDER_WIDTH };
+            PdfPCell designationCell = new PdfPCell(new Phrase(designation)) { Padding = 8, BorderWidth = CELL_BORDER_WIDTH };
+            PdfPCell problemeCell = new PdfPCell(new Phrase(probleme)) { Padding = 8, BorderWidth = CELL_BORDER_WIDTH };
 
             designationCell.MinimumHeight = CELLS_MIN_HEIGHT;
             problemeCell.MinimumHeight = CELLS_MIN_HEIGHT;
@@ -172,7 +182,7 @@ namespace espaceNetSAV
             return table;
         }
 
-        private PdfContentByte refAchatText(string refAchat = "EXMP215")
+        private PdfContentByte refAchatText(string refAchat)
         {
             PdfContentByte cb = write.DirectContent;
             cb.BeginText();
@@ -181,20 +191,28 @@ namespace espaceNetSAV
             cb.EndText();
             return cb;
         }
-
-        private Paragraph headerTextChunkRefAchat(string text = "Bon N° 006542", string refAchat = "Acbgd554654")
+        /// <summary>
+        /// Ref Achat text holder or someshit, this is not yet used in the application 
+        /// </summary>
+        /// <param name="bon">Numero de Bon</param>
+        /// <param name="refAchat">Réf Achat du mateial</param>
+        /// <returns></returns>
+        private Paragraph headerTextChunkRefAchat(string bon, string refAchat)
         {
             BaseFont baseFont = BaseFont.CreateFont(BaseFont.HELVETICA_BOLD, BaseFont.CP1252, false);
             //iTextSharp.text.Font arial = new iTextSharp.text.Font(baseFont, 12f, 1, Color.Red);
             //Styles: 1=> BOLD
             iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 20, 1);
-            Paragraph phrase = new Paragraph(text, font);
+            Paragraph phrase = new Paragraph(bon, font);
 
             phrase.Alignment = Element.ALIGN_CENTER;
 
             return phrase;
         }
-
+        /// <summary>
+        /// This holds the very bottom table that has the rules of the company and such stuff
+        /// </summary>
+        /// <returns></returns>
         private PdfPTable footerTable()
         {
             PdfPTable table = new PdfPTable(1)

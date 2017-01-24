@@ -93,5 +93,24 @@ namespace espaceNetSAV
             }
             return desReception;
         }
+
+        public DesignationReception getDesignationByID(int ID)
+        {
+
+            string query = "SELECT * FROM receptiondesignation WHERE id = @id ";
+            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            {
+                myCommand.Parameters.AddWithValue("@id", ID);
+                var myReader = myCommand.ExecuteReader();
+                while (myReader.Read())
+                {
+                    this.id = (int)myReader[0];
+                    this.designation = myReader[1].ToString();
+                    this.probleme = myReader[2].ToString();
+                }
+            }
+
+            return this;
+        }
     }
 }
