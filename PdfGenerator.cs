@@ -9,21 +9,23 @@ namespace espaceNetSAV
 {
     class PdfGenerator
     {
+        FileStream fileStream;
+        Document doc = new Document(PageSize.A4, _MARGIN, _MARGIN, _MARGIN, _MARGIN);
+        PdfWriter write;
 
         const float CELL_BORDER_WIDTH = 1.5f;
         const int _MARGIN = 20;
+        const float CELLS_MIN_HEIGHT = 120;
 
-
-        public PdfGenerator()
+        public PdfGenerator(string fileName = "myPDF")
         {
+            fileStream = new FileStream(fileName + ".pdf", FileMode.Create);
+            write  = PdfWriter.GetInstance(doc, fileStream);
             this.constructPdf("thatPDF");
         }
 
         private void constructPdf(string fielName)
         {
-            FileStream fileStream = new FileStream(fielName + ".pdf", FileMode.Create);
-            Document doc = new Document(PageSize.A4, _MARGIN, _MARGIN, _MARGIN, _MARGIN);
-            PdfWriter write = PdfWriter.GetInstance(doc, fileStream);
             try
             {
                 using (MemoryStream ms = new MemoryStream())
@@ -33,26 +35,43 @@ namespace espaceNetSAV
                     doc.Open();
 
                     //I should experiment more with the tables an items aligning on this area down here
-                    var headerText = this.headerTextChunk();
+                    var headerText = this.headerTextChunkRefAchat();
                     PdfPTable myTable = this.createTable();
                     var headingTable = this.createHeader();
                     var footerSection = this.footerTable();
+                    var dateText = this.dateText();
+                    //var refAchat = this.refAchatText();
+                    //Client table et logo
                     doc.Add(headingTable);
+                    //"Bon" text && ref Achat 
                     doc.Add(headerText);
+                    //Date text
+                    doc.Add(dateText);
                     doc.Add(myTable);
                     doc.Add(footerSection);
+                    //doc.Add(refAchat);
                     //Closing the document
                     doc.Close();
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-
+                throw;
             }
             finally
             {
                 doc.Close();   
             }
+        }
+
+        private Phrase dateText()
+        {
+            Phrase phrase = new Phrase("Date: " + DateTime.Now.ToString("dd/mm/yyyy"))
+            {
+                
+            };
+
+            return phrase;
         }
 
         private PdfPTable createHeader()
@@ -89,7 +108,7 @@ namespace espaceNetSAV
             /* SECOND TABLE SECITON  */
             /*##########################################################*/
             const float HEADINGS_HEIGHT = 40;
-            PdfPTable table = new PdfPTable(2) { SpacingBefore = 20, WidthPercentage = 100f };
+            PdfPTable table = new PdfPTable(2) { SpacingBefore = 5, WidthPercentage = 100f };
             PdfPCell cell = new PdfPCell(new Phrase("This is a heading text")) { BorderWidth = CELL_BORDER_WIDTH };
             //cell.MinimumHeight = 50;
             //cell.Colspan = 3;
@@ -115,11 +134,11 @@ namespace espaceNetSAV
             table.AddCell(designationHeadingCell);
             table.AddCell(problemeHeadingCell);
 
-            PdfPCell designationCell = new PdfPCell(new Phrase("This is a phrase for testing purposes, this field should be filled programatically")) { BorderWidth = CELL_BORDER_WIDTH };
-            PdfPCell problemeCell = new PdfPCell(new Phrase("This is a phrase for testing purposes, this field should be filled programatically")) { BorderWidth = CELL_BORDER_WIDTH };
+            PdfPCell designationCell = new PdfPCell(new Phrase("This is a phrase for testing purposes, this field should be filled programatically")) { Padding = 8, BorderWidth = CELL_BORDER_WIDTH };
+            PdfPCell problemeCell = new PdfPCell(new Phrase("This is a phrase for testing purposes, this field should be filled programatically")) { Padding = 8, BorderWidth = CELL_BORDER_WIDTH };
 
-            designationCell.MinimumHeight = 150;
-            problemeCell.MinimumHeight = 150;
+            designationCell.MinimumHeight = CELLS_MIN_HEIGHT;
+            problemeCell.MinimumHeight = CELLS_MIN_HEIGHT;
 
             table.AddCell(designationCell);
             table.AddCell(problemeCell);
@@ -153,13 +172,24 @@ namespace espaceNetSAV
             return table;
         }
 
-        private Paragraph headerTextChunk(string text = "Bon N° 006542")
+        private PdfContentByte refAchatText(string refAchat = "EXMP215")
+        {
+            PdfContentByte cb = write.DirectContent;
+            cb.BeginText();
+            cb.SetTextMatrix(475, 15);  //(xPos, yPos)
+            cb.ShowText("Some text here and the Date: " + DateTime.Now.ToShortDateString());
+            cb.EndText();
+            return cb;
+        }
+
+        private Paragraph headerTextChunkRefAchat(string text = "Bon N° 006542", string refAchat = "Acbgd554654")
         {
             BaseFont baseFont = BaseFont.CreateFont(BaseFont.HELVETICA_BOLD, BaseFont.CP1252, false);
             //iTextSharp.text.Font arial = new iTextSharp.text.Font(baseFont, 12f, 1, Color.Red);
             //Styles: 1=> BOLD
             iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 20, 1);
             Paragraph phrase = new Paragraph(text, font);
+
             phrase.Alignment = Element.ALIGN_CENTER;
 
             return phrase;

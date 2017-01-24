@@ -64,8 +64,10 @@
             this.BonDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BonDataGrid.Location = new System.Drawing.Point(3, 16);
             this.BonDataGrid.Name = "BonDataGrid";
+            this.BonDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.BonDataGrid.Size = new System.Drawing.Size(944, 405);
             this.BonDataGrid.TabIndex = 0;
+            this.BonDataGrid.CellContentClick += new System.EventHandler(this.BonDataGrid_CellContentClick);
             // 
             // BonReceptionList
             // 
