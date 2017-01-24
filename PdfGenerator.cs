@@ -17,7 +17,11 @@ namespace espaceNetSAV
         const float CELL_BORDER_WIDTH = 1.5f;
         const int _MARGIN = 20;
         const float CELLS_MIN_HEIGHT = 120;
-
+        /// <summary>
+        /// This is the Pdf Generator paramitrized constructor
+        /// </summary>
+        /// <param name="bon"></param>
+        /// <param name="fileName"></param>
         public PdfGenerator(BonReception bon, string fileName = "myPDF")
         {
             bonObject = bon;
@@ -25,7 +29,10 @@ namespace espaceNetSAV
             write  = PdfWriter.GetInstance(doc, fileStream);
             this.constructPdf("thatPDF");
         }
-
+        /// <summary>
+        /// This is responsible for building the actual pdf document 
+        /// </summary>
+        /// <param name="fielName">File of the name that will be generated</param>
         private void constructPdf(string fielName)
         {
             try
@@ -64,7 +71,10 @@ namespace espaceNetSAV
                 doc.Close();   
             }
         }
-
+        /// <summary>
+        /// This is the Date holder, maybe ill just include the ref achat here and be done with that shit
+        /// </summary>
+        /// <returns></returns>
         private Phrase dateText()
         {
             Phrase phrase = new Phrase("Date: " + DateTime.Now.ToString("dd/mm/yyyy"))
