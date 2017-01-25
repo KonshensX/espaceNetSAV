@@ -34,6 +34,7 @@ namespace espaceNetSAV
 
         private void FormulaireReception_Load(object sender, EventArgs e)
         {
+            this.clearStatusBarWithMessage("Bienvenue!");
             dateValuelbl.Text = DateTime.Now.ToString();
             Client clientObject = new Client();
             var clientsNames = clientObject.getClientsList();
@@ -60,28 +61,6 @@ namespace espaceNetSAV
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    Client client = new Client(clientComboBox.Text, telTBox.Text, emailTBox.Text, faxTBox.Text, contactTBox.Text, (clientTypeRB.Checked) ? ClientType.Client : ClientType.RasionSociale);
-            //    client.persistClientToDatabase();
-
-            //    DesignationReception designationReception = new DesignationReception(designTBox.Text, problTBox.Text);
-            //    designationReception.persistObjectToDatabase();
-
-            //    BonReception bonReception = new BonReception();
-            //    MessageBox.Show("Ajouter avec success!", "Success");
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.StackTrace, ex.Message);
-            //}
-
-
-
-            //MessageBox.Show("Date:" + DateTime.Now, "DateTiem.now");
-
-
-
 
             //#####################################################
             // THIS IS THE TESTING AREA! ALL TESTING CODE CODE BELOW
@@ -93,6 +72,12 @@ namespace espaceNetSAV
                 Client clientObject;
                 DesignationReception designReception = new DesignationReception(designTBox.Text, problTBox.Text);
                 designReception.persistObjectToDatabase();
+                //Checking whether the client field is empty or nah!!
+                if (clientComboBox.Text == "" || telTBox.Text == "" || designTBox.Text == "" || problTBox.Text == "")
+                {
+                    this.clearStatusBarWithMessage("* - Champs obligatoire");
+                    return;
+                }
                 if (clientService.clientExists(clientComboBox.Text, telTBox.Text))
                 {
                     //Insert into database without adding a new client
@@ -107,13 +92,14 @@ namespace espaceNetSAV
 
                 BonReception bonReceptionObject = new BonReception(clientObject, designReception, refAchattbox.Text);
                 bonReceptionObject.persistObjectToDatabase();
-                MessageBox.Show("Bien ajouter", "Message");
             }
             catch (Exception)
             {
                 throw;
             }
             //MessageBox.Show(client.clientExists(clientComboBox.Text, telTBox.Text).ToString());
+            statusStrip1.Items.Clear();
+            statusStrip1.Items.Add("Bien ajouter");
 
         }
 
@@ -166,6 +152,15 @@ namespace espaceNetSAV
         private void makePdfButton_Click(object sender, EventArgs e)
         {
             //PdfGenerator pdfObject = new PdfGenerator();
+        }
+        /// <summary>
+        /// This will clear the status bar and inserts a new message 
+        /// </summary>
+        /// <param name="message">The new message to be displayed </param>
+        private void clearStatusBarWithMessage(string message)
+        {
+            statusStrip1.Items.Clear();
+            statusStrip1.Items.Add(message);
         }
     }
 }

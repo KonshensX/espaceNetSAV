@@ -24,7 +24,7 @@ namespace espaceNetSAV
         /// <param name="fileName"></param>
         public PdfGenerator(BonReception bon, string fileName = "myPDF")
         {
-            bonObject = bon;
+            bonObject = bon; 
             fileStream = new FileStream(fileName + ".pdf", FileMode.Create);
             write  = PdfWriter.GetInstance(doc, fileStream);
             this.constructPdf("thatPDF");
@@ -35,46 +35,83 @@ namespace espaceNetSAV
         /// <param name="fielName">File of the name that will be generated</param>
         private void constructPdf(string fielName)
         {
-            try
-            {
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    //Opening the document before starting to write on it
-                    doc.Open();
 
-                    //I should experiment more with the tables an items aligning on this area down here
-                    //var headerText = this.headerTextChunkRefAchat();
-                    PdfPTable myTable = this.createTable(bonObject.designationReception.designation, bonObject.designationReception.probleme);
-                    var headingTable = this.createHeader(bonObject.client.nom);
-                    var footerSection = this.footerTable();
-                    var dateText = this.dateText();
-                    //var refAchat = this.refAchatText();
-                    //Client table et logo
-                    doc.Add(headingTable);
-                    //"Bon" text && ref Achat 
-                    //doc.Add(headerText);
-                    //Date text
-                    doc.Add(dateText);
-                    doc.Add(myTable);
-                    doc.Add(footerSection);
-                    //doc.Add(refAchat);
-                    //Closing the document
-                    doc.Close();
-                }
-            }
-            catch (Exception)
+            using (MemoryStream ms = new MemoryStream())
             {
-                throw;
+                //Opening the document before starting to write on it
+                doc.Open();
+
+                //I should experiment more with the tables an items aligning on this area down here
+                //var headerText = this.headerTextChunkRefAchat();
+                PdfPTable myTable = this.createTable(bonObject.designationReception.designation, bonObject.designationReception.probleme);
+                var headingTable = this.createHeader(bonObject.client.nom);
+                var footerSection = this.footerTable();
+                ////var dateText = this.dateText();
+                var dateText = this.dateAndRef(bonObject.ref_achat);
+                //var refAchat = this.refAchatText();
+                //Client table et logo
+                doc.Add(headingTable);
+                //"Bon" text && ref Achat 
+                //doc.Add(headerText);
+                //Date text
+                doc.Add(dateText);
+                doc.Add(myTable);
+                doc.Add(footerSection);
+                //doc.Add(refAchat);
+                //Closing the document
+                doc.Close();
             }
-            finally
+            //try
+            //{
+                
+            //}
+            //catch (Exception)
+            //{
+            //    throw;
+            //}
+            //finally
+            //{
+            //    doc.Close();   
+            //}
+        }
+        /// <summary>
+        /// This is the date and ref achat text holder and placer on the pdf ALTERNATIVE SOLUTION
+        /// </summary>
+        /// <param name="refText">Réf achat text</param>
+        /// <returns></returns>
+        private PdfPTable dateAndRef(string refAchat)
+        {
+            PdfPTable table = new PdfPTable(2)
             {
-                doc.Close();   
-            }
+                WidthPercentage = 100f,
+                SpacingBefore = 10f, 
+                SpacingAfter = 10f
+            };
+
+            PdfPCell dateCell = new PdfPCell()
+            {
+                BorderWidth = 0f,
+                VerticalAlignment = Element.ALIGN_MIDDLE,
+                Phrase = new Phrase(String.Format("Date: {0}", DateTime.Now.Date.ToString("dd/MM/yyyy")))
+            };
+
+            PdfPCell refCell = new PdfPCell()
+            {
+                BorderWidth = 0f,
+                VerticalAlignment = Element.ALIGN_MIDDLE,
+                Phrase = new Phrase(String.Format("Réf achat: {0}", refAchat))
+            };
+
+
+            table.AddCell(dateCell);
+            table.AddCell(refCell);
+            return table;
         }
         /// <summary>
         /// This is the Date holder, maybe ill just include the ref achat here and be done with that shit
         /// </summary>
         /// <returns></returns>
+        /// 
         private Phrase dateText()
         {
             Phrase phrase = new Phrase("Date: " + DateTime.Now.ToString("dd/mm/yyyy"))

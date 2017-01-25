@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace espaceNetSAV
 {
@@ -21,6 +21,7 @@ namespace espaceNetSAV
             BonReception bonReceptionService = new BonReception();
             DataTable myDataSource = bonReceptionService.GetData();
 
+            BonDataGrid.RowTemplate.Height = 30;
             BonDataGrid.DataSource = myDataSource;
 
             DataGridViewButtonColumn pdfButton = new DataGridViewButtonColumn();
@@ -28,6 +29,7 @@ namespace espaceNetSAV
             BonDataGrid.Columns.Add(pdfButton);
 
             pdfButton.HeaderText = "Voir";
+            
             pdfButton.Name = "pdfButton";
             pdfButton.Text = "Fichier";
             pdfButton.UseColumnTextForButtonValue = true;
@@ -48,12 +50,21 @@ namespace espaceNetSAV
             {
                 //TODO - Button Clicked - Execute Code Here
                 BonReception bonObject = new BonReception();
-                bonObject.getDataForPdf((int)BonDataGrid.CurrentRow.Cells[BonDataGrid.Columns["Bon ID"].Index].Value);
+                var passObject = bonObject.getDataForPdf((int)BonDataGrid.CurrentRow.Cells[BonDataGrid.Columns["Bon ID"].Index].Value);
 
                 //MessageBox.Show(String.Format("Bon réception ID: {0}", BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells[0].Value));
-                PdfGenerator pdfObject = new PdfGenerator(bonObject);
+                PdfGenerator pdfObject = new PdfGenerator(passObject);
+
+                statusStrip1.Items.Add("Pdf bien générer");
+
+                Process.Start(@"C:\Program Files (x86)\Foxit Software\Foxit Reader\FoxitReader.exe", "myPdf.pdf");
 
             }
+        }
+
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            
         }
     }
 }

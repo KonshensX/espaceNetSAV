@@ -31,6 +31,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.BonDataGrid = new System.Windows.Forms.DataGridView();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BonDataGrid)).BeginInit();
             this.SuspendLayout();
@@ -47,6 +48,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.statusStrip1);
             this.groupBox2.Controls.Add(this.BonDataGrid);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 100);
@@ -60,14 +62,26 @@
             // 
             this.BonDataGrid.AllowUserToAddRows = false;
             this.BonDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.BonDataGrid.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BonDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.BonDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.BonDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BonDataGrid.GridColor = System.Drawing.Color.White;
             this.BonDataGrid.Location = new System.Drawing.Point(3, 16);
             this.BonDataGrid.Name = "BonDataGrid";
             this.BonDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.BonDataGrid.Size = new System.Drawing.Size(944, 405);
             this.BonDataGrid.TabIndex = 0;
             this.BonDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_CellContentClick);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(3, 399);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(944, 22);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
+            this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
             // BonReceptionList
             // 
@@ -80,6 +94,7 @@
             this.Text = "BonReceptionList";
             this.Load += new System.EventHandler(this.BonReceptionList_Load);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BonDataGrid)).EndInit();
             this.ResumeLayout(false);
 
@@ -90,5 +105,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView BonDataGrid;
+        private System.Windows.Forms.StatusStrip statusStrip1;
     }
 }

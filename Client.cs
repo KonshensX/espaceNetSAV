@@ -25,16 +25,22 @@ namespace espaceNetSAV
         public string contact;
         public ClientType clientType;
 
-        public Client() { this.databaseObject = new Database(); }
+        //Default constructor
+        public Client() 
+        {
+            this.databaseObject = new Database(); 
+            this.id = (this.getLastID() + 1); 
+        }
         public Client(string nom ,string tel, string email, string fax, string contact, ClientType typeClient)
         {
+            databaseObject = new Database();
+            this.id = this.getLastID() + 1; 
             this.nom = nom;
             this.tel = tel;
             this.email = email;
             this.fax = fax;
             this.contact = contact;
             this.clientType = typeClient;
-            databaseObject = new Database();
         }
 
         #region Methodes 
@@ -241,7 +247,7 @@ namespace espaceNetSAV
                 {
                     this.databaseObject.openConnection();
                     lastId = (int)myCommand.ExecuteScalar();
-
+                    
                 }
             }
             catch (MySqlException)
@@ -255,13 +261,19 @@ namespace espaceNetSAV
             return lastId;
         }
 
-
+        /// <summary>
+        /// Gets client by ID
+        /// </summary>
+        /// <param name="ID">ID of the client to get </param>
+        /// <returns></returns>
         public Client getClientByID(int ID)
         {
+
             Client clientObject = new Client();
             string query = "SELECT * FROM client WHERE id = @id";
             using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
             {
+                this.databaseObject.openConnection();
                 myCommand.Parameters.AddWithValue("@id", ID);
                 var myReader = myCommand.ExecuteReader();
                 while (myReader.Read())
@@ -272,11 +284,23 @@ namespace espaceNetSAV
                     clientObject.email = myReader[3].ToString();
                     clientObject.fax = myReader[4].ToString();
                     clientObject.contact = myReader[5].ToString();
-                    clientObject.clientType = getType((int)myReader[6]);
+                    clientObject.clientType = getType(Convert.ToInt32(myReader[6]));
                 }
             }
 
             return clientObject;
+            //try
+            //{
+                
+            //}
+            //catch (Exception)
+            //{
+            //    throw;
+            //}
+            //finally 
+            //{
+            //    this.databaseObject.closeConnection();
+            //}
         }
         
         /// <summary>

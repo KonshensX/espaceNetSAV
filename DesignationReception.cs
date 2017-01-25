@@ -100,6 +100,7 @@ namespace espaceNetSAV
             string query = "SELECT * FROM receptiondesignation WHERE id = @id ";
             using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
             {
+                this.databaseObject.openConnection();
                 myCommand.Parameters.AddWithValue("@id", ID);
                 var myReader = myCommand.ExecuteReader();
                 while (myReader.Read())

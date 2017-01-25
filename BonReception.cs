@@ -102,23 +102,37 @@ namespace espaceNetSAV
         public BonReception getDataForPdf(int id)
         {
             BonReception bonObject = new BonReception();
-            Client clietObject = new Client();
+            Client clientObject = new Client();
             DesignationReception designationObject = new DesignationReception();
             string query = "SELECT * FROM bonReception WHERE ID = @id";
             using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
             {
+                this.databaseObject.openConnection();
                 myCommand.Parameters.AddWithValue("@id", id);
                 var myReader = myCommand.ExecuteReader();
                 while (myReader.Read())
                 {
                     bonObject.id = (int)myReader[0];
-                    bonObject.client = client.getClientByID((int)myReader[2]);
+                    bonObject.client = clientObject.getClientByID((int)myReader[2]);
                     bonObject.designationReception = designationObject.getDesignationByID((int)myReader[3]);
-                    bonObject.date = (DateTime)myReader[4];
+                    bonObject.date = Convert.ToDateTime(myReader[1]);
+                    bonObject.ref_achat = myReader[4].ToString();
                 }
             }
 
             return bonObject;
+            //try
+            //{
+                
+            //}
+            //catch (Exception)
+            //{
+            //    throw;
+            //}
+            //finally
+            //{
+            //    this.databaseObject.closeConnection();
+            //}
         }
 
     }

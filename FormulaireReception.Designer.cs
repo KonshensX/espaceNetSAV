@@ -30,7 +30,6 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.makePdfButton = new System.Windows.Forms.Button();
-            this.diusplayListBtn = new System.Windows.Forms.Button();
             this.clientComboBox = new System.Windows.Forms.ComboBox();
             this.refAchattbox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -43,7 +42,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.faxTBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.buttonValider = new System.Windows.Forms.Button();
             this.problTBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.designTBox = new System.Windows.Forms.TextBox();
@@ -53,6 +51,9 @@
             this.telTBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.diusplayListBtn = new System.Windows.Forms.Button();
+            this.buttonValider = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -98,16 +99,6 @@
             this.makePdfButton.Text = "Make pdf";
             this.makePdfButton.UseVisualStyleBackColor = true;
             this.makePdfButton.Click += new System.EventHandler(this.makePdfButton_Click);
-            // 
-            // diusplayListBtn
-            // 
-            this.diusplayListBtn.Location = new System.Drawing.Point(155, 345);
-            this.diusplayListBtn.Name = "diusplayListBtn";
-            this.diusplayListBtn.Size = new System.Drawing.Size(123, 23);
-            this.diusplayListBtn.TabIndex = 23;
-            this.diusplayListBtn.Text = "Display List";
-            this.diusplayListBtn.UseVisualStyleBackColor = true;
-            this.diusplayListBtn.Click += new System.EventHandler(this.diusplayListBtn_Click);
             // 
             // clientComboBox
             // 
@@ -227,17 +218,6 @@
             this.label4.TabIndex = 13;
             this.label4.Text = "Fax";
             // 
-            // buttonValider
-            // 
-            this.buttonValider.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonValider.Location = new System.Drawing.Point(782, 345);
-            this.buttonValider.Name = "buttonValider";
-            this.buttonValider.Size = new System.Drawing.Size(123, 23);
-            this.buttonValider.TabIndex = 10;
-            this.buttonValider.Text = "Valider";
-            this.buttonValider.UseVisualStyleBackColor = true;
-            this.buttonValider.Click += new System.EventHandler(this.button1_Click);
-            // 
             // problTBox
             // 
             this.problTBox.Location = new System.Drawing.Point(555, 179);
@@ -252,9 +232,9 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(705, 160);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(67, 16);
+            this.label6.Size = new System.Drawing.Size(75, 16);
             this.label6.TabIndex = 8;
-            this.label6.Text = "Problème";
+            this.label6.Text = "Problème *";
             // 
             // designTBox
             // 
@@ -270,9 +250,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(299, 160);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(80, 16);
+            this.label5.Size = new System.Drawing.Size(91, 16);
             this.label5.TabIndex = 6;
-            this.label5.Text = "Désignation";
+            this.label5.Text = "Désignation * ";
             // 
             // dateValuelbl
             // 
@@ -307,9 +287,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(415, 39);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 16);
+            this.label2.Size = new System.Drawing.Size(82, 16);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Télephone";
+            this.label2.Text = "Télephone *";
             // 
             // label1
             // 
@@ -317,15 +297,48 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(152, 39);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 16);
+            this.label1.Size = new System.Drawing.Size(49, 16);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Client";
+            this.label1.Text = "Client *";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 379);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(929, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // diusplayListBtn
+            // 
+            this.diusplayListBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.diusplayListBtn.Location = new System.Drawing.Point(155, 337);
+            this.diusplayListBtn.Name = "diusplayListBtn";
+            this.diusplayListBtn.Size = new System.Drawing.Size(123, 38);
+            this.diusplayListBtn.TabIndex = 23;
+            this.diusplayListBtn.Text = "Display List";
+            this.diusplayListBtn.UseVisualStyleBackColor = true;
+            this.diusplayListBtn.Click += new System.EventHandler(this.diusplayListBtn_Click);
+            // 
+            // buttonValider
+            // 
+            this.buttonValider.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonValider.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonValider.Location = new System.Drawing.Point(820, 337);
+            this.buttonValider.Name = "buttonValider";
+            this.buttonValider.Size = new System.Drawing.Size(85, 38);
+            this.buttonValider.TabIndex = 10;
+            this.buttonValider.Text = "Valider";
+            this.buttonValider.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonValider.UseVisualStyleBackColor = true;
+            this.buttonValider.Click += new System.EventHandler(this.button1_Click);
             // 
             // FormulaireReception
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(929, 401);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormulaireReception";
             this.Text = "µ";
@@ -335,6 +348,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -365,5 +379,6 @@
         private System.Windows.Forms.ComboBox clientComboBox;
         private System.Windows.Forms.Button diusplayListBtn;
         private System.Windows.Forms.Button makePdfButton;
+        private System.Windows.Forms.StatusStrip statusStrip1;
     }
 }
