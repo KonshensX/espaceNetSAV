@@ -11,6 +11,7 @@ namespace espaceNetSAV
 {
     public partial class BonReceptionList : Form
     {
+        DataView dataView;
         BonReception bonReceptionService;
         DataTable myDataSource;
 
@@ -19,13 +20,14 @@ namespace espaceNetSAV
             InitializeComponent();
             bonReceptionService = new BonReception();
             myDataSource = bonReceptionService.GetData();
+            dataView = new DataView(myDataSource);
         }
 
         private void BonReceptionList_Load(object sender, EventArgs e)
         {
             
             BonDataGrid.RowTemplate.Height = 30;
-            BonDataGrid.DataSource = myDataSource;
+            BonDataGrid.DataSource = dataView;
 
             DataGridViewButtonColumn pdfButton = new DataGridViewButtonColumn();
 
@@ -37,7 +39,7 @@ namespace espaceNetSAV
             pdfButton.Text = "Fichier";
             pdfButton.UseColumnTextForButtonValue = true;
 
-            BonDataGrid.Columns["Bon ID"].Visible = false;
+            BonDataGrid.Columns["Bon N°"].Visible = true;
             BonDataGrid.Columns["Client ID"].Visible = false;
             BonDataGrid.Columns["Designations ID"].Visible = false;
             BonDataGrid.Columns["Designation ID"].Visible = false;
@@ -79,6 +81,54 @@ namespace espaceNetSAV
             UpdateBon formObject = new UpdateBon(bonObject);
             formObject.Show();
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (!(clientTBox.Text == "")) 
+            {
+                dataView.RowFilter = "Nom LIKE '%" + clientTBox.Text + "%'";
+                //MessageBox.Show(dataView.RowFilter);
+                BonDataGrid.DataSource = dataView;
+            }
+            else
+            {
+                BonDataGrid.DataSource = myDataSource;
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            //Telephone textbox, i forgot this one too :'(
+            if (!(telTBox.Text == ""))
+            {
+                dataView.RowFilter = "Telephone LIKE '%" + telTBox.Text + "%'";
+                //MessageBox.Show(dataView.RowFilter);
+                BonDataGrid.DataSource = dataView;
+            }
+            else
+            {
+                BonDataGrid.DataSource = myDataSource;
+            }
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            //Bon textbox, i just forgot to rename it lol pls don't judge :'(
+            if (!(bonNumTBox.Text == ""))
+            {
+                dataView.RowFilter = "[Bon N°] = " + bonNumTBox.Text + "";
+                //MessageBox.Show(dataView.RowFilter);
+                BonDataGrid.DataSource = dataView;
+            }
+            else
+            {
+                BonDataGrid.DataSource = myDataSource;
+            }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
         }
     }
 }

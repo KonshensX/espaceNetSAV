@@ -77,7 +77,7 @@ namespace espaceNetSAV
                 DataTable table = new DataTable();
                 table.Locale = System.Globalization.CultureInfo.InvariantCulture;
                 adapter.Fill(table);
-                table.Columns["id"].ColumnName = "Bon ID";
+                table.Columns["id"].ColumnName = "Bon N°";
                 table.Columns["bonDate"].ColumnName = "Date";
                 table.Columns["client_id"].ColumnName = "Client ID";
                 table.Columns["designation_id"].ColumnName = "Designation ID";

@@ -235,7 +235,10 @@ namespace espaceNetSAV
             }
         }
 
-        //Get the last ID
+        /// <summary>
+        /// Gets the last ID in teh database
+        /// </summary>
+        /// <returns></returns>
         public int getLastID()
         {
             //TODO: write the query 
