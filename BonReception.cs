@@ -4,7 +4,7 @@ using MySql.Data.MySqlClient;
 
 namespace espaceNetSAV
 {
-    class BonReception
+    public class BonReception
     {
         private Database databaseObject;
         public int id;
@@ -29,7 +29,9 @@ namespace espaceNetSAV
             this.ref_achat = ref_achat;
         }
         #endregion
-
+        /// <summary>
+        /// Saves the current object to the database
+        /// </summary>
         public void persistObjectToDatabase()
         {
             //TODO: fix the query 
@@ -55,7 +57,10 @@ namespace espaceNetSAV
                 databaseObject.closeConnection();
             }
         }
-
+        /// <summary>
+        /// Gets all the data in the Bon Reception table
+        /// </summary>
+        /// <returns></returns>
         public DataTable GetData()
         {
             try
@@ -133,6 +138,36 @@ namespace espaceNetSAV
             //{
             //    this.databaseObject.closeConnection();
             //}
+        }
+
+        /// <summary>
+        /// Gets teh item "Bon" coresponds to the given id
+        /// </summary>
+        /// <param name="bonID">Bon id</param>
+        /// <returns></returns>
+        public BonReception getItem(int bonID)
+        {
+            string query = "SELECT * FROM bonReception, client, receptiondesignation WHERE bonReception.client_id = client.id AND bonReception.designation_id = receptiondesignation.id AND bonReception.id = @id";
+
+            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection())) 
+            {
+
+                Client clientObject = new Client();
+                DesignationReception designationObject = new DesignationReception();
+                this.databaseObject.openConnection();
+                myCommand.Parameters.AddWithValue("@id", bonID);
+                var myReader = myCommand.ExecuteReader();
+                while (myReader.Read())
+                {
+                    this.id = (int)myReader[0];
+                    this.client = clientObject.getClientByID((int)myReader[2]);
+                    this.designationReception = designationObject.getDesignationByID((int)myReader[3]);
+                    this.date = Convert.ToDateTime(myReader[1]);
+                    this.ref_achat = myReader[4].ToString();
+                }
+            }
+
+            return this;
         }
 
     }

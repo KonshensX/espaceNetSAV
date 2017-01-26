@@ -86,7 +86,7 @@ namespace espaceNetSAV
                 else
                 {
                     //Add a new client to the database
-                    clientObject = new Client(clientComboBox.Text, telTBox.Text, emailTBox.Text, faxTBox.Text, contactTBox.Text, (clientTypeRB.Checked) ? ClientType.Client : ClientType.RasionSociale);
+                    clientObject = new Client(clientComboBox.Text, telTBox.Text, emailTBox.Text, faxTBox.Text, contactTBox.Text, (clientTypeRB.Checked) ? ClientType.Client : ClientType.RaisonSociale);
                     clientObject.persistClientToDatabase();
                 }
 

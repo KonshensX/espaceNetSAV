@@ -3,7 +3,7 @@ using MySql.Data.MySqlClient;
 
 namespace espaceNetSAV
 {
-    class DesignationReception
+    public class DesignationReception
     {
         private Database databaseObject;
         public int? id;
@@ -100,8 +100,8 @@ namespace espaceNetSAV
             string query = "SELECT * FROM receptiondesignation WHERE id = @id ";
             using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
             {
-                this.databaseObject.openConnection();
                 myCommand.Parameters.AddWithValue("@id", ID);
+                this.databaseObject.openConnection();
                 var myReader = myCommand.ExecuteReader();
                 while (myReader.Read())
                 {

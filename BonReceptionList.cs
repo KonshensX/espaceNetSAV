@@ -11,16 +11,19 @@ namespace espaceNetSAV
 {
     public partial class BonReceptionList : Form
     {
+        BonReception bonReceptionService;
+        DataTable myDataSource;
+
         public BonReceptionList()
         {
             InitializeComponent();
+            bonReceptionService = new BonReception();
+            myDataSource = bonReceptionService.GetData();
         }
 
         private void BonReceptionList_Load(object sender, EventArgs e)
         {
-            BonReception bonReceptionService = new BonReception();
-            DataTable myDataSource = bonReceptionService.GetData();
-
+            
             BonDataGrid.RowTemplate.Height = 30;
             BonDataGrid.DataSource = myDataSource;
 
@@ -65,6 +68,17 @@ namespace espaceNetSAV
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             
+        }
+
+        private void BonDataGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var rowIndex = BonDataGrid.CurrentRow.Index;
+
+            BonReception bonObject = new BonReception();
+            bonObject.getItem((int)BonDataGrid.Rows[rowIndex].Cells[0].Value);
+            UpdateBon formObject = new UpdateBon(bonObject);
+            formObject.Show();
+
         }
     }
 }

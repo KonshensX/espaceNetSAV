@@ -8,13 +8,13 @@ namespace espaceNetSAV
     //Client est 0
     //Raison Sociale est 1
     //NULL est -1
-    enum ClientType {
+    public enum ClientType {
         Client,
-        RasionSociale,
+        RaisonSociale,
         Nothing
     }
 
-    class Client
+    public class Client
     {
         private Database databaseObject;
         public int? id;
@@ -50,7 +50,7 @@ namespace espaceNetSAV
             {
                 case ClientType.Client:
                     return 0;
-                case ClientType.RasionSociale:
+                case ClientType.RaisonSociale:
                     return 1;
                 default:
                     return -1;
@@ -229,7 +229,7 @@ namespace espaceNetSAV
                 case 0:
                     return ClientType.Client;
                 case 1:
-                    return ClientType.RasionSociale;
+                    return ClientType.RaisonSociale;
                 default:
                     return ClientType.Nothing;
             }
@@ -315,7 +315,7 @@ namespace espaceNetSAV
                 case 0:
                     return ClientType.Client;
                 case 1:
-                    return ClientType.RasionSociale;
+                    return ClientType.RaisonSociale;
                 default:
                     return ClientType.Nothing;
             }

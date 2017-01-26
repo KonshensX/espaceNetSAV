@@ -61,6 +61,7 @@
             // BonDataGrid
             // 
             this.BonDataGrid.AllowUserToAddRows = false;
+            this.BonDataGrid.AllowUserToDeleteRows = false;
             this.BonDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.BonDataGrid.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BonDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -69,10 +70,12 @@
             this.BonDataGrid.GridColor = System.Drawing.Color.White;
             this.BonDataGrid.Location = new System.Drawing.Point(3, 16);
             this.BonDataGrid.Name = "BonDataGrid";
+            this.BonDataGrid.ReadOnly = true;
             this.BonDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.BonDataGrid.Size = new System.Drawing.Size(944, 405);
             this.BonDataGrid.TabIndex = 0;
             this.BonDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_CellContentClick);
+            this.BonDataGrid.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_CellContentDoubleClick);
             // 
             // statusStrip1
             // 
