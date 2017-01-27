@@ -67,10 +67,6 @@ namespace espaceNetSAV
             }
         }
 
-        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            
-        }
 
         private void BonDataGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -129,6 +125,16 @@ namespace espaceNetSAV
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
+            if (!(dateTimePicker1.Text == ""))
+            {
+                dataView.RowFilter = "Date >= #" + dateTimePicker1.Text + " 00:00# AND Date <= #" +dateTimePicker1.Text+ " 23:59#";
+                //MessageBox.Show(dataView.RowFilter);
+                BonDataGrid.DataSource = dataView;
+            }
+            else
+            {
+                BonDataGrid.DataSource = myDataSource;
+            }
         }
     }
 }

@@ -34,7 +34,32 @@ namespace espaceNetSAV
             refAchattbox.Text = bonObject.ref_achat;
             designTBox.Text = bonObject.designationReception.designation;
             problTBox.Text = bonObject.designationReception.probleme;
+            diagnosicTBox.Text = bonObject.tech.diagnostics;
+            taskTBox.Text = bonObject.tech.tasks;
 
+            pictureBox1.Image = this.getImage(bonObject.tech.status);
+        }
+
+        private void devisButton_Click(object sender, EventArgs e)
+        {
+
+        }
+        /// <summary>
+        /// This gets the correct image based on the given Status
+        /// </summary>
+        /// <param name="status">The status of the item</param>
+        /// <returns></returns>
+        private Bitmap getImage(Status status)
+        {
+            switch (status)
+            {
+                case Status.Fixed:
+                    return Properties.Resources.ok;
+                case Status.BeingRepeared:
+                    return Properties.Resources.NOT_OK;
+                default:
+                    return Properties.Resources.NOT_OK;
+            }
         }
     }
 }

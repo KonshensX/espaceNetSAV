@@ -11,12 +11,14 @@ namespace espaceNetSAV
         public DateTime date;
         public Client client;
         public DesignationReception designationReception;
+        public Technique tech;
         public string ref_achat;
 
         #region Methodes 
         public BonReception() 
         {
             this.databaseObject = new Database();
+            this.tech = new Technique();
             this.date = DateTime.Now; 
         }
 
@@ -24,6 +26,7 @@ namespace espaceNetSAV
         {
             this.databaseObject = new Database();
             this.date = DateTime.Now;
+            this.tech = new Technique();
             this.client = client;
             this.designationReception = desReception;
             this.ref_achat = ref_achat;
@@ -147,11 +150,11 @@ namespace espaceNetSAV
         /// <returns></returns>
         public BonReception getItem(int bonID)
         {
-            string query = "SELECT * FROM bonReception, client, receptiondesignation WHERE bonReception.client_id = client.id AND bonReception.designation_id = receptiondesignation.id AND bonReception.id = @id";
+            string query = "SELECT * FROM bonReception WHERE  bonReception.id = @id";
 
             using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection())) 
             {
-
+                Technique techObject = new Technique();
                 Client clientObject = new Client();
                 DesignationReception designationObject = new DesignationReception();
                 this.databaseObject.openConnection();
@@ -160,10 +163,12 @@ namespace espaceNetSAV
                 while (myReader.Read())
                 {
                     this.id = (int)myReader[0];
-                    this.client = clientObject.getClientByID((int)myReader[2]);
-                    this.designationReception = designationObject.getDesignationByID((int)myReader[3]);
                     this.date = Convert.ToDateTime(myReader[1]);
+                    this.client = clientObject.getClientByID(Convert.ToInt32(myReader[2]));
+                    this.designationReception = designationObject.getDesignationByID((int)myReader[3]);
+                    this.tech = techObject.getItem(Convert.ToInt32(myReader["tech_id"]));
                     this.ref_achat = myReader[4].ToString();
+                    var shit = tech.getItem((int)myReader[5]);
                 }
             }
 

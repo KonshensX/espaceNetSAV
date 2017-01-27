@@ -31,25 +31,40 @@
             this.components = new System.ComponentModel.Container();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.clientTBox = new System.Windows.Forms.TextBox();
+            this.refAchattbox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.contactTBox = new System.Windows.Forms.TextBox();
             this.contactLabel = new System.Windows.Forms.Label();
+            this.emailTBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.faxTBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.problTBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.designTBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dateValuelbl = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.telTBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.designTBox = new System.Windows.Forms.TextBox();
-            this.problTBox = new System.Windows.Forms.TextBox();
-            this.faxTBox = new System.Windows.Forms.TextBox();
-            this.emailTBox = new System.Windows.Forms.TextBox();
-            this.refAchattbox = new System.Windows.Forms.TextBox();
-            this.contactTBox = new System.Windows.Forms.TextBox();
-            this.telTBox = new System.Windows.Forms.TextBox();
-            this.clientTBox = new System.Windows.Forms.TextBox();
+            this.devisTBox = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.devisButton = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.taskTBox = new System.Windows.Forms.TextBox();
+            this.diagnosicTBox = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -85,6 +100,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Champs";
             // 
+            // clientTBox
+            // 
+            this.clientTBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.clientTBox.Location = new System.Drawing.Point(141, 32);
+            this.clientTBox.Name = "clientTBox";
+            this.clientTBox.ReadOnly = true;
+            this.clientTBox.Size = new System.Drawing.Size(158, 20);
+            this.clientTBox.TabIndex = 40;
+            // 
+            // refAchattbox
+            // 
+            this.refAchattbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.refAchattbox.Location = new System.Drawing.Point(141, 109);
+            this.refAchattbox.Name = "refAchattbox";
+            this.refAchattbox.ReadOnly = true;
+            this.refAchattbox.Size = new System.Drawing.Size(158, 20);
+            this.refAchattbox.TabIndex = 39;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -94,6 +127,15 @@
             this.label8.Size = new System.Drawing.Size(65, 16);
             this.label8.TabIndex = 38;
             this.label8.Text = "Réf achat";
+            // 
+            // contactTBox
+            // 
+            this.contactTBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.contactTBox.Location = new System.Drawing.Point(410, 70);
+            this.contactTBox.Name = "contactTBox";
+            this.contactTBox.ReadOnly = true;
+            this.contactTBox.Size = new System.Drawing.Size(158, 20);
+            this.contactTBox.TabIndex = 37;
             // 
             // contactLabel
             // 
@@ -105,6 +147,15 @@
             this.contactLabel.TabIndex = 36;
             this.contactLabel.Text = "Contact";
             // 
+            // emailTBox
+            // 
+            this.emailTBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.emailTBox.Location = new System.Drawing.Point(650, 70);
+            this.emailTBox.Name = "emailTBox";
+            this.emailTBox.ReadOnly = true;
+            this.emailTBox.Size = new System.Drawing.Size(158, 20);
+            this.emailTBox.TabIndex = 35;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -114,6 +165,15 @@
             this.label7.Size = new System.Drawing.Size(42, 16);
             this.label7.TabIndex = 34;
             this.label7.Text = "Email";
+            // 
+            // faxTBox
+            // 
+            this.faxTBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.faxTBox.Location = new System.Drawing.Point(650, 26);
+            this.faxTBox.Name = "faxTBox";
+            this.faxTBox.ReadOnly = true;
+            this.faxTBox.Size = new System.Drawing.Size(158, 20);
+            this.faxTBox.TabIndex = 33;
             // 
             // label4
             // 
@@ -125,6 +185,16 @@
             this.label4.TabIndex = 32;
             this.label4.Text = "Fax";
             // 
+            // problTBox
+            // 
+            this.problTBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.problTBox.Location = new System.Drawing.Point(434, 172);
+            this.problTBox.Multiline = true;
+            this.problTBox.Name = "problTBox";
+            this.problTBox.ReadOnly = true;
+            this.problTBox.Size = new System.Drawing.Size(374, 145);
+            this.problTBox.TabIndex = 31;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -134,6 +204,16 @@
             this.label6.Size = new System.Drawing.Size(75, 16);
             this.label6.TabIndex = 30;
             this.label6.Text = "Problème *";
+            // 
+            // designTBox
+            // 
+            this.designTBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.designTBox.Location = new System.Drawing.Point(58, 172);
+            this.designTBox.Multiline = true;
+            this.designTBox.Name = "designTBox";
+            this.designTBox.ReadOnly = true;
+            this.designTBox.Size = new System.Drawing.Size(370, 145);
+            this.designTBox.TabIndex = 29;
             // 
             // label5
             // 
@@ -165,15 +245,24 @@
             this.label3.TabIndex = 26;
             this.label3.Text = "Date:";
             // 
+            // telTBox
+            // 
+            this.telTBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.telTBox.Location = new System.Drawing.Point(410, 28);
+            this.telTBox.Name = "telTBox";
+            this.telTBox.ReadOnly = true;
+            this.telTBox.Size = new System.Drawing.Size(158, 20);
+            this.telTBox.TabIndex = 25;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(318, 32);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 16);
+            this.label2.Size = new System.Drawing.Size(77, 16);
             this.label2.TabIndex = 24;
-            this.label2.Text = "Télephone *";
+            this.label2.Text = "Télephone ";
             // 
             // label1
             // 
@@ -181,89 +270,143 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(55, 32);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 16);
+            this.label1.Size = new System.Drawing.Size(44, 16);
             this.label1.TabIndex = 23;
-            this.label1.Text = "Client *";
+            this.label1.Text = "Client ";
             // 
-            // designTBox
+            // devisTBox
             // 
-            this.designTBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.designTBox.Location = new System.Drawing.Point(58, 172);
-            this.designTBox.Multiline = true;
-            this.designTBox.Name = "designTBox";
-            this.designTBox.ReadOnly = true;
-            this.designTBox.Size = new System.Drawing.Size(394, 145);
-            this.designTBox.TabIndex = 29;
+            this.devisTBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.devisTBox.Location = new System.Drawing.Point(306, 24);
+            this.devisTBox.Name = "devisTBox";
+            this.devisTBox.ReadOnly = true;
+            this.devisTBox.Size = new System.Drawing.Size(158, 20);
+            this.devisTBox.TabIndex = 42;
             // 
-            // problTBox
+            // label9
             // 
-            this.problTBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.problTBox.Location = new System.Drawing.Point(458, 172);
-            this.problTBox.Multiline = true;
-            this.problTBox.Name = "problTBox";
-            this.problTBox.ReadOnly = true;
-            this.problTBox.Size = new System.Drawing.Size(350, 145);
-            this.problTBox.TabIndex = 31;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(206, 24);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(94, 16);
+            this.label9.TabIndex = 41;
+            this.label9.Text = "Devis Numero";
             // 
-            // faxTBox
+            // devisButton
             // 
-            this.faxTBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.faxTBox.Location = new System.Drawing.Point(650, 26);
-            this.faxTBox.Name = "faxTBox";
-            this.faxTBox.ReadOnly = true;
-            this.faxTBox.Size = new System.Drawing.Size(158, 13);
-            this.faxTBox.TabIndex = 33;
+            this.devisButton.Location = new System.Drawing.Point(482, 24);
+            this.devisButton.Name = "devisButton";
+            this.devisButton.Size = new System.Drawing.Size(121, 23);
+            this.devisButton.TabIndex = 44;
+            this.devisButton.Text = "Attach";
+            this.devisButton.UseVisualStyleBackColor = true;
+            this.devisButton.Click += new System.EventHandler(this.devisButton_Click);
             // 
-            // emailTBox
+            // groupBox2
             // 
-            this.emailTBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.emailTBox.Location = new System.Drawing.Point(650, 70);
-            this.emailTBox.Name = "emailTBox";
-            this.emailTBox.ReadOnly = true;
-            this.emailTBox.Size = new System.Drawing.Size(158, 13);
-            this.emailTBox.TabIndex = 35;
+            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.devisButton);
+            this.groupBox2.Controls.Add(this.devisTBox);
+            this.groupBox2.Location = new System.Drawing.Point(16, 445);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(845, 63);
+            this.groupBox2.TabIndex = 45;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Devis";
             // 
-            // refAchattbox
+            // textBox1
             // 
-            this.refAchattbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.refAchattbox.Location = new System.Drawing.Point(141, 109);
-            this.refAchattbox.Name = "refAchattbox";
-            this.refAchattbox.ReadOnly = true;
-            this.refAchattbox.Size = new System.Drawing.Size(158, 13);
-            this.refAchattbox.TabIndex = 39;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.Location = new System.Drawing.Point(79, -71);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(310, 59);
+            this.textBox1.TabIndex = 41;
             // 
-            // contactTBox
+            // groupBox3
             // 
-            this.contactTBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.contactTBox.Location = new System.Drawing.Point(410, 70);
-            this.contactTBox.Name = "contactTBox";
-            this.contactTBox.ReadOnly = true;
-            this.contactTBox.Size = new System.Drawing.Size(158, 13);
-            this.contactTBox.TabIndex = 37;
+            this.groupBox3.Controls.Add(this.pictureBox1);
+            this.groupBox3.Controls.Add(this.label12);
+            this.groupBox3.Controls.Add(this.taskTBox);
+            this.groupBox3.Controls.Add(this.diagnosicTBox);
+            this.groupBox3.Controls.Add(this.label11);
+            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Location = new System.Drawing.Point(7, 330);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(850, 109);
+            this.groupBox3.TabIndex = 46;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Etat ";
             // 
-            // telTBox
+            // label12
             // 
-            this.telTBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.telTBox.Location = new System.Drawing.Point(410, 28);
-            this.telTBox.Name = "telTBox";
-            this.telTBox.ReadOnly = true;
-            this.telTBox.Size = new System.Drawing.Size(158, 13);
-            this.telTBox.TabIndex = 25;
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(711, 16);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(31, 16);
+            this.label12.TabIndex = 47;
+            this.label12.Text = "Etat";
             // 
-            // clientTBox
+            // taskTBox
             // 
-            this.clientTBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.clientTBox.Location = new System.Drawing.Point(141, 32);
-            this.clientTBox.Name = "clientTBox";
-            this.clientTBox.ReadOnly = true;
-            this.clientTBox.Size = new System.Drawing.Size(158, 13);
-            this.clientTBox.TabIndex = 40;
+            this.taskTBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.taskTBox.Location = new System.Drawing.Point(458, 16);
+            this.taskTBox.Multiline = true;
+            this.taskTBox.Name = "taskTBox";
+            this.taskTBox.ReadOnly = true;
+            this.taskTBox.Size = new System.Drawing.Size(247, 87);
+            this.taskTBox.TabIndex = 46;
+            // 
+            // diagnosicTBox
+            // 
+            this.diagnosicTBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.diagnosicTBox.Location = new System.Drawing.Point(84, 16);
+            this.diagnosicTBox.Multiline = true;
+            this.diagnosicTBox.Name = "diagnosicTBox";
+            this.diagnosicTBox.ReadOnly = true;
+            this.diagnosicTBox.Size = new System.Drawing.Size(247, 87);
+            this.diagnosicTBox.TabIndex = 45;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(337, 16);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(108, 16);
+            this.label11.TabIndex = 42;
+            this.label11.Text = "Taches effectuer";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(6, 16);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(72, 16);
+            this.label10.TabIndex = 41;
+            this.label10.Text = "Diagnostic";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(714, 35);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(130, 68);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 48;
+            this.pictureBox1.TabStop = false;
             // 
             // UpdateBon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(869, 330);
+            this.ClientSize = new System.Drawing.Size(869, 520);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "UpdateBon";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -271,6 +414,11 @@
             this.Load += new System.EventHandler(this.UpdateBon_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -297,5 +445,17 @@
         private System.Windows.Forms.TextBox telTBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox devisTBox;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button devisButton;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox taskTBox;
+        private System.Windows.Forms.TextBox diagnosicTBox;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
     }
 }
