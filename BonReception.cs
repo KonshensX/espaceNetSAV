@@ -68,7 +68,7 @@ namespace espaceNetSAV
         {
             try
             {
-                string query = "SELECT * FROM bonReception, client, receptiondesignation WHERE bonReception.client_id = client.id AND bonReception.designation_id = receptiondesignation.id";
+                string query = "SELECT * FROM bonReception, client, receptiondesignation, techniques WHERE bonReception.client_id = client.id AND bonReception.designation_id = receptiondesignation.id AND techniques.id = bonreception.tech_id";
                 //string query = "SELECT * FROM client";
                 MySqlDataAdapter adapter;
                 using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
@@ -85,6 +85,7 @@ namespace espaceNetSAV
                 table.Columns["client_id"].ColumnName = "Client ID";
                 table.Columns["designation_id"].ColumnName = "Designation ID";
                 table.Columns["ref_achat"].ColumnName = "Ref Achat";
+                table.Columns["tech_id"].ColumnName = "Tech ID";
                 table.Columns["id1"].ColumnName = "Clients ID";
                 table.Columns["nom"].ColumnName = "Nom";
                 table.Columns["tel"].ColumnName = "Telephone";
@@ -95,6 +96,11 @@ namespace espaceNetSAV
                 table.Columns["id2"].ColumnName = "Designations ID";
                 table.Columns["designation"].ColumnName = "Designation";
                 table.Columns["probleme"].ColumnName = "Problème";
+                table.Columns["id3"].ColumnName = "Tech ID ID";
+                table.Columns["diagno"].ColumnName = "Diagnostics";
+                table.Columns["tasks"].ColumnName = "Tàches Effectuer";
+                table.Columns["bon_id"].ColumnName = "ID BON";
+                table.Columns["fixed"].ColumnName = "Etat";
                 return table;
             }
             catch (Exception)

@@ -100,7 +100,22 @@ namespace espaceNetSAV
             }
             
             
-        } 
+        }
+
+        public void persistObjectToDatabase()
+        {
+            string query = "INSERT INTO `techniques`(`diagno`, `tasks`, `bon_id`, `fixed`) VALUES (@diagno, @tasks, @bon_id, @fixed)";
+            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            {
+                this.databaseObject.openConnection();
+                myCommand.Parameters.AddWithValue("@diagno", this.diagnostics);
+                myCommand.Parameters.AddWithValue("@tasks", this.tasks);
+                myCommand.Parameters.AddWithValue("@bon_id", this.bonObject.id);
+                myCommand.Parameters.AddWithValue("@fixed", this.getStatus(status));
+
+                myCommand.ExecuteNonQuery();
+            }
+        }
 
     }
 }

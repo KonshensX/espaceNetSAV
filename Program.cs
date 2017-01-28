@@ -16,7 +16,7 @@ namespace espaceNetSAV
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormulaireReception());
+            Application.Run(new TechniquesList());
         }
     }
 }
