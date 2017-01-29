@@ -72,12 +72,14 @@ namespace espaceNetSAV
                 Client clientObject;
                 DesignationReception designReception = new DesignationReception(designTBox.Text, problTBox.Text);
                 designReception.persistObjectToDatabase();
+
                 //Checking whether the client field is empty or nah!!
                 if (clientComboBox.Text == "" || telTBox.Text == "" || designTBox.Text == "" || problTBox.Text == "")
                 {
                     this.clearStatusBarWithMessage("* - Champs obligatoire");
                     return;
                 }
+
                 if (clientService.clientExists(clientComboBox.Text, telTBox.Text))
                 {
                     //Insert into database without adding a new client
@@ -90,12 +92,19 @@ namespace espaceNetSAV
                     clientObject.persistClientToDatabase();
                 }
 
-                BonReception bonReceptionObject = new BonReception(clientObject, designReception, refAchattbox.Text);
+                Technique techObject = new Technique();
+                BonReception bonReceptionObject = new BonReception(clientObject, designReception, techObject, refAchattbox.Text);
+
+
+
+                techObject.persistObjectToDatabase(bonReceptionObject.id);
                 bonReceptionObject.persistObjectToDatabase();
+
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                MessageBox.Show(ex.StackTrace, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //MessageBox.Show(client.clientExists(clientComboBox.Text, telTBox.Text).ToString());
             statusStrip1.Items.Clear();
@@ -161,6 +170,13 @@ namespace espaceNetSAV
         {
             statusStrip1.Items.Clear();
             statusStrip1.Items.Add(message);
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            TechniquesList formObject = new TechniquesList();
+
+            formObject.Show();
         }
     }
 }

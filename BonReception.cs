@@ -13,18 +13,25 @@ namespace espaceNetSAV
         public DesignationReception designationReception;
         public Technique tech;
         public string ref_achat;
+        public string devis;
 
         #region Methodes 
         public BonReception() 
         {
             this.databaseObject = new Database();
+            if (this.tableHasRow())
+                this.id = this.GetLastID() + 1;
+            else
+                this.id = 1;
+
             this.tech = new Technique();
             this.date = DateTime.Now; 
         }
 
-        public BonReception(Client client,  DesignationReception desReception, string ref_achat)
+        public BonReception(Client client,  DesignationReception desReception, Technique techObject, string ref_achat)
         {
             this.databaseObject = new Database();
+            this.id = this.GetLastID() + 1;
             this.date = DateTime.Now;
             this.tech = new Technique();
             this.client = client;
@@ -38,7 +45,7 @@ namespace espaceNetSAV
         public void persistObjectToDatabase()
         {
             //TODO: fix the query 
-            string query = "INSERT INTO `bonreception`(`bonDate`, `client_id`, `designation_id`, `ref_achat`) VALUES (@date, @client_id, @designation_id, @ref_achat)";
+            string query = "INSERT INTO `bonreception`(`bonDate`, `client_id`, `designation_id`, `ref_achat`, `tech_id`) VALUES (@date, @client_id, @designation_id, @ref_achat, @tech_id)";
             try
             {
                 using (MySqlCommand myCommand = new MySqlCommand(query, databaseObject.getConnection()))
@@ -48,6 +55,7 @@ namespace espaceNetSAV
                     myCommand.Parameters.AddWithValue("@client_id", this.client.id);
                     myCommand.Parameters.AddWithValue("@designation_id", this.designationReception.id);
                     myCommand.Parameters.AddWithValue("@ref_achat", this.ref_achat);
+                    myCommand.Parameters.AddWithValue("@tech_id", this.tech.id);
                     myCommand.ExecuteNonQuery();
                 }
             }
@@ -68,7 +76,7 @@ namespace espaceNetSAV
         {
             try
             {
-                string query = "SELECT * FROM bonReception, client, receptiondesignation, techniques WHERE bonReception.client_id = client.id AND bonReception.designation_id = receptiondesignation.id AND techniques.id = bonreception.tech_id";
+                string query = "SELECT * FROM bonReception, client, receptiondesignation, techniques WHERE bonReception.client_id = client.id AND bonReception.designation_id = receptiondesignation.id AND (techniques.id = bonreception.tech_id) OR (techniques.id = null)";
                 //string query = "SELECT * FROM client";
                 MySqlDataAdapter adapter;
                 using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
@@ -118,23 +126,34 @@ namespace espaceNetSAV
             BonReception bonObject = new BonReception();
             Client clientObject = new Client();
             DesignationReception designationObject = new DesignationReception();
-            string query = "SELECT * FROM bonReception WHERE ID = @id";
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                this.databaseObject.openConnection();
-                myCommand.Parameters.AddWithValue("@id", id);
-                var myReader = myCommand.ExecuteReader();
-                while (myReader.Read())
+                string query = "SELECT * FROM bonReception WHERE ID = @id";
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
-                    bonObject.id = (int)myReader[0];
-                    bonObject.client = clientObject.getClientByID((int)myReader[2]);
-                    bonObject.designationReception = designationObject.getDesignationByID((int)myReader[3]);
-                    bonObject.date = Convert.ToDateTime(myReader[1]);
-                    bonObject.ref_achat = myReader[4].ToString();
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@id", id);
+                    var myReader = myCommand.ExecuteReader();
+                    while (myReader.Read())
+                    {
+                        bonObject.id = (int)myReader[0];
+                        bonObject.client = clientObject.getClientByID((int)myReader[2]);
+                        bonObject.designationReception = designationObject.getDesignationByID((int)myReader[3]);
+                        bonObject.date = Convert.ToDateTime(myReader[1]);
+                        bonObject.ref_achat = myReader[4].ToString();
+                    }
                 }
-            }
 
-            return bonObject;
+                return bonObject;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
             //try
             //{
                 
@@ -150,36 +169,120 @@ namespace espaceNetSAV
         }
 
         /// <summary>
-        /// Gets teh item "Bon" coresponds to the given id
+        /// Gets the item "Bon" coresponds to the given id
         /// </summary>
         /// <param name="bonID">Bon id</param>
         /// <returns></returns>
         public BonReception getItem(int bonID)
         {
-            string query = "SELECT * FROM bonReception WHERE  bonReception.id = @id";
-
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection())) 
+            try
             {
-                Technique techObject = new Technique();
-                Client clientObject = new Client();
-                DesignationReception designationObject = new DesignationReception();
-                this.databaseObject.openConnection();
-                myCommand.Parameters.AddWithValue("@id", bonID);
-                var myReader = myCommand.ExecuteReader();
-                while (myReader.Read())
-                {
-                    this.id = (int)myReader[0];
-                    this.date = Convert.ToDateTime(myReader[1]);
-                    this.client = clientObject.getClientByID(Convert.ToInt32(myReader[2]));
-                    this.designationReception = designationObject.getDesignationByID((int)myReader[3]);
-                    this.tech = techObject.getItem(Convert.ToInt32(myReader["tech_id"]));
-                    this.ref_achat = myReader[4].ToString();
-                    var shit = tech.getItem((int)myReader[5]);
-                }
-            }
+                string query = "SELECT * FROM bonReception WHERE  bonReception.id = @id";
 
-            return this;
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+                {
+                    Technique techObject = new Technique();
+                    Client clientObject = new Client();
+                    DesignationReception designationObject = new DesignationReception();
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@id", bonID);
+                    var myReader = myCommand.ExecuteReader();
+                    while (myReader.Read())
+                    {
+                        this.id = (int)myReader[0];
+                        this.date = Convert.ToDateTime(myReader[1]);
+                        this.client = clientObject.getClientByID(Convert.ToInt32(myReader[2]));
+                        this.designationReception = designationObject.getDesignationByID((int)myReader[3]);
+                        this.tech = techObject.getItem(Convert.ToInt32(myReader["tech_id"]));
+                        this.ref_achat = myReader[4].ToString();
+                    }
+                    myReader.Close();
+                }
+                
+                return this;
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
         }
 
+        /// <summary>
+        /// This well get the last id in the BonReception table
+        /// </summary>
+        /// <returns></returns>
+        private int GetLastID()
+        {
+            try
+            {
+                string query = "SELECT MAX(id) FROM bonreception";
+                var lastID = 0;
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+                {
+                    this.databaseObject.openConnection();
+                    lastID = Convert.ToInt32(myCommand.ExecuteScalar());
+                }
+                return lastID;
+            } 
+            catch (MySqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
+        }
+
+        /// <summary>
+        /// Checks whether the table has any rows or empty
+        /// </summary>
+        /// <returns></returns>
+        private bool tableHasRow()
+        {
+            try
+            {
+                string query = "SELECT * FROM `bonreception`";
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+                {
+                    this.databaseObject.openConnection();
+                    var myReader = myCommand.ExecuteReader();
+                    if (myReader.HasRows)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
+        }
+
+
+        public void updateDevis()
+        {
+            try
+            {
+                string query = "UPDATE bonreception SET devis = @devis WHERE id = @bon_id";
+
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+                {
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@devis", this.devis);
+                    myCommand.Parameters.AddWithValue("@bon_id", this.id);
+                    myCommand.ExecuteNonQuery();
+                }
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
+        }
     }
 }

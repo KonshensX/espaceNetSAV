@@ -42,6 +42,10 @@ namespace espaceNetSAV
 
         private void devisButton_Click(object sender, EventArgs e)
         {
+            //This will attach a devis number to an item
+            bonObject.getItem(bonObject.id);
+            bonObject.devis = devisTBox.Text;
+            bonObject.updateDevis();
 
         }
         /// <summary>

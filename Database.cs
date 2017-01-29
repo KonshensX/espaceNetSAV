@@ -39,7 +39,10 @@ namespace espaceNetSAV
         {
             try
             {
-                this.connection.Open();
+                if (!(this.connection.State == System.Data.ConnectionState.Open))
+                {
+                    this.connection.Open();
+                }
                 return true;
             }
             catch (MySqlException ex)
@@ -65,7 +68,10 @@ namespace espaceNetSAV
         {
             try
             {
-                this.connection.Close();
+                if (!(this.connection.State == System.Data.ConnectionState.Closed))
+                {
+                    this.connection.Close();
+                }
                 return true;
             }
             catch (MySqlException ex)

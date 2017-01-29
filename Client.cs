@@ -28,8 +28,11 @@ namespace espaceNetSAV
         //Default constructor
         public Client() 
         {
-            this.databaseObject = new Database(); 
-            this.id = (this.getLastID() + 1); 
+            this.databaseObject = new Database();
+            if (this.tableHasRow())
+                this.id = getLastID() + 1;
+            else
+                this.id = 1;
         }
         public Client(string nom ,string tel, string email, string fax, string contact, ClientType typeClient)
         {
@@ -242,6 +245,8 @@ namespace espaceNetSAV
         public int getLastID()
         {
             //TODO: write the query 
+
+            
             string query = "SELECT MAX(id) FROM `client`";
             int lastId;
             try
@@ -272,26 +277,33 @@ namespace espaceNetSAV
         public Client getClientByID(int ID)
         {
 
-            Client clientObject = new Client();
-            string query = "SELECT * FROM client WHERE id = @id";
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                this.databaseObject.openConnection();
-                myCommand.Parameters.AddWithValue("@id", ID);
-                var myReader = myCommand.ExecuteReader();
-                while (myReader.Read())
+                Client clientObject = new Client();
+                string query = "SELECT * FROM client WHERE id = @id";
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
-                    clientObject.id = (int)myReader[0];
-                    clientObject.nom = myReader[1].ToString();
-                    clientObject.tel = myReader[2].ToString();
-                    clientObject.email = myReader[3].ToString();
-                    clientObject.fax = myReader[4].ToString();
-                    clientObject.contact = myReader[5].ToString();
-                    clientObject.clientType = getType(Convert.ToInt32(myReader[6]));
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@id", ID);
+                    var myReader = myCommand.ExecuteReader();
+                    while (myReader.Read())
+                    {
+                        clientObject.id = (int)myReader[0];
+                        clientObject.nom = myReader[1].ToString();
+                        clientObject.tel = myReader[2].ToString();
+                        clientObject.email = myReader[3].ToString();
+                        clientObject.fax = myReader[4].ToString();
+                        clientObject.contact = myReader[5].ToString();
+                        clientObject.clientType = getType(Convert.ToInt32(myReader[6]));
+                    }
                 }
-            }
 
-            return clientObject;
+                return clientObject;
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
             //try
             //{
                 
@@ -321,6 +333,36 @@ namespace espaceNetSAV
                     return ClientType.RaisonSociale;
                 default:
                     return ClientType.Nothing;
+            }
+        }
+
+        /// <summary>
+        /// Checks whether the table has any rows or empty
+        /// </summary>
+        /// <returns></returns>
+        private bool tableHasRow()
+        {
+            try
+            {
+                string query = "SELECT * FROM `receptiondesignation`";
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+                {
+                    this.databaseObject.openConnection();
+                    var myReader = myCommand.ExecuteReader();
+                    if (myReader.HasRows)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
             }
         }
     }

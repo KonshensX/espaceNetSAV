@@ -30,6 +30,7 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.makePdfButton = new System.Windows.Forms.Button();
+            this.diusplayListBtn = new System.Windows.Forms.Button();
             this.clientComboBox = new System.Windows.Forms.ComboBox();
             this.refAchattbox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -42,6 +43,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.faxTBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.buttonValider = new System.Windows.Forms.Button();
             this.problTBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.designTBox = new System.Windows.Forms.TextBox();
@@ -52,14 +54,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.diusplayListBtn = new System.Windows.Forms.Button();
-            this.buttonValider = new System.Windows.Forms.Button();
+            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.oKOKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nOTOKOKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.makePdfButton);
             this.groupBox1.Controls.Add(this.diusplayListBtn);
             this.groupBox1.Controls.Add(this.clientComboBox);
@@ -82,10 +88,9 @@
             this.groupBox1.Controls.Add(this.telTBox);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Location = new System.Drawing.Point(0, 27);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(929, 389);
+            this.groupBox1.Size = new System.Drawing.Size(929, 391);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Formulaire";
@@ -99,6 +104,17 @@
             this.makePdfButton.Text = "Make pdf";
             this.makePdfButton.UseVisualStyleBackColor = true;
             this.makePdfButton.Click += new System.EventHandler(this.makePdfButton_Click);
+            // 
+            // diusplayListBtn
+            // 
+            this.diusplayListBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.diusplayListBtn.Location = new System.Drawing.Point(155, 337);
+            this.diusplayListBtn.Name = "diusplayListBtn";
+            this.diusplayListBtn.Size = new System.Drawing.Size(123, 38);
+            this.diusplayListBtn.TabIndex = 23;
+            this.diusplayListBtn.Text = "Display List";
+            this.diusplayListBtn.UseVisualStyleBackColor = true;
+            this.diusplayListBtn.Click += new System.EventHandler(this.diusplayListBtn_Click);
             // 
             // clientComboBox
             // 
@@ -133,7 +149,7 @@
             // 
             this.groupBox2.Controls.Add(this.clientTypeRB);
             this.groupBox2.Controls.Add(this.rsTypeRB);
-            this.groupBox2.Location = new System.Drawing.Point(12, 20);
+            this.groupBox2.Location = new System.Drawing.Point(12, 19);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(134, 100);
             this.groupBox2.TabIndex = 19;
@@ -217,6 +233,19 @@
             this.label4.Size = new System.Drawing.Size(30, 16);
             this.label4.TabIndex = 13;
             this.label4.Text = "Fax";
+            // 
+            // buttonValider
+            // 
+            this.buttonValider.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonValider.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonValider.Location = new System.Drawing.Point(820, 337);
+            this.buttonValider.Name = "buttonValider";
+            this.buttonValider.Size = new System.Drawing.Size(85, 38);
+            this.buttonValider.TabIndex = 10;
+            this.buttonValider.Text = "Valider";
+            this.buttonValider.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonValider.UseVisualStyleBackColor = true;
+            this.buttonValider.Click += new System.EventHandler(this.button1_Click);
             // 
             // problTBox
             // 
@@ -303,42 +332,52 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 379);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 424);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(929, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // diusplayListBtn
+            // menuStrip2
             // 
-            this.diusplayListBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.diusplayListBtn.Location = new System.Drawing.Point(155, 337);
-            this.diusplayListBtn.Name = "diusplayListBtn";
-            this.diusplayListBtn.Size = new System.Drawing.Size(123, 38);
-            this.diusplayListBtn.TabIndex = 23;
-            this.diusplayListBtn.Text = "Display List";
-            this.diusplayListBtn.UseVisualStyleBackColor = true;
-            this.diusplayListBtn.Click += new System.EventHandler(this.diusplayListBtn_Click);
+            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.oKOKToolStripMenuItem,
+            this.nOTOKOKToolStripMenuItem});
+            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Size = new System.Drawing.Size(929, 24);
+            this.menuStrip2.TabIndex = 4;
+            this.menuStrip2.Text = "menuStrip2";
             // 
-            // buttonValider
+            // oKOKToolStripMenuItem
             // 
-            this.buttonValider.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonValider.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonValider.Location = new System.Drawing.Point(820, 337);
-            this.buttonValider.Name = "buttonValider";
-            this.buttonValider.Size = new System.Drawing.Size(85, 38);
-            this.buttonValider.TabIndex = 10;
-            this.buttonValider.Text = "Valider";
-            this.buttonValider.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonValider.UseVisualStyleBackColor = true;
-            this.buttonValider.Click += new System.EventHandler(this.button1_Click);
+            this.oKOKToolStripMenuItem.Name = "oKOKToolStripMenuItem";
+            this.oKOKToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.oKOKToolStripMenuItem.Text = "OKOK";
+            // 
+            // nOTOKOKToolStripMenuItem
+            // 
+            this.nOTOKOKToolStripMenuItem.Name = "nOTOKOKToolStripMenuItem";
+            this.nOTOKOKToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.nOTOKOKToolStripMenuItem.Text = "NOT OKOK";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(446, 337);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(123, 38);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Technique List";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // FormulaireReception
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(929, 401);
+            this.ClientSize = new System.Drawing.Size(929, 446);
             this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.menuStrip2);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormulaireReception";
             this.Text = "µ";
@@ -347,6 +386,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.menuStrip2.ResumeLayout(false);
+            this.menuStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -380,5 +421,9 @@
         private System.Windows.Forms.Button diusplayListBtn;
         private System.Windows.Forms.Button makePdfButton;
         private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem oKOKToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nOTOKOKToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }

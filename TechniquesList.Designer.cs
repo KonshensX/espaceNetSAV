@@ -39,6 +39,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.telTBox = new System.Windows.Forms.TextBox();
             this.clientTBox = new System.Windows.Forms.TextBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             ((System.ComponentModel.ISupportInitialize)(this.BonDataGrid)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -64,8 +65,11 @@
             this.BonDataGrid.Location = new System.Drawing.Point(0, 100);
             this.BonDataGrid.Name = "BonDataGrid";
             this.BonDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.BonDataGrid.Size = new System.Drawing.Size(854, 373);
+            this.BonDataGrid.Size = new System.Drawing.Size(968, 373);
             this.BonDataGrid.TabIndex = 1;
+            this.BonDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_CellContentClick);
+            this.BonDataGrid.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.BonDataGrid_CellMouseUp);
+            this.BonDataGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_CellValueChanged);
             this.BonDataGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BonDataGrid_KeyDown);
             // 
             // groupBox1
@@ -81,7 +85,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(854, 100);
+            this.groupBox1.Size = new System.Drawing.Size(968, 100);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Champs";
@@ -93,6 +97,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(108, 20);
             this.dateTimePicker1.TabIndex = 8;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // label4
             // 
@@ -109,6 +114,7 @@
             this.bonNumTBox.Name = "bonNumTBox";
             this.bonNumTBox.Size = new System.Drawing.Size(155, 20);
             this.bonNumTBox.TabIndex = 6;
+            this.bonNumTBox.TextChanged += new System.EventHandler(this.bonNumTBox_TextChanged);
             // 
             // label3
             // 
@@ -143,6 +149,7 @@
             this.telTBox.Name = "telTBox";
             this.telTBox.Size = new System.Drawing.Size(160, 20);
             this.telTBox.TabIndex = 1;
+            this.telTBox.TextChanged += new System.EventHandler(this.telTBox_TextChanged);
             // 
             // clientTBox
             // 
@@ -150,12 +157,22 @@
             this.clientTBox.Name = "clientTBox";
             this.clientTBox.Size = new System.Drawing.Size(208, 20);
             this.clientTBox.TabIndex = 0;
+            this.clientTBox.TextChanged += new System.EventHandler(this.clientTBox_TextChanged);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 451);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(968, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
             // 
             // TechniquesList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(854, 473);
+            this.ClientSize = new System.Drawing.Size(968, 473);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.BonDataGrid);
             this.Controls.Add(this.groupBox1);
             this.Name = "TechniquesList";
@@ -165,6 +182,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -180,5 +198,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox telTBox;
         private System.Windows.Forms.TextBox clientTBox;
+        private System.Windows.Forms.StatusStrip statusStrip1;
     }
 }

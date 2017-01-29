@@ -13,13 +13,16 @@ namespace espaceNetSAV
         public DesignationReception()
         { 
             this.databaseObject = new Database();
-            this.id = getLastID() + 1; 
+            this.id = getLastID() + 1;
         }
 
         public DesignationReception(string designation, string probleme)
         {
             this.databaseObject = new Database();
-            this.id = getLastID() + 1;
+            if (this.tableHasRow())
+                this.id = getLastID() + 1;
+            else
+                this.id = 1;
             this.designation = designation;
             this.probleme = probleme;
         }
@@ -42,12 +45,14 @@ namespace espaceNetSAV
             }
             finally
             {
-                databaseObject.closeConnection();
+                this.databaseObject.closeConnection();
             }
         }
 
         public int getLastID()
         {
+            //Checking if theres a row in the table
+            
             string query = "SELECT MAX(id) FROM `receptiondesignation`";
             int lastID = 0;
             try
@@ -60,8 +65,13 @@ namespace espaceNetSAV
                     {
                         lastID = (int)myReader[0];
                     }
+                    myReader.Close();
                 }
-            } catch (MySqlException)
+                if(this.tableHasRow())
+                    return lastID;
+                return 0;
+            } 
+            catch (MySqlException)
             {
                 throw;
             }
@@ -69,7 +79,6 @@ namespace espaceNetSAV
             {
                 this.databaseObject.closeConnection();
             }
-            return lastID;
         }
 
         public DesignationReception getLastItemFromDatabase()
@@ -97,21 +106,63 @@ namespace espaceNetSAV
         public DesignationReception getDesignationByID(int ID)
         {
 
-            string query = "SELECT * FROM receptiondesignation WHERE id = @id ";
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                myCommand.Parameters.AddWithValue("@id", ID);
-                this.databaseObject.openConnection();
-                var myReader = myCommand.ExecuteReader();
-                while (myReader.Read())
+                string query = "SELECT * FROM receptiondesignation WHERE id = @id ";
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
-                    this.id = (int)myReader[0];
-                    this.designation = myReader[1].ToString();
-                    this.probleme = myReader[2].ToString();
+                    myCommand.Parameters.AddWithValue("@id", ID);
+                    this.databaseObject.openConnection();
+                    var myReader = myCommand.ExecuteReader();
+                    while (myReader.Read())
+                    {
+                        this.id = (int)myReader[0];
+                        this.designation = myReader[1].ToString();
+                        this.probleme = myReader[2].ToString();
+                    }
                 }
-            }
 
-            return this;
+                return this;
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
+        }
+
+        /// <summary>
+        /// Checks whether the table has any rows or empty
+        /// </summary>
+        /// <returns></returns>
+        private bool tableHasRow()
+        {
+            try
+            {
+                string query = "SELECT * FROM `receptiondesignation`";
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+                {
+                    this.databaseObject.openConnection();
+                    var myReader = myCommand.ExecuteReader();
+                    if (myReader.HasRows)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
         }
     }
 }

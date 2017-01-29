@@ -55,12 +55,12 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label12 = new System.Windows.Forms.Label();
             this.taskTBox = new System.Windows.Forms.TextBox();
             this.diagnosicTBox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -279,7 +279,6 @@
             this.devisTBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.devisTBox.Location = new System.Drawing.Point(306, 24);
             this.devisTBox.Name = "devisTBox";
-            this.devisTBox.ReadOnly = true;
             this.devisTBox.Size = new System.Drawing.Size(158, 20);
             this.devisTBox.TabIndex = 42;
             // 
@@ -341,6 +340,15 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Etat ";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(714, 35);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(130, 68);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 48;
+            this.pictureBox1.TabStop = false;
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -390,15 +398,6 @@
             this.label10.Size = new System.Drawing.Size(72, 16);
             this.label10.TabIndex = 41;
             this.label10.Text = "Diagnostic";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(714, 35);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(130, 68);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 48;
-            this.pictureBox1.TabStop = false;
             // 
             // UpdateBon
             // 
