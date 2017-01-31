@@ -14,38 +14,56 @@ namespace espaceNetSAV
         DataView dataView;
         BonReception bonReceptionService;
         DataTable myDataSource;
+        DataGridViewTextBoxColumn myEtatColumn;
 
         public BonReceptionList()
         {
             InitializeComponent();
             bonReceptionService = new BonReception();
             myDataSource = bonReceptionService.GetData();
+            
             dataView = new DataView(myDataSource);
         }
 
         private void BonReceptionList_Load(object sender, EventArgs e)
         {
-            
+
             BonDataGrid.RowTemplate.Height = 30;
             BonDataGrid.DataSource = dataView;
 
+            
+            BonDataGrid.Columns["Bon N°"].Visible = true;
+            BonDataGrid.Columns["Client ID"].Visible = false;
+            BonDataGrid.Columns["Designations ID"].Visible = false;
+            BonDataGrid.Columns["Tech ID"].Visible = false;
+            BonDataGrid.Columns["Designation ID"].Visible = false;
+            BonDataGrid.Columns["Clients ID"].Visible = false;
+            BonDataGrid.Columns["ID Bon"].Visible = false;
+            BonDataGrid.Columns["Tech ID ID"].Visible = false;
+            BonDataGrid.Columns["Etat"].Visible = false; //Index of this field is 20 (Original Field)
+            //Adding a new text columns to the checkbox 
+            myEtatColumn = new DataGridViewTextBoxColumn() 
+            {
+                HeaderText = "Etat courant",
+                Name = "myEtatColumn"
+            };
+            BonDataGrid.Columns.Add(myEtatColumn);
+            //End of adding the text box
+            BonDataGrid.Columns["Client Type"].Visible = false;
+            //PDF button 
             DataGridViewButtonColumn pdfButton = new DataGridViewButtonColumn();
 
             BonDataGrid.Columns.Add(pdfButton);
 
             pdfButton.HeaderText = "Voir";
-            
+
             pdfButton.Name = "pdfButton";
             pdfButton.Text = "Fichier";
             pdfButton.UseColumnTextForButtonValue = true;
+            //End of PDF Button
 
-            BonDataGrid.Columns["Bon N°"].Visible = true;
-            BonDataGrid.Columns["Client ID"].Visible = false;
-            BonDataGrid.Columns["Designations ID"].Visible = false;
-            BonDataGrid.Columns["Designation ID"].Visible = false;
-            BonDataGrid.Columns["Clients ID"].Visible = false;
-            BonDataGrid.Columns["ID Bon"].Visible = false;
-            BonDataGrid.Columns["Client Type"].Visible = false;
+            this.onLoadUpdateStatusText();
+            //this.changeRowsColors();
         }
 
         private void BonDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -87,10 +105,12 @@ namespace espaceNetSAV
                 dataView.RowFilter = "Nom LIKE '%" + clientTBox.Text + "%'";
                 //MessageBox.Show(dataView.RowFilter);
                 BonDataGrid.DataSource = dataView;
+                this.onTextChangeUpdateStatus(dataView.ToTable());
             }
             else
             {
                 BonDataGrid.DataSource = myDataSource;
+                this.onLoadUpdateStatusText();
             }
         }
 
@@ -102,10 +122,13 @@ namespace espaceNetSAV
                 dataView.RowFilter = "Telephone LIKE '%" + telTBox.Text + "%'";
                 //MessageBox.Show(dataView.RowFilter);
                 BonDataGrid.DataSource = dataView;
+                
+                this.onTextChangeUpdateStatus(dataView.ToTable());
             }
             else
             {
                 BonDataGrid.DataSource = myDataSource;
+                this.onLoadUpdateStatusText();
             }
         }
 
@@ -117,10 +140,12 @@ namespace espaceNetSAV
                 dataView.RowFilter = "[Bon N°] = " + bonNumTBox.Text + "";
                 //MessageBox.Show(dataView.RowFilter);
                 BonDataGrid.DataSource = dataView;
+                this.onTextChangeUpdateStatus(dataView.ToTable());
             }
             else
             {
                 BonDataGrid.DataSource = myDataSource;
+                this.onLoadUpdateStatusText();
             }
         }
 
@@ -131,10 +156,50 @@ namespace espaceNetSAV
                 dataView.RowFilter = "Date >= #" + dateTimePicker1.Text + " 00:00# AND Date <= #" +dateTimePicker1.Text+ " 23:59#";
                 //MessageBox.Show(dataView.RowFilter);
                 BonDataGrid.DataSource = dataView;
+                this.onTextChangeUpdateStatus(dataView.ToTable());
             }
             else
             {
                 BonDataGrid.DataSource = myDataSource;
+                this.onLoadUpdateStatusText();
+            }
+        }
+
+
+
+        private void changeRowsColors()
+        {
+            foreach (DataGridViewRow row in BonDataGrid.Rows)
+            {
+                row.DefaultCellStyle.BackColor = Color.OrangeRed;
+            }
+        }
+
+        private void onLoadUpdateStatusText()
+        {
+
+            for (int i = 0; i < myDataSource.Rows.Count; i++)
+            {
+                var valueOfField = myDataSource.Rows[i].ItemArray[21].ToString();
+                BonDataGrid.Rows[i].Cells[myEtatColumn.Index].Value = ((valueOfField == "1")? "Réparé" : "Pas Encore");
+            }
+        }
+
+        private void onTextChangeUpdateStatus(DataTable table)
+        {
+            int counter = 0;
+            foreach (DataRow row in table.Rows)
+            {
+
+                var valueOfStatusField = Convert.ToInt32(row.ItemArray[row.ItemArray.Length - 1]);
+                if (valueOfStatusField == 1)
+                {
+                    BonDataGrid.Rows[counter++].Cells[myEtatColumn.Index].Value = "Réparé";
+                }
+                else
+                {
+                    BonDataGrid.Rows[counter++].Cells[myEtatColumn.Index].Value = "pas Encore";
+                }
             }
         }
     }

@@ -77,6 +77,8 @@ namespace espaceNetSAV
             BonDataGrid.Columns["Tech ID ID"].Visible = false;
             //MessageBox.Show(repeared.Index.ToString());
 
+            this.onLoadCheckboxStatusChange();
+
             if(dataView.Count > 0)
                 BonDataGrid.Rows[0].Selected = true;
         }
@@ -168,7 +170,9 @@ namespace espaceNetSAV
             {
                 dataView.RowFilter = "Nom LIKE '%" + clientTBox.Text + "%'";
                 //MessageBox.Show(dataView.RowFilter);
+                DataTable myTempTable = dataView.ToTable();
                 BonDataGrid.DataSource = dataView;
+                this.onTextChangeUpdateCheckboxes(myTempTable);
             }
             else
             {
@@ -184,7 +188,10 @@ namespace espaceNetSAV
             {
                 dataView.RowFilter = "Telephone LIKE '%" + telTBox.Text + "%'";
                 //MessageBox.Show(dataView.RowFilter);
+
+                DataTable myTempTable = dataView.ToTable();
                 BonDataGrid.DataSource = dataView;
+                this.onTextChangeUpdateCheckboxes(myTempTable);
             }
             else
             {
@@ -199,7 +206,10 @@ namespace espaceNetSAV
             {
                 dataView.RowFilter = "Date >= #" + dateTimePicker1.Text + " 00:00# AND Date <= #" + dateTimePicker1.Text + " 23:59#";
                 //MessageBox.Show(dataView.RowFilter);
+
+                DataTable myTempTable = dataView.ToTable();
                 BonDataGrid.DataSource = dataView;
+                this.onTextChangeUpdateCheckboxes(myTempTable);
             }
             else
             {
@@ -215,7 +225,10 @@ namespace espaceNetSAV
             {
                 dataView.RowFilter = "[Bon N°] = " + bonNumTBox.Text + "";
                 //MessageBox.Show(dataView.RowFilter);
+
+                DataTable myTempTable = dataView.ToTable();
                 BonDataGrid.DataSource = dataView;
+                this.onTextChangeUpdateCheckboxes(myTempTable);
             }
             else
             {
@@ -252,6 +265,25 @@ namespace espaceNetSAV
                 counter++;
             }
             //End of updating the checkbox
+        }
+
+        private void onTextChangeUpdateCheckboxes(DataTable table)
+        {
+            int counter = 0;
+            foreach (DataRow row in table.Rows)
+            {
+
+                var valueOfStatusField = Convert.ToInt32(row.ItemArray[row.ItemArray.Length - 1]);
+                if (valueOfStatusField == 1)
+                {
+                    BonDataGrid.Rows[counter].Cells[repeared.Index].Value = true;
+                }
+                else
+                {
+                    BonDataGrid.Rows[counter].Cells[repeared.Index].Value = false;
+                }
+                counter++;
+            }
         }
 
     }

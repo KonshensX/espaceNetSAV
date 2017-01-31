@@ -284,5 +284,10 @@ namespace espaceNetSAV
                 this.databaseObject.closeConnection();
             }
         }
+
+        public void onLoadUpdateEtat()
+        {
+
+        }
     }
 }
