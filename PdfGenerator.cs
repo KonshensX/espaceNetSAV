@@ -281,6 +281,8 @@ namespace espaceNetSAV
             iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 9, 0, BaseColor.RED);
             iTextSharp.text.List myList = new List(List.UNORDERED)
             {
+                IndentationLeft = 15f,
+                SymbolIndent = 10f,
                 Autoindent = true
             };
 
