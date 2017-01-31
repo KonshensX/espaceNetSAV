@@ -23,9 +23,13 @@ namespace espaceNetSAV
                 this.id = this.GetLastID() + 1;
             else
                 this.id = 1;
+            this.date = DateTime.Now; 
+            this.client = new Client();
+            this.designationReception = new DesignationReception();
 
             this.tech = new Technique();
-            this.date = DateTime.Now; 
+            this.ref_achat = "";
+            this.devis = "";
         }
 
         public BonReception(Client client,  DesignationReception desReception, Technique techObject, string ref_achat)
@@ -123,9 +127,6 @@ namespace espaceNetSAV
         /// <returns></returns>
         public BonReception getDataForPdf(int id)
         {
-            BonReception bonObject = new BonReception();
-            Client clientObject = new Client();
-            DesignationReception designationObject = new DesignationReception();
             try
             {
                 string query = "SELECT * FROM bonReception WHERE ID = @id";
@@ -136,15 +137,16 @@ namespace espaceNetSAV
                     var myReader = myCommand.ExecuteReader();
                     while (myReader.Read())
                     {
-                        bonObject.id = (int)myReader[0];
-                        bonObject.client = clientObject.getClientByID((int)myReader[2]);
-                        bonObject.designationReception = designationObject.getDesignationByID((int)myReader[3]);
-                        bonObject.date = Convert.ToDateTime(myReader[1]);
-                        bonObject.ref_achat = myReader[4].ToString();
+                        this.id = (int)myReader[0];
+                        this.client = this.client.getClientByID((int)myReader[2]);
+                        this.designationReception = this.designationReception.getDesignationByID((int)myReader[3]);
+                        this.date = Convert.ToDateTime(myReader[1]);
+                        this.ref_achat = myReader[4].ToString();
+                        this.devis = myReader[6].ToString();
                     }
                 }
 
-                return bonObject;
+                return this;
             }
             catch (Exception)
             {

@@ -72,11 +72,11 @@ namespace espaceNetSAV
 
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
+                //MessageBox.Show(BonDataGrid.CurrentRow.Cells[BonDataGrid.Columns["Bon N°"].Index].Value.ToString());
                 //TODO - Button Clicked - Execute Code Here
-                BonReception bonObject = new BonReception();
-                var passObject = bonObject.getDataForPdf((int)BonDataGrid.CurrentRow.Cells[BonDataGrid.Columns["Bon ID"].Index].Value);
-
                 //MessageBox.Show(String.Format("Bon réception ID: {0}", BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells[0].Value));
+                BonReception passObject = new BonReception();
+                passObject.getDataForPdf((int)BonDataGrid.CurrentRow.Cells[BonDataGrid.Columns["Bon N°"].Index].Value);
                 PdfGenerator pdfObject = new PdfGenerator(passObject);
 
                 statusStrip1.Items.Add("Pdf bien générer");

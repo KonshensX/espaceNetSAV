@@ -278,17 +278,17 @@ namespace espaceNetSAV
             };
 
             BaseFont baseFont = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, false);
-            iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 12, 0, BaseColor.RED);
+            iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 9, 0, BaseColor.RED);
             iTextSharp.text.List myList = new List(List.UNORDERED)
             {
-                IndentationLeft = 15f,
+                Autoindent = true
             };
 
-            myList.Add(new ListItem("Lorem ipsum doloçr and shit", font));
-            myList.Add(new ListItem("Lorem ipsum doloçr and shit", font));
-            myList.Add(new ListItem("Lorem ipsum doloçr and shit", font));
+            myList.Add(new ListItem("Le délai de dépôt est fixé à 3 mois, au-delà ESPACENET se réserve le droit de le détruire.", font));
+            myList.Add(new ListItem("Si le produit est sous garantie, le client doit déposer en même temps la facture d'achat.", font));
+            myList.Add(new ListItem("Si le client refuse le Devis de réparation, un forfait de 90 DH sera facturé pour diagnostique.", font));
 
-            mainCell.AddElement(new Phrase("IMPORTANT!"));
+            mainCell.AddElement(new Phrase("IMPORTANT:"));
 
             mainCell.AddElement(myList);
             table.AddCell(mainCell);

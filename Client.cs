@@ -279,7 +279,6 @@ namespace espaceNetSAV
 
             try
             {
-                Client clientObject = new Client();
                 string query = "SELECT * FROM client WHERE id = @id";
                 using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
@@ -288,17 +287,17 @@ namespace espaceNetSAV
                     var myReader = myCommand.ExecuteReader();
                     while (myReader.Read())
                     {
-                        clientObject.id = (int)myReader[0];
-                        clientObject.nom = myReader[1].ToString();
-                        clientObject.tel = myReader[2].ToString();
-                        clientObject.email = myReader[3].ToString();
-                        clientObject.fax = myReader[4].ToString();
-                        clientObject.contact = myReader[5].ToString();
-                        clientObject.clientType = getType(Convert.ToInt32(myReader[6]));
+                        this.id = (int)myReader[0];
+                        this.nom = myReader[1].ToString();
+                        this.tel = myReader[2].ToString();
+                        this.email = myReader[3].ToString();
+                        this.fax = myReader[4].ToString();
+                        this.contact = myReader[5].ToString();
+                        this.clientType = getType(Convert.ToInt32(myReader[6]));
                     }
                 }
 
-                return clientObject;
+                return this;
             }
             finally
             {
