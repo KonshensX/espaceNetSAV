@@ -15,8 +15,9 @@ namespace espaceNetSAV
         PdfWriter write;
 
         const float CELL_BORDER_WIDTH = 1.5f;
-        const int _MARGIN = 20;
-        const float CELLS_MIN_HEIGHT = 120;
+        const int _MARGIN = 10;
+        const float CELLS_MIN_HEIGHT = 110;
+
         /// <summary>
         /// This is the Pdf Generator paramitrized constructor
         /// </summary>
@@ -40,23 +41,10 @@ namespace espaceNetSAV
             {
                 //Opening the document before starting to write on it
                 doc.Open();
-
-                //I should experiment more with the tables an items aligning on this area down here
-                //var headerText = this.headerTextChunkRefAchat();
-                PdfPTable myTable = this.createTable(bonObject.designationReception.designation, bonObject.designationReception.probleme);
-                var headingTable = this.createHeader(bonObject.client.nom);
-                var footerSection = this.footerTable();
-                ////var dateText = this.dateText();
-                var dateText = this.dateAndRef(bonObject.ref_achat);
-                //var refAchat = this.refAchatText();
-                //Client table et logo
-                doc.Add(headingTable);
-                //"Bon" text && ref Achat 
-                //doc.Add(headerText);
-                //Date text
-                doc.Add(dateText);
-                doc.Add(myTable);
-                doc.Add(footerSection);
+                //Top Half of the document 
+                this.topHalfOfTheDocument();
+                //Bottom half of the document
+                this.bottomHalfOfTheDocument();
                 //doc.Add(refAchat);
                 //Closing the document
                 doc.Close();
@@ -73,6 +61,41 @@ namespace espaceNetSAV
             //{
             //    doc.Close();   
             //}
+        }
+        /// <summary>
+        /// This creates the very first table that holds the logo and the client name
+        /// </summary>
+        /// <param name="client">Client name</param>
+        /// <returns></returns>
+        private PdfPTable createHeader(string client)
+        {
+            /*##########################################################*/
+            /* FIRST TABLE SECITON  */
+            /*##########################################################*/
+            PdfPTable table = new PdfPTable(3)
+            {
+                WidthPercentage = 100f
+            };
+
+            var myImage = System.Drawing.Image.FromHbitmap(Properties.Resources.ESPACENET.GetHbitmap());
+            iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(myImage, System.Drawing.Imaging.ImageFormat.Png);
+
+            PdfPCell espaceNetLogo = new PdfPCell() { Border = 0 };
+            espaceNetLogo.AddElement(image);
+            PdfPCell clientCell = new PdfPCell(new Phrase(String.Format("Client: {0}", client)))
+            {
+                FixedHeight = 50,
+                Right = 0,
+                BorderWidth = CELL_BORDER_WIDTH,
+                VerticalAlignment = PdfPCell.ALIGN_MIDDLE,
+                HorizontalAlignment = PdfPCell.ALIGN_CENTER
+            };
+
+            table.AddCell(espaceNetLogo);
+            table.AddCell(new PdfPCell() { Border = 0 });
+            table.AddCell(clientCell);
+
+            return table;
         }
         /// <summary>
         /// This is the date and ref achat text holder and placer on the pdf ALTERNATIVE SOLUTION
@@ -120,37 +143,6 @@ namespace espaceNetSAV
             };
 
             return phrase;
-        }
-        /// <summary>
-        /// This creates the very first table that holds the logo and the client name
-        /// </summary>
-        /// <param name="client">Client name</param>
-        /// <returns></returns>
-        private PdfPTable createHeader(string client)
-        {
-            /*##########################################################*/
-            /* FIRST TABLE SECITON  */
-            /*##########################################################*/
-            PdfPTable table = new PdfPTable(3)
-            {
-                WidthPercentage = 100f
-            };
-            PdfPCell espaceNetLogo = new PdfPCell() { Border = 0 };
-
-            PdfPCell clientCell = new PdfPCell(new Phrase(String.Format("Client: {0}", client)))
-            {
-                FixedHeight = 50,
-                Right = 0,
-                BorderWidth = CELL_BORDER_WIDTH,
-                VerticalAlignment = PdfPCell.ALIGN_MIDDLE,
-                HorizontalAlignment = PdfPCell.ALIGN_CENTER
-            };
-
-            table.AddCell(espaceNetLogo);
-            table.AddCell(new PdfPCell() { Border = 0 });
-            table.AddCell(clientCell);
-
-            return table;
         }
         /// <summary>
         /// This is the main table for designation and probleme 
@@ -297,5 +289,60 @@ namespace espaceNetSAV
 
             return table;
         }
+        /// <summary>
+        /// Bon numero holder 
+        /// </summary>
+        /// <param name="bonNum">Numero d Bo</param>
+        /// <returns></returns>
+        private Phrase bonNumeroHodler(string bonNum)
+        {
+            Paragraph phrase = new Paragraph(String.Format("Bon N°: {0}", bonNum));
+            phrase.Alignment = Element.ALIGN_CENTER;
+
+            return phrase;
+        }
+
+        private void topHalfOfTheDocument()
+        {
+            //I should experiment more with the tables an items aligning on this area down here
+            //var headerText = this.headerTextChunkRefAchat();
+            PdfPTable myTable = this.createTable(bonObject.designationReception.designation, bonObject.designationReception.probleme);
+            var headingTable = this.createHeader(bonObject.client.nom);
+            var footerSection = this.footerTable();
+            ////var dateText = this.dateText();
+            var dateText = this.dateAndRef(bonObject.ref_achat);
+            var bonHeader = this.bonNumeroHodler(this.bonObject.id.ToString());
+            //var refAchat = this.refAchatText();
+            //Client table et logo
+            doc.Add(headingTable);
+            //"Bon" text && ref Achat 
+            //doc.Add(headerText);
+            //Date text
+            doc.Add(bonHeader);
+            doc.Add(dateText);
+            doc.Add(myTable);
+            doc.Add(footerSection);
+        }
+
+        private void bottomHalfOfTheDocument()
+        {
+            PdfPTable myTable = this.createTable(bonObject.designationReception.designation, bonObject.designationReception.probleme);
+            var headingTable = this.createHeader(bonObject.client.nom);
+            var footerSection = this.footerTable();
+            ////var dateText = this.dateText();
+            var dateText = this.dateAndRef(bonObject.ref_achat);
+            //var refAchat = this.refAchatText();
+            var bonText = this.bonNumeroHodler(this.bonObject.id.ToString());
+            //Client table et logo
+            doc.Add(headingTable);
+            doc.Add(bonText);
+            //"Bon" text && ref Achat 
+            //doc.Add(headerText);
+            //Date text
+            doc.Add(dateText);
+            doc.Add(myTable);
+            doc.Add(footerSection);
+        }
+
     }
 }

@@ -83,6 +83,16 @@ namespace espaceNetSAV.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ESPACENET {
+            get {
+                object obj = ResourceManager.GetObject("ESPACENET", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap NOT_OK {
             get {
                 object obj = ResourceManager.GetObject("NOT OK", resourceCulture);
