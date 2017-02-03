@@ -43,6 +43,11 @@ namespace espaceNetSAV
                 doc.Open();
                 //Top Half of the document 
                 this.topHalfOfTheDocument();
+
+                //This is the seperator
+                var seperator = this.seperatorContent();
+                doc.Add(seperator);
+
                 //Bottom half of the document
                 this.bottomHalfOfTheDocument();
                 //doc.Add(refAchat);
@@ -322,6 +327,26 @@ namespace espaceNetSAV
             doc.Add(dateText);
             doc.Add(myTable);
             doc.Add(footerSection);
+        }
+
+        private PdfPTable seperatorContent()
+        {
+            PdfPTable table = new PdfPTable(1) 
+            {
+                SpacingBefore = 15,
+                SpacingAfter = 15
+            };
+
+            PdfPCell cell = new PdfPCell() 
+            {
+                Border = 1,
+                BorderWidth = 1
+            };
+
+            table.AddCell(cell);
+
+            return table;
+            
         }
 
         private void bottomHalfOfTheDocument()
