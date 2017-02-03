@@ -178,5 +178,23 @@ namespace espaceNetSAV
 
             formObject.Show();
         }
+
+        private void nOTOKOKToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BonReceptionList formObject = new BonReceptionList();
+            formObject.Show();
+        }
+
+        private void technqiueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TechniquesList formObject = new TechniquesList();
+
+            formObject.Show();
+        }
+
+        private void oKOKToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Refresh();
+        }
     }
 }

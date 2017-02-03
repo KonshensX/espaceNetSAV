@@ -49,7 +49,7 @@
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Image = global::espaceNetSAV.Properties.Resources.ESPACENET2;
+            this.button1.Image = global::espaceNetSAV.Properties.Resources._131_spinner9;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.Location = new System.Drawing.Point(329, 46);
             this.button1.Name = "button1";

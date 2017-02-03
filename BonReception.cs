@@ -197,6 +197,7 @@ namespace espaceNetSAV
                         this.designationReception = designationObject.getDesignationByID((int)myReader[3]);
                         this.tech = techObject.getItem(Convert.ToInt32(myReader["tech_id"]));
                         this.ref_achat = myReader[4].ToString();
+                        this.devis = myReader[6].ToString();
                     }
                     myReader.Close();
                 }

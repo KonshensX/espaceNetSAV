@@ -36,6 +36,7 @@ namespace espaceNetSAV
             problTBox.Text = bonObject.designationReception.probleme;
             diagnosicTBox.Text = bonObject.tech.diagnostics;
             taskTBox.Text = bonObject.tech.tasks;
+            devisTBox.Text = bonObject.devis;
 
             pictureBox1.Image = this.getImage(bonObject.tech.status);
         }
@@ -46,6 +47,7 @@ namespace espaceNetSAV
             bonObject.getItem(bonObject.id);
             bonObject.devis = devisTBox.Text;
             bonObject.updateDevis();
+            this.clearStatusBarWithMessage("Numero devis bien changer");
 
         }
         /// <summary>
@@ -64,6 +66,12 @@ namespace espaceNetSAV
                 default:
                     return Properties.Resources.NOT_OK;
             }
+        }
+
+        private void clearStatusBarWithMessage(string message) 
+        {
+            this.statusStrip1.Items.Clear();
+            this.statusStrip1.Items.Add(message);
         }
     }
 }

@@ -73,6 +73,16 @@ namespace espaceNetSAV.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _131_spinner9 {
+            get {
+                object obj = ResourceManager.GetObject("131-spinner9", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _273_checkmark {
             get {
                 object obj = ResourceManager.GetObject("273-checkmark", resourceCulture);

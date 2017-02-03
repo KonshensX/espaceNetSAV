@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.makePdfButton = new System.Windows.Forms.Button();
             this.diusplayListBtn = new System.Windows.Forms.Button();
             this.clientComboBox = new System.Windows.Forms.ComboBox();
@@ -57,7 +58,7 @@
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.oKOKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nOTOKOKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
+            this.technqiueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.menuStrip2.SuspendLayout();
@@ -95,6 +96,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Formulaire";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(446, 337);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(123, 38);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Technique List";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // makePdfButton
             // 
             this.makePdfButton.Location = new System.Drawing.Point(302, 345);
@@ -103,6 +115,7 @@
             this.makePdfButton.TabIndex = 24;
             this.makePdfButton.Text = "Make pdf";
             this.makePdfButton.UseVisualStyleBackColor = true;
+            this.makePdfButton.Visible = false;
             this.makePdfButton.Click += new System.EventHandler(this.makePdfButton_Click);
             // 
             // diusplayListBtn
@@ -114,6 +127,7 @@
             this.diusplayListBtn.TabIndex = 23;
             this.diusplayListBtn.Text = "Display List";
             this.diusplayListBtn.UseVisualStyleBackColor = true;
+            this.diusplayListBtn.Visible = false;
             this.diusplayListBtn.Click += new System.EventHandler(this.diusplayListBtn_Click);
             // 
             // clientComboBox
@@ -237,6 +251,7 @@
             // buttonValider
             // 
             this.buttonValider.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonValider.Image = global::espaceNetSAV.Properties.Resources._273_checkmark;
             this.buttonValider.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonValider.Location = new System.Drawing.Point(820, 337);
             this.buttonValider.Name = "buttonValider";
@@ -249,10 +264,10 @@
             // 
             // problTBox
             // 
-            this.problTBox.Location = new System.Drawing.Point(555, 179);
+            this.problTBox.Location = new System.Drawing.Point(540, 179);
             this.problTBox.Multiline = true;
             this.problTBox.Name = "problTBox";
-            this.problTBox.Size = new System.Drawing.Size(350, 145);
+            this.problTBox.Size = new System.Drawing.Size(365, 145);
             this.problTBox.TabIndex = 9;
             // 
             // label6
@@ -270,7 +285,7 @@
             this.designTBox.Location = new System.Drawing.Point(155, 179);
             this.designTBox.Multiline = true;
             this.designTBox.Name = "designTBox";
-            this.designTBox.Size = new System.Drawing.Size(394, 145);
+            this.designTBox.Size = new System.Drawing.Size(379, 145);
             this.designTBox.TabIndex = 7;
             // 
             // label5
@@ -342,7 +357,8 @@
             // 
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.oKOKToolStripMenuItem,
-            this.nOTOKOKToolStripMenuItem});
+            this.nOTOKOKToolStripMenuItem,
+            this.technqiueToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.Size = new System.Drawing.Size(929, 24);
@@ -352,24 +368,23 @@
             // oKOKToolStripMenuItem
             // 
             this.oKOKToolStripMenuItem.Name = "oKOKToolStripMenuItem";
-            this.oKOKToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.oKOKToolStripMenuItem.Text = "OKOK";
+            this.oKOKToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.oKOKToolStripMenuItem.Text = "Réception";
+            this.oKOKToolStripMenuItem.Click += new System.EventHandler(this.oKOKToolStripMenuItem_Click);
             // 
             // nOTOKOKToolStripMenuItem
             // 
             this.nOTOKOKToolStripMenuItem.Name = "nOTOKOKToolStripMenuItem";
-            this.nOTOKOKToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
-            this.nOTOKOKToolStripMenuItem.Text = "NOT OKOK";
+            this.nOTOKOKToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
+            this.nOTOKOKToolStripMenuItem.Text = "List Complete";
+            this.nOTOKOKToolStripMenuItem.Click += new System.EventHandler(this.nOTOKOKToolStripMenuItem_Click);
             // 
-            // button1
+            // technqiueToolStripMenuItem
             // 
-            this.button1.Location = new System.Drawing.Point(446, 337);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 38);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Technique List";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.technqiueToolStripMenuItem.Name = "technqiueToolStripMenuItem";
+            this.technqiueToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
+            this.technqiueToolStripMenuItem.Text = "Technqiue";
+            this.technqiueToolStripMenuItem.Click += new System.EventHandler(this.technqiueToolStripMenuItem_Click);
             // 
             // FormulaireReception
             // 
@@ -379,8 +394,10 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip2);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
             this.Name = "FormulaireReception";
-            this.Text = "µ";
+            this.ShowIcon = false;
+            this.Text = "Réception";
             this.Load += new System.EventHandler(this.FormulaireReception_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -425,5 +442,6 @@
         private System.Windows.Forms.ToolStripMenuItem oKOKToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nOTOKOKToolStripMenuItem;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem technqiueToolStripMenuItem;
     }
 }

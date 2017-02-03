@@ -92,6 +92,7 @@ namespace espaceNetSAV
             var rowIndex = BonDataGrid.CurrentRow.Index;
 
             BonReception bonObject = new BonReception();
+            var id = (int)BonDataGrid.Rows[rowIndex].Cells[0].Value;
             bonObject.getItem((int)BonDataGrid.Rows[rowIndex].Cells[0].Value);
             UpdateBon formObject = new UpdateBon(bonObject);
             formObject.Show();
@@ -201,6 +202,17 @@ namespace espaceNetSAV
                     BonDataGrid.Rows[counter++].Cells[myEtatColumn.Index].Value = "pas Encore";
                 }
             }
+        }
+
+        private void actualiserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Refresh();
+        }
+
+        private void actualiséToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.BonReceptionList_Load(sender, e);
+                
         }
     }
 }
