@@ -81,7 +81,7 @@ namespace espaceNetSAV
 
                 statusStrip1.Items.Add("Pdf bien générer");
 
-                Process.Start(@"C:\Program Files (x86)\Foxit Software\Foxit Reader\FoxitReader.exe", "myPdf.pdf");
+                Process.Start(@"myPdf.pdf");
 
             }
         }

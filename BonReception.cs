@@ -214,7 +214,7 @@ namespace espaceNetSAV
         /// This well get the last id in the BonReception table
         /// </summary>
         /// <returns></returns>
-        private int GetLastID()
+        public int GetLastID()
         {
             try
             {

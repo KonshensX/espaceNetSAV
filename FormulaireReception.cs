@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -96,10 +97,14 @@ namespace espaceNetSAV
                 BonReception bonReceptionObject = new BonReception(clientObject, designReception, techObject, refAchattbox.Text);
 
 
-
                 techObject.persistObjectToDatabase(bonReceptionObject.id);
                 bonReceptionObject.persistObjectToDatabase();
 
+                BonReception bonObject = new BonReception();
+                bonObject.getItem(bonObject.GetLastID());
+                PdfGenerator pdfObject = new PdfGenerator(bonObject);
+
+                Process.Start(@"myPdf.pdf");
 
             }
             catch (Exception ex)
