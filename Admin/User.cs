@@ -22,6 +22,9 @@ namespace espaceNetSAV.Admin
         public User()
         {
             this.databaseObject = new Database();
+            this.ID = this.GetLastID() + 1;
+            this.Name = "";
+            this.Password = "";
             this.date = DateTime.Now;
             this.role = Role.User;
         }
@@ -29,9 +32,10 @@ namespace espaceNetSAV.Admin
         public User(string username, string password)
         {
             this.databaseObject = new Database();
-            this.ID = this.GetLastID();
+            this.ID = this.GetLastID() + 1;
             this.Name = username;
             this.Password = password;
+            this.date = DateTime.Now;
             this.role = Role.User;
         }
 
@@ -43,11 +47,35 @@ namespace espaceNetSAV.Admin
         /// <returns></returns>
         private int GetLastID()
         {
-            string query = "SELECT MAX(id) FROM users";
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                this.databaseObject.openConnection();
-            return Convert.ToInt32(myCommand.ExecuteScalar());
+                string query = "SELECT MAX(id) FROM users";
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+                {
+                    this.databaseObject.openConnection();
+                    MySqlDataReader reader = myCommand.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            if (reader[0] is DBNull)
+                            {
+                                return 0;
+                            }
+                            return Convert.ToInt32(reader[0]);
+                        }
+                    }
+                    reader.Close();
+                    return 0;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
             }
 
         }
@@ -60,6 +88,8 @@ namespace espaceNetSAV.Admin
 
             using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
             {
+
+                this.databaseObject.openConnection();
                 myCommand.Parameters.AddWithValue("@username", this.Name);
                 myCommand.Parameters.AddWithValue("@password", this.Password);
                 myCommand.Parameters.AddWithValue("@role", this.GetUserRole(this.role)); //This needs more work 
@@ -77,24 +107,35 @@ namespace espaceNetSAV.Admin
 
         public List<User> GetAllUsers()
         {
-            List<User> myList = new List<User>();
-            string query = "SELECT * FROM users";
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                MySqlDataReader myReader;
-                myReader = myCommand.ExecuteReader();
-                while(myReader.Read())
+                List<User> myList = new List<User>();
+                string query = "SELECT * FROM users";
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
-                    User user = new User();
-                    user.ID = Convert.ToInt32(myReader[0]);
-                    user.Name = myReader[1].ToString();
-                    user.Password = myReader[2].ToString();
+                    this.databaseObject.openConnection();
+                    MySqlDataReader myReader;
+                    myReader = myCommand.ExecuteReader();
+                    while (myReader.Read())
+                    {
+                        User user = new User();
+                        user.ID = Convert.ToInt32(myReader[0]);
+                        user.Name = myReader[1].ToString();
+                        user.Password = myReader[2].ToString();
 
-                    myList.Add(user);
+                        myList.Add(user);
+                    }
                 }
-            }
 
-            return myList;
+                return myList;
+            } catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
         }
 
         //Delete a user from the database
@@ -113,6 +154,45 @@ namespace espaceNetSAV.Admin
                 default:
                     return -1;
             }
+        }
+
+        //Check if the user exists 
+        private bool UserAlreadyExists(string username)
+        {
+            string query = "SELECT * FROM users WHERE username like @username";
+
+            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            {
+                this.databaseObject.openConnection();
+                myCommand.Parameters.AddWithValue("@username", username);
+                MySqlDataReader myReader = myCommand.ExecuteReader();
+
+                return myReader.HasRows;
+
+            }
+        }
+
+        //Check user credentials
+
+        public bool CheckCredentials(string username, string cryptedPassword)
+        {
+            string query = "SELECT * FROM users WHERE username like @username AND password LIKE @pwd";
+
+            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            {
+                this.databaseObject.openConnection();
+                myCommand.Parameters.AddWithValue("@username", username);
+                myCommand.Parameters.AddWithValue("@pwd", cryptedPassword);
+
+                MySqlDataReader myReader = myCommand.ExecuteReader();
+                if(myReader.HasRows)
+                {
+                    return true;
+                }
+                
+            }
+
+            return false;
         }
         
     }
