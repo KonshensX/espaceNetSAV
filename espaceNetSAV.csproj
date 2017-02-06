@@ -61,6 +61,13 @@
       <DependentUpon>AdminPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\CrysptingService.cs" />
+    <Compile Include="Admin\Login.cs" />
+    <Compile Include="Admin\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\User.cs" />
     <Compile Include="BonReception.cs" />
     <Compile Include="BonReceptionList.cs">
@@ -116,6 +123,9 @@
     <Compile Include="Users.cs" />
     <EmbeddedResource Include="Admin\AdminPanel.resx">
       <DependentUpon>AdminPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BonReceptionList.resx">
       <DependentUpon>BonReceptionList.cs</DependentUpon>

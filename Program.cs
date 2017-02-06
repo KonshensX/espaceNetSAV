@@ -8,6 +8,8 @@ namespace espaceNetSAV
 {
     static class Program
     {
+
+        public static string _KEY = "ESPACENETSAV";
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,7 +18,7 @@ namespace espaceNetSAV
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Admin.AdminPanel());
+            Application.Run(new Admin.LoginForm());
         }
     }
 }

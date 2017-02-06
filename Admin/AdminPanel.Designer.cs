@@ -34,11 +34,13 @@
             this.passwordTBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.makeUserBtn = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.makeUserBtn);
             this.groupBox1.Controls.Add(this.passwordTBox);
             this.groupBox1.Controls.Add(this.label2);
@@ -93,6 +95,16 @@
             this.makeUserBtn.UseVisualStyleBackColor = true;
             this.makeUserBtn.Click += new System.EventHandler(this.makeUserBtn_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 116);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(125, 60);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Log user in";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // AdminPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -115,5 +127,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox usernameTBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }
