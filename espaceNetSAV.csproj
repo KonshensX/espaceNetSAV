@@ -62,9 +62,7 @@
     </Compile>
     <Compile Include="Admin\CrysptingService.cs" />
     <Compile Include="Admin\Login.cs" />
-    <Compile Include="Admin\LoginForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Admin\LoginForm.cs" />
     <Compile Include="Admin\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
