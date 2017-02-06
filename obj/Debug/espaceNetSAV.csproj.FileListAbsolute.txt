@@ -15,3 +15,4 @@ C:\Users\konshensx\Documents\Visual Studio 2013\Projects\espaceNetSAV\espaceNetS
 C:\Users\konshensx\Documents\Visual Studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.UpdateBon.resources
 C:\Users\konshensx\Documents\Visual Studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.TechniquesList.resources
 C:\Users\konshensx\Documents\Visual Studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.MainMenu.resources
+C:\Users\konshensx\documents\visual studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.Admin.AdminPanel.resources

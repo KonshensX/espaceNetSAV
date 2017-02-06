@@ -135,18 +135,25 @@ namespace espaceNetSAV
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            //Bon textbox, i just forgot to rename it lol pls don't judge :'(
-            if (!(bonNumTBox.Text == ""))
+            try
             {
-                dataView.RowFilter = "[Bon N°] = " + bonNumTBox.Text + "";
-                //MessageBox.Show(dataView.RowFilter);
-                BonDataGrid.DataSource = dataView;
-                this.onTextChangeUpdateStatus(dataView.ToTable());
+                    //Bon textbox, i just forgot to rename it lol pls don't judge :'(
+                if (!(bonNumTBox.Text == ""))
+                {
+                    dataView.RowFilter = "[Bon N°] = " + bonNumTBox.Text + "";
+                    //MessageBox.Show(dataView.RowFilter);
+                    BonDataGrid.DataSource = dataView;
+                    this.onTextChangeUpdateStatus(dataView.ToTable());
+                }
+                else
+                {
+                    BonDataGrid.DataSource = myDataSource;
+                    this.onLoadUpdateStatusText();
+                }
             }
-            else
+            catch (Exception)
             {
-                BonDataGrid.DataSource = myDataSource;
-                this.onLoadUpdateStatusText();
+                MessageBox.Show("Opps Error!!");
             }
         }
 
@@ -211,7 +218,7 @@ namespace espaceNetSAV
 
         private void actualiséToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.BonReceptionList_Load(sender, e);
+            //this.BonReceptionList_Load(sender, e);
                 
         }
     }

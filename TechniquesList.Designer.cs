@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BonDataGrid = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -52,14 +52,14 @@
             this.BonDataGrid.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BonDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.BonDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.BonDataGrid.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.BonDataGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.BonDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BonDataGrid.GridColor = System.Drawing.Color.White;
             this.BonDataGrid.Location = new System.Drawing.Point(0, 100);
@@ -88,21 +88,21 @@
             this.groupBox1.Size = new System.Drawing.Size(968, 100);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Champs";
+            this.groupBox1.Text = "Filter";
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(683, 25);
+            this.dateTimePicker1.Location = new System.Drawing.Point(575, 53);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(108, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(160, 20);
             this.dateTimePicker1.TabIndex = 8;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(36, 62);
+            this.label4.Location = new System.Drawing.Point(184, 56);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 7;
@@ -110,7 +110,7 @@
             // 
             // bonNumTBox
             // 
-            this.bonNumTBox.Location = new System.Drawing.Point(91, 59);
+            this.bonNumTBox.Location = new System.Drawing.Point(242, 53);
             this.bonNumTBox.Name = "bonNumTBox";
             this.bonNumTBox.Size = new System.Drawing.Size(155, 20);
             this.bonNumTBox.TabIndex = 6;
@@ -119,7 +119,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(630, 28);
+            this.label3.Location = new System.Drawing.Point(500, 56);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(30, 13);
             this.label3.TabIndex = 5;
@@ -128,7 +128,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(349, 28);
+            this.label2.Location = new System.Drawing.Point(500, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 3;
@@ -137,7 +137,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 28);
+            this.label1.Location = new System.Drawing.Point(184, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 13);
             this.label1.TabIndex = 2;
@@ -145,7 +145,7 @@
             // 
             // telTBox
             // 
-            this.telTBox.Location = new System.Drawing.Point(424, 25);
+            this.telTBox.Location = new System.Drawing.Point(575, 19);
             this.telTBox.Name = "telTBox";
             this.telTBox.Size = new System.Drawing.Size(160, 20);
             this.telTBox.TabIndex = 1;
@@ -153,7 +153,7 @@
             // 
             // clientTBox
             // 
-            this.clientTBox.Location = new System.Drawing.Point(91, 25);
+            this.clientTBox.Location = new System.Drawing.Point(242, 19);
             this.clientTBox.Name = "clientTBox";
             this.clientTBox.Size = new System.Drawing.Size(208, 20);
             this.clientTBox.TabIndex = 0;
@@ -176,7 +176,8 @@
             this.Controls.Add(this.BonDataGrid);
             this.Controls.Add(this.groupBox1);
             this.Name = "TechniquesList";
-            this.Text = "TechniquesList";
+            this.ShowIcon = false;
+            this.Text = "Technique";
             this.Load += new System.EventHandler(this.TechniquesList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.BonDataGrid)).EndInit();
             this.groupBox1.ResumeLayout(false);

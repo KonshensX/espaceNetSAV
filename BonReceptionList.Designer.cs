@@ -65,13 +65,13 @@
             this.groupBox1.Size = new System.Drawing.Size(950, 100);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Champs";
+            this.groupBox1.Text = "Filter";
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dateTimePicker1.Location = new System.Drawing.Point(424, 56);
+            this.dateTimePicker1.Location = new System.Drawing.Point(580, 54);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(160, 20);
             this.dateTimePicker1.TabIndex = 3;
@@ -80,7 +80,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(36, 62);
+            this.label4.Location = new System.Drawing.Point(192, 60);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 7;
@@ -88,7 +88,7 @@
             // 
             // bonNumTBox
             // 
-            this.bonNumTBox.Location = new System.Drawing.Point(91, 59);
+            this.bonNumTBox.Location = new System.Drawing.Point(247, 57);
             this.bonNumTBox.Name = "bonNumTBox";
             this.bonNumTBox.Size = new System.Drawing.Size(208, 20);
             this.bonNumTBox.TabIndex = 2;
@@ -97,7 +97,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(349, 62);
+            this.label3.Location = new System.Drawing.Point(505, 60);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(30, 13);
             this.label3.TabIndex = 5;
@@ -106,7 +106,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(349, 28);
+            this.label2.Location = new System.Drawing.Point(505, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 3;
@@ -115,7 +115,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 28);
+            this.label1.Location = new System.Drawing.Point(189, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 13);
             this.label1.TabIndex = 2;
@@ -123,7 +123,7 @@
             // 
             // telTBox
             // 
-            this.telTBox.Location = new System.Drawing.Point(424, 25);
+            this.telTBox.Location = new System.Drawing.Point(580, 23);
             this.telTBox.Name = "telTBox";
             this.telTBox.Size = new System.Drawing.Size(160, 20);
             this.telTBox.TabIndex = 1;
@@ -131,7 +131,7 @@
             // 
             // clientTBox
             // 
-            this.clientTBox.Location = new System.Drawing.Point(91, 25);
+            this.clientTBox.Location = new System.Drawing.Point(247, 23);
             this.clientTBox.Name = "clientTBox";
             this.clientTBox.Size = new System.Drawing.Size(208, 20);
             this.clientTBox.TabIndex = 0;
@@ -213,7 +213,8 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "BonReceptionList";
-            this.Text = "BonReceptionList";
+            this.ShowIcon = false;
+            this.Text = "Liste complete";
             this.Load += new System.EventHandler(this.BonReceptionList_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
