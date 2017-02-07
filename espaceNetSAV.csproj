@@ -54,15 +54,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\AddCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\AddCategory.Designer.cs">
+      <DependentUpon>AddCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\AdminPanel.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Admin\AdminPanel.Designer.cs">
       <DependentUpon>AdminPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Category.cs" />
     <Compile Include="Admin\CrysptingService.cs" />
     <Compile Include="Admin\Login.cs" />
-    <Compile Include="Admin\LoginForm.cs" />
+    <Compile Include="Admin\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Admin\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
@@ -119,6 +128,9 @@
       <DependentUpon>UpdateBon.cs</DependentUpon>
     </Compile>
     <Compile Include="Users.cs" />
+    <EmbeddedResource Include="Admin\AddCategory.resx">
+      <DependentUpon>AddCategory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Admin\AdminPanel.resx">
       <DependentUpon>AdminPanel.cs</DependentUpon>
     </EmbeddedResource>

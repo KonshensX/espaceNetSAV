@@ -80,8 +80,11 @@ namespace espaceNetSAV.Admin
 
         }
 
-        //Create user 
-
+        
+        /// <summary>
+        /// Create a user - Persist the user to teh database
+        /// </summary>
+        /// <returns></returns>
         public int createUser()
         {
             string query = "INSERT INTO `users`( `username`, `password`, `role`, `createdat`) VALUES (@username, @password, @role, @created)";
@@ -104,7 +107,10 @@ namespace espaceNetSAV.Admin
         //Update user
 
         //Fetch all users in the database
-
+        /// <summary>
+        /// Fetch all the users in the database into a List
+        /// </summary>
+        /// <returns></returns>
         public List<User> GetAllUsers()
         {
             try
@@ -156,7 +162,29 @@ namespace espaceNetSAV.Admin
             }
         }
 
-        //Check if the user exists 
+        /// <summary>
+        /// This will get the user Role based on the value in the database
+        /// </summary>
+        /// <param name="role"></param>
+        /// <returns></returns>
+        private Role GetUserRole(int role)
+        {
+            switch (role)
+            {
+                case 1:
+                    return Role.Admin;
+                case 0 :
+                    return Role.Nothing;
+                default:
+                    return Role.Nothing;
+            }
+        }
+
+        /// <summary>
+        /// Check if the user already exists
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         private bool UserAlreadyExists(string username)
         {
             string query = "SELECT * FROM users WHERE username like @username";
@@ -172,7 +200,12 @@ namespace espaceNetSAV.Admin
             }
         }
 
-        //Check user credentials
+        /// <summary>
+        /// Check user credentials
+        /// </summary>
+        /// <param name="username">Username</param>
+        /// <param name="cryptedPassword">The Encrypted password</param>
+        /// <returns></returns>
 
         public bool CheckCredentials(string username, string cryptedPassword)
         {
@@ -184,16 +217,75 @@ namespace espaceNetSAV.Admin
                 myCommand.Parameters.AddWithValue("@username", username);
                 myCommand.Parameters.AddWithValue("@pwd", cryptedPassword);
 
-                MySqlDataReader myReader = myCommand.ExecuteReader();
-                if(myReader.HasRows)
+                using (MySqlDataReader myReader = myCommand.ExecuteReader())
                 {
-                    return true;
+                    if(myReader.HasRows)
+                    {
+                        return true;
+                    }
                 }
                 
             }
 
             return false;
         }
-        
+
+        /// <summary>
+        /// This will get the loggeed in user from database
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public User GetUser(string username, string password)
+        {
+            string query = "SELECT * FROM users WHERE username like @username AND password like @password";
+
+            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            {
+                this.databaseObject.openConnection();
+                myCommand.Parameters.AddWithValue("@username", username);
+                myCommand.Parameters.AddWithValue("@password", password);
+
+                using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                {
+                    if (myReader.HasRows)
+                    {
+                        while (myReader.Read())
+                        {
+                            this.ID = Convert.ToInt32(myReader[0]);
+                            this.Name = myReader[1].ToString();
+                            this.Password = myReader[2].ToString();
+                            this.date = Convert.ToDateTime(myReader[4]);
+                            this.role = this.GetUserRole(Convert.ToInt32(myReader[3]));
+                        } 
+                    }
+                }
+            }
+
+
+            return this;
+        }
+
+        public bool isAdmin()
+        {
+            string query = "SELECT isAdmin FROM users WHERE username like @username";
+
+            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            {
+                this.databaseObject.openConnection();
+                myCommand.Parameters.AddWithValue("@username", this.Name);
+                using (MySqlDataReader myReader = myCommand.ExecuteReader()) 
+                {
+                    if(myReader.HasRows)
+                    {
+                        while (myReader.Read()) 
+                        {
+                            return (Convert.ToInt32(myReader[0]) == 1) ? true : false;
+                        }
+                    }
+                    return false;
+                }
+            }
+        }
     }
 }

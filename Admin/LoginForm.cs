@@ -27,9 +27,26 @@ namespace espaceNetSAV.Admin
 
             var cryptedPwd = crypt.Encrypt(passwordTBox.Text, Program._KEY);
             var stuff = userObject.CheckCredentials(usernameTBox.Text, cryptedPwd);
-            //MessageBox.Show(stuff.ToString(), "Status");
 
+            if (stuff)
+            {
+                Program._USER = userObject.GetUser(usernameTBox.Text, cryptedPwd);
 
+                if (Program._USER.isAdmin())
+                {
+                    AdminPanel adminPanelObject = new AdminPanel();
+
+                    adminPanelObject.Show();
+
+                    this.Hide();
+                }
+                else if (!Program._USER.isAdmin())
+                {
+                    FormulaireReception formObject = new FormulaireReception();
+                    formObject.Show();
+                    this.Hide();
+                }
+            }
 
             
         }
