@@ -138,7 +138,7 @@
             // 
             this.cetegoryToolStripMenuItem.Name = "cetegoryToolStripMenuItem";
             this.cetegoryToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.cetegoryToolStripMenuItem.Text = "Cetegory";
+            this.cetegoryToolStripMenuItem.Text = "Category";
             this.cetegoryToolStripMenuItem.Click += new System.EventHandler(this.cetegoryToolStripMenuItem_Click);
             // 
             // AdminPanel

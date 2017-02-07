@@ -12,12 +12,12 @@ namespace espaceNetSAV.Admin
 {
     public partial class AdminPanel : Form
     {
-        List<User> usersListsDB;
+        List<User> usersListDB;
         public const string _KEY = "ESPACENETSAV";
 
         public AdminPanel()
         {
-            usersListsDB = new List<User>();
+            usersListDB = new List<User>();
 
             InitializeComponent();
         }
@@ -65,7 +65,26 @@ namespace espaceNetSAV.Admin
         {
             User userObject = new User();
 
-            usersListsDB = userObject.GetAllUsers();
+            Category catObject = new Category();
+
+            List<Category> myCategoriesList = catObject.GetCategories();
+
+            usersListDB = userObject.GetAllUsers();
+
+            //Creating the Category Nodes 
+
+            foreach (Category category in myCategoriesList)
+            {
+                TreeNode myNode = new TreeNode(category.Name);
+                TreeNode[] tempArray;
+                foreach (User user in usersListDB)
+                {
+                    TreeNode
+                }
+                
+                usersList.Nodes.Add(myNode);
+            }
+
             //
             // This is the first node in the view.
             //
@@ -87,12 +106,18 @@ namespace espaceNetSAV.Admin
             // Final node.
             //
             treeNode = new TreeNode("Dot Net Perls", array);
+
+
+
+
             usersList.Nodes.Add(treeNode);
         }
 
         private void cetegoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-              
+            AddCategory cat = new AddCategory();
+
+            cat.Show();
         }
     }
 }

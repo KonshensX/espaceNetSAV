@@ -70,6 +70,7 @@
             this.Controls.Add(this.textBox1);
             this.Name = "AddCategory";
             this.Text = "AddCategory";
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.AddCategory_KeyUp);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -29,5 +29,13 @@ namespace espaceNetSAV.Admin
         {
 
         }
+
+        private void AddCategory_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.button1_Click(sender, e);
+            }
+        }
     }
 }

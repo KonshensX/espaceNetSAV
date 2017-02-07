@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 
 namespace espaceNetSAV.Admin
@@ -10,7 +11,7 @@ namespace espaceNetSAV.Admin
         public string Name { get; set; }
 
 
-        public Category() { this.ID = this.GetLastID() + 1; ; this.databaseObject = new Database(); }
+        public Category() { this.databaseObject = new Database(); this.ID = this.GetLastID() + 1; }
 
         public Category(string catName)
         {
@@ -44,9 +45,9 @@ namespace espaceNetSAV.Admin
                     return 0;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally
             {
@@ -54,10 +55,51 @@ namespace espaceNetSAV.Admin
             }
         }
 
+        /// <summary>
+        /// Saves the current object in the database
+        /// </summary>
         internal void saveToDatabase()
         {
             string query = "INSERT INTO category (`name`) VALUES (@name)";
             using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            {
+                this.databaseObject.openConnection();
+                myCommand.Parameters.AddWithValue("@name", this.Name);
+                myCommand.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Fetch all the categories in the database into a list
+        /// </summary>
+        /// <returns></returns>
+        public List<Category> GetCategories()
+        {
+            List<Category> myList = new List<Category>();
+
+            string query = "SELECT * FROM category"; //TODO: Insert the proper query.
+
+            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            {
+                this.databaseObject.openConnection();
+                using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                {
+                    Category catObject;
+                    if (myReader.HasRows)
+                    {
+                        while (myReader.Read())
+                        {
+                            catObject = new Category();
+                            catObject.ID = Convert.ToInt32(myReader[0]);
+                            catObject.Name = myReader[1].ToString();
+
+                            myList.Add(catObject);
+                        }
+                    }
+                }
+            }
+
+            return myList;
         }
     }
 }
