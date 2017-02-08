@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Linq;
 using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace espaceNetSAV.Admin
         List<User> usersListDB;
         List<Category> myCategoriesList;
         Category catObject;
+        User currentUser;
         public const string _KEY = "ESPACENETSAV";
 
         public AdminPanel()
@@ -82,29 +84,24 @@ namespace espaceNetSAV.Admin
                 TreeNode myNode = new TreeNode(category.Name);
 
                 //This array will be holding the child nodes 
-                TreeNode[] tempArray = new TreeNode[usersListDB.Count];
+                List<TreeNode> tempList = new List<TreeNode>();
 
                 //This loop should fill the above array with the child nodes 
                 for (int i = 0; i < usersListDB.Count; i++)
                 {
                     //Checking if the users belongs to this category before adding to the nodes 
-                    TreeNode tempNode;
                     if (usersListDB[i].category.ID == category.ID)
                     {
-                        //Creating the node for the user and adding it to the temp array
-                        tempNode = new TreeNode(usersListDB[i].Name);
-                        tempArray[i] = tempNode;
+                        //Creating the node for the user and adding it to the list
+                        tempList.Add(new TreeNode(usersListDB[i].Name));
                     }
-                    else
-                    {
-                        tempNode = new TreeNode("Empty node to be deleted!");
-                    }
-
                 }
 
                 //Filtering the array to get rid of null values ???
-                
-                myNode = new TreeNode(category.Name, tempArray);
+                //var array = tempArray.Where(c => c.Text.Equals("Empty node to be deleted!"));
+                //TreeNode[] realArray = new TreeNode[]
+
+                myNode = new TreeNode(category.Name, tempList.ToArray());
                 usersList.Nodes.Add(myNode);
             }
 
@@ -152,6 +149,7 @@ namespace espaceNetSAV.Admin
             foreach (Category item in myCategoriesList)
             {
                 categoryCBox.Items.Add(item.Name);
+                categoryEditCbox.Items.Add(item.Name);
             }
             //categoryCBox.SelectedIndex = 0;
             categoryCBox.Text = "Veuillez selectionner le category";
@@ -176,6 +174,56 @@ namespace espaceNetSAV.Admin
             if (queriesResult > 0)
             {
                 this.clearStatusBarWithMessage("Utilisateur bien creé");
+            }
+        }
+
+        private void usersList_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            
+
+        }
+
+        private void usersList_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            //Checking whether the selected node is a parent node or a child node 
+            if (!(usersList.SelectedNode.Parent == null))
+            {
+                //This is a child node
+                //The code below this comment should display the informations of each user in the tab control
+
+                //Fetching the user from the current users list and NOT from the database, Performance optimization
+                currentUser = usersListDB.Find(user => user.Name.Equals(usersList.SelectedNode.Text));
+
+                usernameEditTbox.Text = currentUser.Name;
+
+                passwordEditTBox.Text = "**********";
+                passwordEditTboxConf.Text = "**********";
+
+                categoryEditCbox.SelectedItem = currentUser.category.Name;
+
+                //Display data in the form fields 
+
+            }
+        }
+
+        private void saveChangesBtn_Click(object sender, EventArgs e)
+        {
+            //Checking if the password is okay or not 
+            if (passwordEditTBox.Text.Equals(passwordEditTboxConf.Text))
+            {
+
+                //Passwords match eachother 
+                currentUser.Name = usernameEditTbox.Text;
+                currentUser.Password = passwordEditTboxConf.Text;
+                var categoryID = new Category().GetIDBasedOnName(categoryEditCbox.Text);
+                currentUser.category = new Category().getCategory(categoryID);
+
+                currentUser.saveChanges();
+            }
+            else
+            {
+                MessageBox.Show("Les mots de passes ne sont pas identiques", "Erreur mot de passe", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.clearStatusBarWithMessage("");
             }
         }
     }

@@ -49,6 +49,18 @@
             this.createBtn = new System.Windows.Forms.Button();
             this.categoryCBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.usernameEditTbox = new System.Windows.Forms.TextBox();
+            this.saveChangesBtn = new System.Windows.Forms.Button();
+            this.passwordEditTBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.passwordEditTboxConf = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.categoryEditCbox = new System.Windows.Forms.ComboBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -58,7 +70,10 @@
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -129,6 +144,8 @@
             this.usersList.Name = "usersList";
             this.usersList.Size = new System.Drawing.Size(260, 315);
             this.usersList.TabIndex = 0;
+            this.usersList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.usersList_AfterSelect);
+            this.usersList.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.usersList_NodeMouseClick);
             // 
             // statusStrip1
             // 
@@ -170,6 +187,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.groupBox5);
+            this.tabPage2.Controls.Add(this.groupBox4);
+            this.tabPage2.Controls.Add(this.groupBox3);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -261,6 +281,117 @@
             this.label3.TabIndex = 15;
             this.label3.Text = "Category";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 16);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(46, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Pseudo:";
+            // 
+            // usernameEditTbox
+            // 
+            this.usernameEditTbox.Location = new System.Drawing.Point(89, 13);
+            this.usernameEditTbox.Name = "usernameEditTbox";
+            this.usernameEditTbox.Size = new System.Drawing.Size(156, 20);
+            this.usernameEditTbox.TabIndex = 1;
+            // 
+            // saveChangesBtn
+            // 
+            this.saveChangesBtn.Location = new System.Drawing.Point(402, 19);
+            this.saveChangesBtn.Name = "saveChangesBtn";
+            this.saveChangesBtn.Size = new System.Drawing.Size(150, 46);
+            this.saveChangesBtn.TabIndex = 2;
+            this.saveChangesBtn.Text = "Enregistrer les modifications";
+            this.saveChangesBtn.UseVisualStyleBackColor = true;
+            this.saveChangesBtn.Click += new System.EventHandler(this.saveChangesBtn_Click);
+            // 
+            // passwordEditTBox
+            // 
+            this.passwordEditTBox.Location = new System.Drawing.Point(89, 57);
+            this.passwordEditTBox.Name = "passwordEditTBox";
+            this.passwordEditTBox.Size = new System.Drawing.Size(156, 20);
+            this.passwordEditTBox.TabIndex = 4;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 60);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(74, 13);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Mot de passe:";
+            // 
+            // passwordEditTboxConf
+            // 
+            this.passwordEditTboxConf.Location = new System.Drawing.Point(89, 98);
+            this.passwordEditTboxConf.Name = "passwordEditTboxConf";
+            this.passwordEditTboxConf.Size = new System.Drawing.Size(156, 20);
+            this.passwordEditTboxConf.TabIndex = 5;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 101);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(68, 13);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Confirmation:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 148);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(49, 13);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Category";
+            // 
+            // categoryEditCbox
+            // 
+            this.categoryEditCbox.FormattingEnabled = true;
+            this.categoryEditCbox.Location = new System.Drawing.Point(89, 145);
+            this.categoryEditCbox.Name = "categoryEditCbox";
+            this.categoryEditCbox.Size = new System.Drawing.Size(156, 21);
+            this.categoryEditCbox.TabIndex = 16;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Controls.Add(this.usernameEditTbox);
+            this.groupBox3.Controls.Add(this.categoryEditCbox);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.passwordEditTBox);
+            this.groupBox3.Controls.Add(this.passwordEditTboxConf);
+            this.groupBox3.Location = new System.Drawing.Point(6, 6);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(269, 198);
+            this.groupBox3.TabIndex = 18;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Informations";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Location = new System.Drawing.Point(281, 6);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(283, 198);
+            this.groupBox4.TabIndex = 19;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Permissions";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.saveChangesBtn);
+            this.groupBox5.Location = new System.Drawing.Point(6, 210);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(558, 114);
+            this.groupBox5.TabIndex = 20;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Buttons";
+            // 
             // AdminPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -284,8 +415,12 @@
             this.statusStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -314,6 +449,18 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox categoryCBox;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox passwordEditTboxConf;
+        private System.Windows.Forms.TextBox passwordEditTBox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button saveChangesBtn;
+        private System.Windows.Forms.TextBox usernameEditTbox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox categoryEditCbox;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox3;
 
     }
 }

@@ -33,6 +33,7 @@ namespace espaceNetSAV.Admin
 
         public User(string username, string password, Category category)
         {
+            this.EncryptPassword();
             this.databaseObject = new Database();
             this.ID = this.GetLastID() + 1;
             this.Name = username;
@@ -147,8 +148,13 @@ namespace espaceNetSAV.Admin
             }
         }
 
-        //Delete a user from the database
+        /// <summary>
+        /// Delete the current user from the database
+        /// </summary>
+        public void Delete()
+        {
 
+        }
         //Check whether the user is admin or not 
 
         //Get user role
@@ -269,6 +275,10 @@ namespace espaceNetSAV.Admin
             return this;
         }
 
+        /// <summary>
+        /// Checks if the current user as admin or not
+        /// </summary>
+        /// <returns></returns>
         public bool isAdmin()
         {
             string query = "SELECT isAdmin FROM users WHERE username like @username";
@@ -289,6 +299,31 @@ namespace espaceNetSAV.Admin
                     return false;
                 }
             }
+        }
+
+        /// <summary>
+        /// Save the current object to the database
+        /// </summary>
+        /// <returns></returns>
+        public int saveChanges()
+        {
+            //This will save the changes made to the object to the database 
+            string query = "UPDATE `users` SET `username`=@username,`password`=@password,`cat_id`=@cat_id WHERE `id` = @userID"; //TODO: Fix te query 
+            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            {
+                this.databaseObject.openConnection();
+                myCommand.Parameters.AddWithValue("@username", this.Name);
+                myCommand.Parameters.AddWithValue("@password", this.Password);
+                myCommand.Parameters.AddWithValue("@cat_id", this.category.ID);
+                myCommand.Parameters.AddWithValue("@userID", this.ID);
+
+                return myCommand.ExecuteNonQuery();
+            }
+        }
+
+        private string EncryptPassword()
+        {
+            return new CrysptingService().Encrypt(this.Password, Program._KEY);
         }
     }
 }
