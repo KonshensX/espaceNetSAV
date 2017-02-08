@@ -208,22 +208,39 @@ namespace espaceNetSAV.Admin
 
         private void saveChangesBtn_Click(object sender, EventArgs e)
         {
-            //Checking if the password is okay or not 
-            if (passwordEditTBox.Text.Equals(passwordEditTboxConf.Text))
+            if (MessageBox.Show("Vraiment??", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
+                //Checking if the password is okay or not 
+                if (passwordEditTBox.Text.Equals(passwordEditTboxConf.Text))
+                {
 
-                //Passwords match eachother 
-                currentUser.Name = usernameEditTbox.Text;
-                currentUser.Password = passwordEditTboxConf.Text;
-                var categoryID = new Category().GetIDBasedOnName(categoryEditCbox.Text);
-                currentUser.category = new Category().getCategory(categoryID);
+                    //Passwords match eachother 
+                    currentUser.Name = usernameEditTbox.Text;
+                    currentUser.Password = passwordEditTboxConf.Text;
+                    var categoryID = new Category().GetIDBasedOnName(categoryEditCbox.Text);
+                    currentUser.category = new Category().getCategory(categoryID);
 
-                currentUser.saveChanges();
+                    currentUser.saveChanges();
+                    this.clearStatusBarWithMessage("Modifications bien enregister!");
+                }
+                else
+                {
+                    MessageBox.Show("Les mots de passes ne sont pas identiques", "Erreur mot de passe", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.clearStatusBarWithMessage("");
+                }
             }
-            else
+        }
+
+        private void deleteUserBtn_Click(object sender, EventArgs e)
+        {
+            //This will delete the user after confirmation 
+            if (MessageBox.Show("Voulez vous vraiment supprimer ", "Confirmer", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
             {
-                MessageBox.Show("Les mots de passes ne sont pas identiques", "Erreur mot de passe", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.clearStatusBarWithMessage("");
+                //Confirm the delete proccess
+                if (currentUser.Delete())
+                {
+                    MessageBox.Show("L'utilisateur a été bien suprprimé!", "Notifications", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
     }

@@ -151,9 +151,18 @@ namespace espaceNetSAV.Admin
         /// <summary>
         /// Delete the current user from the database
         /// </summary>
-        public void Delete()
+        public bool Delete()
         {
 
+            string query = "DELETE FROM users WHERE id = @user_id";
+
+            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            {
+                this.databaseObject.openConnection();
+                myCommand.Parameters.AddWithValue("@user_id", this.ID);
+
+                return (myCommand.ExecuteNonQuery() == 1) ? true : false;
+            }
         }
         //Check whether the user is admin or not 
 
@@ -325,5 +334,43 @@ namespace espaceNetSAV.Admin
         {
             return new CrysptingService().Encrypt(this.Password, Program._KEY);
         }
+
+        private string DeCryptPassword(string encryptedPwd)
+        {
+            return new CrysptingService().Decrypt(encryptedPwd, Program._KEY);
+        }
+
+        public User GetUser(int userID)
+        {
+            string query = "SELECT * FROM users WHERE id = @user_id";
+
+            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            {
+                this.databaseObject.openConnection();
+                myCommand.Parameters.AddWithValue("@user_id", userID);
+
+                using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                {
+                    if (myReader.HasRows)
+                    {
+                        while (myReader.Read())
+                        {
+                            this.ID = Convert.ToInt32(myReader[0]);
+                            this.Name = myReader[1].ToString();
+                            this.Password = this.DeCryptPassword(myReader[2].ToString());
+                            this.date = Convert.ToDateTime(myReader[3]);
+                            this.role = this.GetUserRole(Convert.ToInt32(myReader[4]));
+                            this.category.getCategory(Convert.ToInt32(myReader[5]));
+                        }
+                    }
+
+
+                }
+
+            }
+
+            return this;
+        }
+
     }
 }

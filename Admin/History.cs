@@ -1,0 +1,88 @@
+﻿using System;
+using System.Collections.Generic;
+using MySql.Data.MySqlClient;
+
+namespace espaceNetSAV.Admin
+{
+    class History
+    {
+
+        private Database databaseObject;
+        public int ID { get; set; }
+        public DateTime Date { get; set; }
+        public string OldValue { get; set; }
+        public string NewValue { get; set; }
+        public User User { get; set; }
+
+        public History() 
+        {
+            this.databaseObject = new Database();
+            this.Date = DateTime.Now;
+            this.OldValue = "";
+            this.NewValue = "";
+            this.User = new User();
+        }
+
+        public History(string oldValue, string newValue, User user)
+        {
+            this.databaseObject = new Database();
+            this.Date = DateTime.Now;
+            this.OldValue = oldValue;
+            this.NewValue = newValue;
+            this.User = user;
+        }
+
+
+        public bool Save()
+        {
+            string query = "INSERT INTO `historique`(`date`, `oldvalue`, `newvalue`, `user_id`) VALUES (@date, @oldvalue, @newvalue, @user_id)";//TODO: Fix the query 
+
+            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            {
+                this.databaseObject.openConnection();
+                myCommand.Parameters.AddWithValue("@date", this.Date);
+                myCommand.Parameters.AddWithValue("@oldvalue", this.OldValue);
+                myCommand.Parameters.AddWithValue("@newvalue", this.NewValue);
+                myCommand.Parameters.AddWithValue("@user_id", this.User.ID);
+
+                return (myCommand.ExecuteNonQuery() == 1) ? true : false ;
+            }
+        }
+
+        /// <summary>
+        /// Get the current user history from the database
+        /// </summary>
+        /// <returns></returns>
+        public List<History> GetUserHistory()
+        {
+            List<History> myList = new List<History>();
+
+            string query = "SELECT * FROM historique WHERE user_id = @user_id";
+
+            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            {
+                this.databaseObject.openConnection();
+                myCommand.Parameters.AddWithValue("@user_id", this.User.ID);
+
+                using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                {
+                    if (myReader.HasRows)
+                    {
+                        while (myReader.Read())
+                        {
+                            this.ID = Convert.ToInt32(myReader[0]);
+                            this.Date = Convert.ToDateTime(myReader[1]);
+                            this.OldValue = myReader[2].ToString();
+                            this.NewValue = myReader[3].ToString();
+                            //this.User.
+                        }
+                    }
+
+
+                }
+
+            }
+            return myList;
+        }
+    }
+}
