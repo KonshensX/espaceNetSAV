@@ -70,11 +70,14 @@ namespace espaceNetSAV.Admin
                     {
                         while (myReader.Read())
                         {
-                            this.ID = Convert.ToInt32(myReader[0]);
-                            this.Date = Convert.ToDateTime(myReader[1]);
-                            this.OldValue = myReader[2].ToString();
-                            this.NewValue = myReader[3].ToString();
-                            //this.User.
+                            History history = new History();
+                            history.ID = Convert.ToInt32(myReader[0]);
+                            history.Date = Convert.ToDateTime(myReader[1]);
+                            history.OldValue = myReader[2].ToString();
+                            history.NewValue = myReader[3].ToString();
+                            history.User.GetUser(Convert.ToInt32(myReader[4]));
+
+                            myList.Add(history);
                         }
                     }
 

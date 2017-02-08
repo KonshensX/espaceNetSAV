@@ -340,6 +340,11 @@ namespace espaceNetSAV.Admin
             return new CrysptingService().Decrypt(encryptedPwd, Program._KEY);
         }
 
+        /// <summary>
+        /// This gets a user based on a given ID
+        /// </summary>
+        /// <param name="userID">ID of the user</param>
+        /// <returns></returns>
         public User GetUser(int userID)
         {
             string query = "SELECT * FROM users WHERE id = @user_id";
@@ -363,8 +368,6 @@ namespace espaceNetSAV.Admin
                             this.category.getCategory(Convert.ToInt32(myReader[5]));
                         }
                     }
-
-
                 }
 
             }

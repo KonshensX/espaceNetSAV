@@ -29,7 +29,6 @@ namespace espaceNetSAV
             {
                 row.SetField(20, 22);
             }
-            dataGridView1.DataSource = data;
             //data.
         }
 
@@ -40,7 +39,6 @@ namespace espaceNetSAV
 
             data = bonObject.GetData();
             dataView = new DataView(data);
-            dataGridView1.DataSource = dataView;
         }
     }
 }
