@@ -67,6 +67,12 @@
       <DependentUpon>AdminPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\Category.cs" />
+    <Compile Include="Admin\CreateNewUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\CreateNewUser.Designer.cs">
+      <DependentUpon>CreateNewUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\CrysptingService.cs" />
     <Compile Include="Admin\Login.cs" />
     <Compile Include="Admin\LoginForm.cs">
@@ -133,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\AdminPanel.resx">
       <DependentUpon>AdminPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\CreateNewUser.resx">
+      <DependentUpon>CreateNewUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

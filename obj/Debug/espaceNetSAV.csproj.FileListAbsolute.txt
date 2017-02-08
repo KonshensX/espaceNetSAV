@@ -18,3 +18,4 @@ C:\Users\konshensx\Documents\Visual Studio 2013\Projects\espaceNetSAV\espaceNetS
 C:\Users\konshensx\documents\visual studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.Admin.AdminPanel.resources
 C:\Users\konshensx\documents\visual studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.Admin.LoginForm.resources
 C:\Users\konshensx\Documents\Visual Studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.Admin.AddCategory.resources
+C:\Users\konshensx\Documents\Visual Studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.Admin.CreateNewUser.resources

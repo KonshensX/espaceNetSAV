@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,13 +11,22 @@ namespace espaceNetSAV.Admin
 {
     public partial class AdminPanel : Form
     {
+        User userObject;
         List<User> usersListDB;
+        List<Category> myCategoriesList;
+        Category catObject;
         public const string _KEY = "ESPACENETSAV";
 
         public AdminPanel()
         {
             usersListDB = new List<User>();
+            userObject = new User();
 
+            catObject = new Category();
+
+            myCategoriesList = catObject.GetCategories();
+
+            usersListDB = userObject.GetAllUsers();
             InitializeComponent();
         }
 
@@ -63,28 +71,45 @@ namespace espaceNetSAV.Admin
 
         private void AdminPanel_Load(object sender, EventArgs e)
         {
-            User userObject = new User();
 
-            Category catObject = new Category();
-
-            List<Category> myCategoriesList = catObject.GetCategories();
-
-            usersListDB = userObject.GetAllUsers();
-
+            clearStatusBarWithMessage("");
+            this.FillCategoryiesComboBox();
             //Creating the Category Nodes 
 
             foreach (Category category in myCategoriesList)
             {
+                //This will insert the parent node
                 TreeNode myNode = new TreeNode(category.Name);
-                TreeNode[] tempArray;
-                foreach (User user in usersListDB)
+
+                //This array will be holding the child nodes 
+                TreeNode[] tempArray = new TreeNode[usersListDB.Count];
+
+                //This loop should fill the above array with the child nodes 
+                for (int i = 0; i < usersListDB.Count; i++)
                 {
-                    TreeNode
+                    //Checking if the users belongs to this category before adding to the nodes 
+                    TreeNode tempNode;
+                    if (usersListDB[i].category.ID == category.ID)
+                    {
+                        //Creating the node for the user and adding it to the temp array
+                        tempNode = new TreeNode(usersListDB[i].Name);
+                        tempArray[i] = tempNode;
+                    }
+                    else
+                    {
+                        tempNode = new TreeNode("Empty node to be deleted!");
+                    }
+
                 }
+
+                //Filtering the array to get rid of null values ???
                 
+                myNode = new TreeNode(category.Name, tempArray);
                 usersList.Nodes.Add(myNode);
             }
 
+            #region Tutorial
+            /*
             //
             // This is the first node in the view.
             //
@@ -106,11 +131,13 @@ namespace espaceNetSAV.Admin
             // Final node.
             //
             treeNode = new TreeNode("Dot Net Perls", array);
+             * */
+            #endregion
 
 
 
 
-            usersList.Nodes.Add(treeNode);
+            //usersList.Nodes.Add(treeNode);
         }
 
         private void cetegoryToolStripMenuItem_Click(object sender, EventArgs e)
@@ -118,6 +145,38 @@ namespace espaceNetSAV.Admin
             AddCategory cat = new AddCategory();
 
             cat.Show();
+        }
+
+        public void FillCategoryiesComboBox()
+        {
+            foreach (Category item in myCategoriesList)
+            {
+                categoryCBox.Items.Add(item.Name);
+            }
+            //categoryCBox.SelectedIndex = 0;
+            categoryCBox.Text = "Veuillez selectionner le category";
+        }
+
+        private void createBtn_Click(object sender, EventArgs e)
+        {
+            CrysptingService cryptObject = new CrysptingService();
+
+            var crypted = cryptObject.Encrypt(pwdTBox.Text, Program._KEY);
+
+            Category categoryObject = new Category();
+
+            categoryObject.FetchCategoryBasedOnName(categoryCBox.Text);
+
+            User userObject = new User(usernameTBox.Text, crypted, categoryObject);
+
+            var queriesResult = userObject.createUser();
+
+            MessageBox.Show(queriesResult.ToString());
+
+            if (queriesResult > 0)
+            {
+                this.clearStatusBarWithMessage("Utilisateur bien creé");
+            }
         }
     }
 }

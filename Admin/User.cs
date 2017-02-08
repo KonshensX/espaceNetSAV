@@ -18,6 +18,7 @@ namespace espaceNetSAV.Admin
         public string Password;
         public DateTime date;
         public Role role;
+        public Category category;
 
         public User()
         {
@@ -27,9 +28,10 @@ namespace espaceNetSAV.Admin
             this.Password = "";
             this.date = DateTime.Now;
             this.role = Role.User;
+            this.category = new Category();
         }
 
-        public User(string username, string password)
+        public User(string username, string password, Category category)
         {
             this.databaseObject = new Database();
             this.ID = this.GetLastID() + 1;
@@ -37,6 +39,7 @@ namespace espaceNetSAV.Admin
             this.Password = password;
             this.date = DateTime.Now;
             this.role = Role.User;
+            this.category = category;
         }
 
 
@@ -87,7 +90,7 @@ namespace espaceNetSAV.Admin
         /// <returns></returns>
         public int createUser()
         {
-            string query = "INSERT INTO `users`( `username`, `password`, `role`, `createdat`) VALUES (@username, @password, @role, @created)";
+            string query = "INSERT INTO `users`( `username`, `password`, `isAdmin`, `createdat`, `cat_id`) VALUES (@username, @password, @isAdmin, @created, @cat_id)";
 
             using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
             {
@@ -95,9 +98,9 @@ namespace espaceNetSAV.Admin
                 this.databaseObject.openConnection();
                 myCommand.Parameters.AddWithValue("@username", this.Name);
                 myCommand.Parameters.AddWithValue("@password", this.Password);
-                myCommand.Parameters.AddWithValue("@role", this.GetUserRole(this.role)); //This needs more work 
+                myCommand.Parameters.AddWithValue("@isAdmin", this.GetUserRole(this.role)); //This needs more work 
                 myCommand.Parameters.AddWithValue("@created", this.date);
-
+                myCommand.Parameters.AddWithValue("@cat_id", this.category.ID);
                 return Convert.ToInt32(myCommand.ExecuteNonQuery());
             }
         }
@@ -128,15 +131,15 @@ namespace espaceNetSAV.Admin
                         user.ID = Convert.ToInt32(myReader[0]);
                         user.Name = myReader[1].ToString();
                         user.Password = myReader[2].ToString();
-
+                        user.category.getCategory(Convert.ToInt32(myReader[5]));
                         myList.Add(user);
                     }
                 }
 
                 return myList;
-            } catch (Exception)
+            } catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally
             {

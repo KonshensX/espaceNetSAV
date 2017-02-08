@@ -101,5 +101,84 @@ namespace espaceNetSAV.Admin
 
             return myList;
         }
+
+        /// <summary>
+        /// This will get the category from the database
+        /// </summary>
+        /// <param name="CAT_ID">The ID of the Category</param>
+        /// <returns></returns>
+        public Category getCategory(int CAT_ID)
+        {
+            string query = "SELECT * FROM category WHERE id = @id";
+
+            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            {
+                myCommand.Parameters.AddWithValue("@id", CAT_ID);
+                this.databaseObject.openConnection();
+                using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                {
+                    while (myReader.Read())
+                    {
+                        this.ID = Convert.ToInt32(myReader[0]);
+                        this.Name = myReader[1].ToString();
+                    }
+                }
+            }
+            return this;
+        }
+
+        /// <summary>
+        /// This will get the ID of the category based on the name given
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public int GetIDBasedOnName(string name)
+        {
+            string query = "SELECT id FROM category WHERE name like @name";   
+
+            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            {
+                this.databaseObject.openConnection();
+                myCommand.Parameters.AddWithValue("@name", name);
+                using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                {
+                    if (myReader.HasRows)
+                    {
+                        while (myReader.Read())
+                        {
+                            return Convert.ToInt32(myReader[0]);
+                        }
+                    }
+                }
+            }
+            return -1;
+        }
+
+        /// <summary>
+        /// This will fetch the category from the database into an object 
+        /// </summary>
+        /// <param name="name">ID of the category</param>
+        public Category FetchCategoryBasedOnName(string name)
+        {
+            string query = "SELECT * FROM category WHERE name like @name";
+            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            {
+                this.databaseObject.openConnection();
+                myCommand.Parameters.AddWithValue("@name", name);
+                using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                {
+                    if (myReader.HasRows)
+                    {
+                        while (myReader.Read())
+                        {
+                            this.ID = Convert.ToInt32(myReader[0]);
+                            this.Name = myReader[1].ToString();
+                        }
+                    }
+                }
+            }
+
+            return this;
+        }
     }
 }
