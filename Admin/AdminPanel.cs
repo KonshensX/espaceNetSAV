@@ -73,7 +73,9 @@ namespace espaceNetSAV.Admin
 
         private void AdminPanel_Load(object sender, EventArgs e)
         {
-            //this.FillSomeDummyData();
+
+            this.ResizeColumns();
+            this.FillSomeDummyData();
             clearStatusBarWithMessage("");
             this.FillCategoryiesComboBox();
             //Creating the Category Nodes 
@@ -106,38 +108,9 @@ namespace espaceNetSAV.Admin
 
             }
 
-            #region Tutorial
-            /*
-            //
-            // This is the first node in the view.
-            //
-            TreeNode treeNode = new TreeNode("Windows");
-            usersList.Nodes.Add(treeNode);
-            //
-            // Another node following the first node.
-            //
-            treeNode = new TreeNode("Linux");
-            usersList.Nodes.Add(treeNode); 
-            //
-            // Create two child nodes and put them in an array.
-            // ... Add the third node, and specify these as its children.
-            //
-            TreeNode node2 = new TreeNode("C#");
-            TreeNode node3 = new TreeNode("VB.NET");
-            TreeNode[] array = new TreeNode[] { node2, node3 };
-            //
-            // Final node.
-            //
-            treeNode = new TreeNode("Dot Net Perls", array);
-             * */
-            #endregion
-
-
-
-
-            //usersList.Nodes.Add(treeNode);
         }
 
+        
         private void cetegoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddCategory cat = new AddCategory();
@@ -249,10 +222,12 @@ namespace espaceNetSAV.Admin
 
         private void FillUserHistoryListView()
         {
+
+            this.EmptyListView();
             //Fill the list view 
             History historyObject = new History(currentUser);
 
-            List<History> myList = historyObject.GetUserHistory();
+            List<History> myList = historyObject.GetUserHistoryLast30Days();
 
             foreach (History item in myList)
             {
@@ -262,12 +237,46 @@ namespace espaceNetSAV.Admin
 
         }
 
+        /// <summary>
+        /// Inserts some dummy data in the history table 
+        /// </summary>
         private void FillSomeDummyData()
         {
             new History("sxcvbn", "edfghjklm", new User().GetUser(1)).Save();
             new History("ioreoirezio", "ioreoirezio", new User().GetUser(1)).Save();
             new History("dfghjk,;", "dfghjk,;", new User().GetUser(1)).Save();
             new History("itititit", "itititit", new User().GetUser(1)).Save();
+        }
+
+        private void ResizeColumns()
+        {
+            this.listView1.Columns[0].Width = 120;
+            this.listView1.Columns[1].Width = 220;
+            this.listView1.Columns[2].Width = 200;
+        }
+
+        private void viderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Confirmation de suppression!!", "Attention", MessageBoxButtons.OKCancel, MessageBoxIcon.Error) == DialogResult.OK)
+            {
+                if (new History().EmptyHistory())
+                {
+
+                    this.EmptyListView();
+                    this.FillUserHistoryListView();
+                    listView1.Refresh();
+                    MessageBox.Show("Bien vider l'historique", "Notifications", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void EmptyListView()
+        {
+            foreach (ListViewItem item in listView1.Items)
+            {
+                item.Remove();
+            }
+            listView1.Refresh();
         }
     }
 }

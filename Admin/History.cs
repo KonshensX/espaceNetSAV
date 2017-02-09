@@ -96,5 +96,55 @@ namespace espaceNetSAV.Admin
             }
             return myList;
         }
+
+        public List<History> GetUserHistoryLast30Days()
+        {
+            List<History> myList = new List<History>();
+
+            string query = "SELECT * FROM historique WHERE user_id = @user_id AND date BETWEEN now() and date_add(now(), INTERVAL 1 month)";
+
+            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            {
+                this.databaseObject.openConnection();
+                myCommand.Parameters.AddWithValue("@user_id", this.User.ID);
+
+                using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                {
+                    if (myReader.HasRows)
+                    {
+                        while (myReader.Read())
+                        {
+                            History history = new History();
+                            history.ID = Convert.ToInt32(myReader[0]);
+                            history.Date = Convert.ToDateTime(myReader[1]);
+                            history.OldValue = myReader[2].ToString();
+                            history.NewValue = myReader[3].ToString();
+                            history.User.GetUser(Convert.ToInt32(myReader[4]));
+
+                            myList.Add(history);
+                        }
+                    }
+
+
+                }
+
+            }
+            return myList;
+        }
+
+        /// <summary>
+        /// This will emtpy the entire history table 
+        /// </summary>
+        /// <returns></returns>
+        public bool EmptyHistory()
+        {
+            string query = "TRUNCATE TABLE historique";
+
+            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            {
+                this.databaseObject.openConnection();
+                return (myCommand.ExecuteNonQuery() == 0)? true : false;
+            }
+        }
     }
 }

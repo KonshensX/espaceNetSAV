@@ -68,6 +68,9 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.historiqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.historiqueToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.viderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -90,7 +93,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gérerToolStripMenuItem,
             this.optionsToolStripMenuItem,
-            this.cetegoryToolStripMenuItem});
+            this.cetegoryToolStripMenuItem,
+            this.historiqueToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(903, 24);
@@ -247,7 +251,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 16);
+            this.label4.Location = new System.Drawing.Point(9, 31);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 13);
             this.label4.TabIndex = 0;
@@ -256,7 +260,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 148);
+            this.label7.Location = new System.Drawing.Point(9, 163);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(49, 13);
             this.label7.TabIndex = 17;
@@ -264,7 +268,7 @@
             // 
             // usernameEditTbox
             // 
-            this.usernameEditTbox.Location = new System.Drawing.Point(89, 13);
+            this.usernameEditTbox.Location = new System.Drawing.Point(92, 28);
             this.usernameEditTbox.Name = "usernameEditTbox";
             this.usernameEditTbox.Size = new System.Drawing.Size(156, 20);
             this.usernameEditTbox.TabIndex = 1;
@@ -272,7 +276,7 @@
             // categoryEditCbox
             // 
             this.categoryEditCbox.FormattingEnabled = true;
-            this.categoryEditCbox.Location = new System.Drawing.Point(89, 145);
+            this.categoryEditCbox.Location = new System.Drawing.Point(92, 160);
             this.categoryEditCbox.Name = "categoryEditCbox";
             this.categoryEditCbox.Size = new System.Drawing.Size(156, 21);
             this.categoryEditCbox.TabIndex = 16;
@@ -280,7 +284,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 60);
+            this.label5.Location = new System.Drawing.Point(9, 75);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 13);
             this.label5.TabIndex = 3;
@@ -289,7 +293,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 101);
+            this.label6.Location = new System.Drawing.Point(9, 116);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(68, 13);
             this.label6.TabIndex = 6;
@@ -297,14 +301,14 @@
             // 
             // passwordEditTBox
             // 
-            this.passwordEditTBox.Location = new System.Drawing.Point(89, 57);
+            this.passwordEditTBox.Location = new System.Drawing.Point(92, 72);
             this.passwordEditTBox.Name = "passwordEditTBox";
             this.passwordEditTBox.Size = new System.Drawing.Size(156, 20);
             this.passwordEditTBox.TabIndex = 4;
             // 
             // passwordEditTboxConf
             // 
-            this.passwordEditTboxConf.Location = new System.Drawing.Point(89, 98);
+            this.passwordEditTboxConf.Location = new System.Drawing.Point(92, 113);
             this.passwordEditTboxConf.Name = "passwordEditTboxConf";
             this.passwordEditTboxConf.Size = new System.Drawing.Size(156, 20);
             this.passwordEditTboxConf.TabIndex = 5;
@@ -470,6 +474,28 @@
             // 
             this.columnHeader4.Text = "à ";
             // 
+            // historiqueToolStripMenuItem
+            // 
+            this.historiqueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.historiqueToolStripMenuItem1,
+            this.viderToolStripMenuItem});
+            this.historiqueToolStripMenuItem.Name = "historiqueToolStripMenuItem";
+            this.historiqueToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
+            this.historiqueToolStripMenuItem.Text = "Historique";
+            // 
+            // historiqueToolStripMenuItem1
+            // 
+            this.historiqueToolStripMenuItem1.Name = "historiqueToolStripMenuItem1";
+            this.historiqueToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.historiqueToolStripMenuItem1.Text = "Historique";
+            // 
+            // viderToolStripMenuItem
+            // 
+            this.viderToolStripMenuItem.Name = "viderToolStripMenuItem";
+            this.viderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.viderToolStripMenuItem.Text = "Vider";
+            this.viderToolStripMenuItem.Click += new System.EventHandler(this.viderToolStripMenuItem_Click);
+            // 
             // AdminPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -548,6 +574,9 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ToolStripMenuItem historiqueToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem historiqueToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem viderToolStripMenuItem;
 
     }
 }
