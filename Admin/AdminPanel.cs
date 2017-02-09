@@ -278,5 +278,10 @@ namespace espaceNetSAV.Admin
             }
             listView1.Refresh();
         }
+
+        private void historiqueToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

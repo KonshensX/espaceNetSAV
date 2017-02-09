@@ -67,6 +67,12 @@
       <DependentUpon>AdminPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\Category.cs" />
+    <Compile Include="Admin\CompleteHistoryList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\CompleteHistoryList.Designer.cs">
+      <DependentUpon>CompleteHistoryList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\CreateNewUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\AdminPanel.resx">
       <DependentUpon>AdminPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\CompleteHistoryList.resx">
+      <DependentUpon>CompleteHistoryList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\CreateNewUser.resx">
       <DependentUpon>CreateNewUser.cs</DependentUpon>

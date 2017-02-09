@@ -487,7 +487,8 @@
             // 
             this.historiqueToolStripMenuItem1.Name = "historiqueToolStripMenuItem1";
             this.historiqueToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.historiqueToolStripMenuItem1.Text = "Historique";
+            this.historiqueToolStripMenuItem1.Text = "Liste complete";
+            this.historiqueToolStripMenuItem1.Click += new System.EventHandler(this.historiqueToolStripMenuItem1_Click);
             // 
             // viderToolStripMenuItem
             // 

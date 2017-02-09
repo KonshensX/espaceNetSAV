@@ -7,7 +7,7 @@ namespace espaceNetSAV.Admin
     class History
     {
 
-        private Database databaseObject;
+        private Database databaseObject { get; set; }
         public int ID { get; set; }
         public DateTime Date { get; set; }
         public string OldValue { get; set; }
@@ -145,6 +145,38 @@ namespace espaceNetSAV.Admin
                 this.databaseObject.openConnection();
                 return (myCommand.ExecuteNonQuery() == 0)? true : false;
             }
+        }
+
+        public List<History> GetCompleteHistoryWithUsers()
+        {
+            List<History> myList = new List<History>();
+
+            string query = "SELECT * FROM historique";
+            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            {
+                this.databaseObject.openConnection();
+
+                using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                {
+                    if (myReader.HasRows)
+                    {
+                        while (myReader.Read())
+                        {
+                            History history = new History();
+
+                            history.ID = Convert.ToInt32(myReader[0]);
+                            history.Date = Convert.ToDateTime(myReader[1]);
+                            history.OldValue = myReader[2].ToString();
+                            history.NewValue = myReader[3].ToString();
+                            history.User.GetUser(Convert.ToInt32(myReader[4]));
+
+                            myList.Add(history);
+                        }
+                    }
+                }
+            }
+
+            return myList;
         }
     }
 }
