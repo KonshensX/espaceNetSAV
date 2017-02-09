@@ -363,8 +363,8 @@ namespace espaceNetSAV.Admin
                             this.ID = Convert.ToInt32(myReader[0]);
                             this.Name = myReader[1].ToString();
                             this.Password = this.DeCryptPassword(myReader[2].ToString());
-                            this.date = Convert.ToDateTime(myReader[3]);
-                            this.role = this.GetUserRole(Convert.ToInt32(myReader[4]));
+                            this.role = this.GetUserRole(Convert.ToInt32(myReader[3]));
+                            this.date = Convert.ToDateTime(myReader[4]);
                             this.category.getCategory(Convert.ToInt32(myReader[5]));
                         }
                     }

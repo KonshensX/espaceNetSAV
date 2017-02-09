@@ -38,6 +38,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.deleteUserBtn = new System.Windows.Forms.Button();
             this.saveChangesBtn = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -59,11 +60,14 @@
             this.usernameTBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.createBtn = new System.Windows.Forms.Button();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.deleteUserBtn = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -76,8 +80,9 @@
             this.groupBox3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -133,10 +138,11 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.usersList);
-            this.groupBox1.Location = new System.Drawing.Point(14, 14);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(10, 10);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(7);
-            this.groupBox1.Size = new System.Drawing.Size(274, 342);
+            this.groupBox1.Size = new System.Drawing.Size(281, 368);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Utilisateurs";
@@ -146,7 +152,7 @@
             this.usersList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.usersList.Location = new System.Drawing.Point(7, 20);
             this.usersList.Name = "usersList";
-            this.usersList.Size = new System.Drawing.Size(260, 315);
+            this.usersList.Size = new System.Drawing.Size(267, 341);
             this.usersList.TabIndex = 0;
             this.usersList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.usersList_AfterSelect);
             this.usersList.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.usersList_NodeMouseClick);
@@ -178,6 +184,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.groupBox5.Controls.Add(this.deleteUserBtn);
             this.groupBox5.Controls.Add(this.saveChangesBtn);
             this.groupBox5.Location = new System.Drawing.Point(6, 210);
@@ -186,6 +193,18 @@
             this.groupBox5.TabIndex = 20;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Buttons";
+            // 
+            // deleteUserBtn
+            // 
+            this.deleteUserBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteUserBtn.ForeColor = System.Drawing.Color.DarkRed;
+            this.deleteUserBtn.Location = new System.Drawing.Point(9, 19);
+            this.deleteUserBtn.Name = "deleteUserBtn";
+            this.deleteUserBtn.Size = new System.Drawing.Size(150, 46);
+            this.deleteUserBtn.TabIndex = 3;
+            this.deleteUserBtn.Text = "Supprimer utilisateur";
+            this.deleteUserBtn.UseVisualStyleBackColor = true;
+            this.deleteUserBtn.Click += new System.EventHandler(this.deleteUserBtn_Click);
             // 
             // saveChangesBtn
             // 
@@ -199,9 +218,10 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Location = new System.Drawing.Point(281, 6);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox4.Location = new System.Drawing.Point(284, 3);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(283, 198);
+            this.groupBox4.Size = new System.Drawing.Size(283, 336);
             this.groupBox4.TabIndex = 19;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Permissions";
@@ -216,9 +236,10 @@
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.passwordEditTBox);
             this.groupBox3.Controls.Add(this.passwordEditTboxConf);
-            this.groupBox3.Location = new System.Drawing.Point(6, 6);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox3.Location = new System.Drawing.Point(3, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(269, 198);
+            this.groupBox3.Size = new System.Drawing.Size(269, 336);
             this.groupBox3.TabIndex = 18;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Informations";
@@ -382,35 +403,6 @@
             this.createBtn.UseVisualStyleBackColor = true;
             this.createBtn.Click += new System.EventHandler(this.createBtn_Click);
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 390);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(903, 22);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(857, 17);
-            this.toolStripStatusLabel1.Spring = true;
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
-            // 
-            // deleteUserBtn
-            // 
-            this.deleteUserBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteUserBtn.ForeColor = System.Drawing.Color.DarkRed;
-            this.deleteUserBtn.Location = new System.Drawing.Point(9, 19);
-            this.deleteUserBtn.Name = "deleteUserBtn";
-            this.deleteUserBtn.Size = new System.Drawing.Size(150, 46);
-            this.deleteUserBtn.TabIndex = 3;
-            this.deleteUserBtn.Text = "Supprimer utilisateur";
-            this.deleteUserBtn.UseVisualStyleBackColor = true;
-            this.deleteUserBtn.Click += new System.EventHandler(this.deleteUserBtn_Click);
-            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.groupBox6);
@@ -424,6 +416,7 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.listView1);
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox6.Location = new System.Drawing.Point(3, 3);
             this.groupBox6.Name = "groupBox6";
@@ -431,6 +424,51 @@
             this.groupBox6.TabIndex = 0;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Dernier 30 jours";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 390);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(903, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(888, 17);
+            this.toolStripStatusLabel1.Spring = true;
+            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.Location = new System.Drawing.Point(3, 16);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(558, 317);
+            this.listView1.TabIndex = 0;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Date";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "A changé";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "à ";
             // 
             // AdminPanel
             // 
@@ -459,9 +497,10 @@
             this.tabPage1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -505,6 +544,10 @@
         private System.Windows.Forms.Button deleteUserBtn;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
 
     }
 }

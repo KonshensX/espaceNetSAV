@@ -73,7 +73,7 @@ namespace espaceNetSAV.Admin
 
         private void AdminPanel_Load(object sender, EventArgs e)
         {
-
+            //this.FillSomeDummyData();
             clearStatusBarWithMessage("");
             this.FillCategoryiesComboBox();
             //Creating the Category Nodes 
@@ -103,6 +103,7 @@ namespace espaceNetSAV.Admin
 
                 myNode = new TreeNode(category.Name, tempList.ToArray());
                 usersList.Nodes.Add(myNode);
+
             }
 
             #region Tutorial
@@ -203,6 +204,8 @@ namespace espaceNetSAV.Admin
 
                 //Display data in the form fields 
 
+                //Load the history of the user
+                this.FillUserHistoryListView();
             }
         }
 
@@ -242,6 +245,29 @@ namespace espaceNetSAV.Admin
                     MessageBox.Show("L'utilisateur a été bien suprprimé!", "Notifications", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+        }
+
+        private void FillUserHistoryListView()
+        {
+            //Fill the list view 
+            History historyObject = new History(currentUser);
+
+            List<History> myList = historyObject.GetUserHistory();
+
+            foreach (History item in myList)
+            {
+                ListViewItem tempItem = new ListViewItem(new string[] {item.Date.ToString("dd/MM/yyyy HH:mm"), item.OldValue, item.NewValue});
+                listView1.Items.Add(tempItem);
+            }
+
+        }
+
+        private void FillSomeDummyData()
+        {
+            new History("sxcvbn", "edfghjklm", new User().GetUser(1)).Save();
+            new History("ioreoirezio", "ioreoirezio", new User().GetUser(1)).Save();
+            new History("dfghjk,;", "dfghjk,;", new User().GetUser(1)).Save();
+            new History("itititit", "itititit", new User().GetUser(1)).Save();
         }
     }
 }

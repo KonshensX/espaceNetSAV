@@ -32,6 +32,15 @@ namespace espaceNetSAV.Admin
             this.User = user;
         }
 
+        public History(User currentUser)
+        {
+            this.databaseObject = new Database();
+            this.Date = DateTime.Now;
+            this.OldValue = "";
+            this.NewValue = "";
+            this.User = currentUser;
+        }
+
 
         public bool Save()
         {
