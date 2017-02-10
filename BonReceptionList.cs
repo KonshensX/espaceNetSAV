@@ -280,6 +280,9 @@ namespace espaceNetSAV
                         this.statusStrip1.Items.Clear();
                         this.statusStrip1.Items.Add("Ayyeee");
                         this.DoWork();
+
+                        new Admin.EmailNotification(String.Format("Object N°: {0} est validé", bonObject.id));
+
                         //dataView.Delete();
                     }
                 } 

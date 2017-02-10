@@ -80,6 +80,7 @@
       <DependentUpon>CreateNewUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\CrysptingService.cs" />
+    <Compile Include="Admin\EmailNotification.cs" />
     <Compile Include="Admin\History.cs" />
     <Compile Include="Admin\Login.cs" />
     <Compile Include="Admin\LoginForm.cs">
