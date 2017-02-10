@@ -47,8 +47,8 @@ namespace espaceNetSAV
             }
 
             clientComboBox.AutoCompleteCustomSource = clientsDataSource;
-            
 
+            Program._USER = new Admin.User().GetUser(1);
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -100,7 +100,10 @@ namespace espaceNetSAV
                 techObject.persistObjectToDatabase(bonReceptionObject.id);
                 bonReceptionObject.persistObjectToDatabase();
 
+                Admin.History history = new Admin.History(String.Format("Creation du bon: N°: {0}", bonReceptionObject.client), "", Program._USER);
+                history.Save();
                 BonReception bonObject = new BonReception();
+
                 bonObject.getItem(bonObject.GetLastID());
                 PdfGenerator pdfObject = new PdfGenerator(bonObject);
 

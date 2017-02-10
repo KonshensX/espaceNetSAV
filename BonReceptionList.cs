@@ -15,6 +15,8 @@ namespace espaceNetSAV
         BonReception bonReceptionService;
         DataTable myDataSource;
         DataGridViewTextBoxColumn myEtatColumn;
+        DataGridViewCheckBoxColumn myCheckbox;
+        int howMay = 0;
 
         public BonReceptionList()
         {
@@ -62,8 +64,19 @@ namespace espaceNetSAV
             pdfButton.UseColumnTextForButtonValue = true;
             //End of PDF Button
 
+            //`Folder` Checbox 
+
+            myCheckbox = new DataGridViewCheckBoxColumn();
+
+            myCheckbox.HeaderText = "Validé";
+            myCheckbox.HeaderText = "Validé";
+            myCheckbox.Name = "myFoler";
+
+            BonDataGrid.Columns.Add(myCheckbox);
+
             this.onLoadUpdateStatusText();
             //this.changeRowsColors();
+            this.onLoadCheckboxStatusChange();
         }
 
         private void BonDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -173,8 +186,6 @@ namespace espaceNetSAV
             }
         }
 
-
-
         private void changeRowsColors()
         {
             foreach (DataGridViewRow row in BonDataGrid.Rows)
@@ -220,6 +231,50 @@ namespace espaceNetSAV
         {
             //this.BonReceptionList_Load(sender, e);
                 
+        }
+
+        private void onLoadCheckboxStatusChange()
+        {
+
+            //Update the checkbox 
+            int counter = 0;
+            foreach (DataRow row in myDataSource.Rows)
+            {
+
+                var valueOfStatusField = Convert.ToInt32(row.ItemArray[row.ItemArray.Length - 1]);
+                if (valueOfStatusField == 1)
+                {
+                    BonDataGrid.Rows[counter].Cells[myCheckbox.Index].Value = true;
+                }
+                else
+                {
+                    BonDataGrid.Rows[counter].Cells[myCheckbox.Index].Value = false;
+                }
+                counter++;
+            }
+            //End of updating the checkbox
+        }
+
+        private void BonDataGrid_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == myCheckbox.Index)
+            {
+                BonDataGrid.EndEdit();
+            }
+        }
+
+        private void BonDataGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (howMay == 1) 
+            {
+                howMay++;
+                return;
+            }
+
+            if (e.ColumnIndex == myCheckbox.Index)
+            {
+                MessageBox.Show("Status: " + BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells[myCheckbox.Index].Value);
+            }
         }
     }
 }

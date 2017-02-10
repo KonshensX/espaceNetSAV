@@ -4,6 +4,12 @@ using MySql.Data.MySqlClient;
 
 namespace espaceNetSAV
 {
+    public enum Dossier
+    {
+        Valide, 
+        EnCours,
+        Nothing
+    }
     public class BonReception
     {
         private Database databaseObject;
@@ -14,6 +20,7 @@ namespace espaceNetSAV
         public Technique tech;
         public string ref_achat;
         public string devis;
+        public Dossier dossier;
 
         #region Methodes 
         public BonReception() 
@@ -97,6 +104,8 @@ namespace espaceNetSAV
                 table.Columns["client_id"].ColumnName = "Client ID";
                 table.Columns["designation_id"].ColumnName = "Designation ID";
                 table.Columns["ref_achat"].ColumnName = "Ref Achat";
+                table.Columns["devis"].ColumnName = "Devis";
+                table.Columns["etatdossier"].ColumnName = "Validé";
                 table.Columns["tech_id"].ColumnName = "Tech ID";
                 table.Columns["id1"].ColumnName = "Clients ID";
                 table.Columns["nom"].ColumnName = "Nom";
@@ -113,6 +122,7 @@ namespace espaceNetSAV
                 table.Columns["tasks"].ColumnName = "Tàches Effectuer";
                 table.Columns["bon_id"].ColumnName = "ID BON";
                 table.Columns["fixed"].ColumnName = "Etat";
+                
                 return table;
             }
             catch (Exception)
@@ -198,6 +208,7 @@ namespace espaceNetSAV
                         this.tech = techObject.getItem(Convert.ToInt32(myReader["tech_id"]));
                         this.ref_achat = myReader[4].ToString();
                         this.devis = myReader[6].ToString();
+                        this.dossier = this.GetDossierStatus(Convert.ToInt32(myReader[7]));
                     }
                     myReader.Close();
                 }
@@ -292,5 +303,44 @@ namespace espaceNetSAV
         {
 
         }
+
+        /// <summary>
+        /// Get the status of the `Folder` based on database 
+        /// </summary>
+        /// <param name="status">ID of the `folder`</param>
+        /// <returns></returns>
+        public Dossier GetDossierStatus(int status)
+        {
+            switch (status)
+            {
+                case 0:
+                    return Dossier.EnCours;
+                case 1:
+                    return Dossier.Valide;
+                default:
+                    return Dossier.Nothing;
+            }
+        }
+
+
+        /// <summary>
+        /// Get the status of the `Folder` based on the object Dossier
+        /// </summary>
+        /// <param name="dossier"></param>
+        /// <returns></returns>
+        public int GetDossierStatus(Dossier dossier)
+        {
+            switch (dossier)
+            {
+                case Dossier.EnCours:
+                    return 0;
+                case Dossier.Valide: 
+                    return 1;
+                default:
+                    return -1;
+            }
+        }
+
+        
     }
 }

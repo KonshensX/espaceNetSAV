@@ -18,12 +18,21 @@ namespace espaceNetSAV
         DataTable myDataSource;
         DataGridViewCheckBoxColumn repeared;
         DataGridViewButtonColumn myButton;
+
+            
+
+        //Vars 
+
+        string initialDiagnostic;
+        string initialTasks;
+
         public TechniquesList()
         {
             InitializeComponent();
             bonReceptionService = new BonReception();
             myDataSource = bonReceptionService.GetData();
             //dataView = new DataView(myDataSource);
+            
         }
 
         private void TechniquesList_Load(object sender, EventArgs e)
@@ -34,8 +43,6 @@ namespace espaceNetSAV
             //BonDataGrid.DataSource = dataView;
 
             //Update the values of etat according to the datat from the database
-
-            
 
             dataView = new DataView(myDataSource);
             BonDataGrid.DataSource = dataView;
@@ -58,8 +65,6 @@ namespace espaceNetSAV
             myButton.UseColumnTextForButtonValue = true;
             BonDataGrid.Columns.Add(myButton);
 
-            
-
             //End of test 
 
             BonDataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
@@ -81,6 +86,10 @@ namespace espaceNetSAV
 
             if(dataView.Count > 0)
                 BonDataGrid.Rows[0].Selected = true;
+
+            Program._USER = new Admin.User().GetUser(1);
+
+            this.BonDataGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_CellValueChanged);
         }
 
 
@@ -123,11 +132,16 @@ namespace espaceNetSAV
                     //This where the value should be updated to 1 which means it was fixed 
                     
                     techObject.updateItemStatus((cellValue) ? Status.Fixed : Status.BeingRepeared);
+
+                    new Admin.History("Bon N° etat: En Cours ", "Réparé", Program._USER).Save();
+
                 }
                 else if (((bool)BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells[repeared.Index].Value) == false)
                 {
+                    ///TODO: THIS IS NOT PERSIST TO HISTORY FIX IT.
                     //This is where the value updates to 0 which means the item was not fixed or its still being repeared
                     techObject.updateItemStatus((cellValue) ? Status.Fixed : Status.BeingRepeared);
+                    new Admin.History("Bon N° etat: Réparé", "En Cours", Program._USER).Save();
                 }
                 this.ClearStatusBarWithMessage("Etat bien changer");
             }
@@ -159,7 +173,25 @@ namespace espaceNetSAV
                 //This is passing the bon id but the query actualy wants the Tech.id ???
                 techObject.getItem(Convert.ToInt32(numeroBon));
                 techObject.UpdateObject(diagnosticsText, tasksText, numeroBon);
+
                 this.ClearStatusBarWithMessage("Changes were saved!");
+
+                if (AccessRow(e.RowIndex, "Diagnostics").Equals(initialDiagnostic) && AccessRow(e.RowIndex, "Tàches Effectuer").Equals(initialTasks))
+                    return;
+
+                if (!initialDiagnostic.Equals(BonDataGrid.Rows[e.RowIndex].Cells["Diagnostics"].Value.ToString()))
+                {
+                    var diagnostics = AccessRow(e.RowIndex, "Diagnostics");
+                    new Admin.History(String.Format("Bon N°: {0} - {1}", this.AccessRow(e.RowIndex, "Bon N°"), initialDiagnostic), diagnostics, Program._USER).Save();
+                }
+
+                if (!initialTasks.Equals(BonDataGrid.Rows[e.RowIndex].Cells["Tàches Effectuer"].Value.ToString()))
+                {
+                    var tasks = AccessRow(e.RowIndex, "Tàches Effectuer");
+                    new Admin.History(String.Format("Bon N°: {0} - {1}", this.AccessRow(e.RowIndex, "Bon N°"), initialTasks), tasks, Program._USER).Save();
+                }
+                
+
             }
 
         }
@@ -244,7 +276,6 @@ namespace espaceNetSAV
 
         }
 
-
         private void onLoadCheckboxStatusChange()
         {
 
@@ -286,5 +317,22 @@ namespace espaceNetSAV
             }
         }
 
+        private void BonDataGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            initialDiagnostic = BonDataGrid.Rows[e.RowIndex].Cells["Diagnostics"].Value.ToString();
+            initialTasks = BonDataGrid.Rows[e.RowIndex].Cells["Tàches Effectuer"].Value.ToString();
+        }
+
+
+
+        private string AccessRow(int rowIndex, int cellIndex)
+        {
+            return BonDataGrid.Rows[rowIndex].Cells[cellIndex].Value.ToString();
+        }
+
+        private string AccessRow(int rowIndex, string cellsIndexName)
+        {
+            return BonDataGrid.Rows[rowIndex].Cells[cellsIndexName].Value.ToString();
+        }
     }
 }
