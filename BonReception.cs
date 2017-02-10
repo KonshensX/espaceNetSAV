@@ -310,15 +310,22 @@ namespace espaceNetSAV
         /// <returns></returns>
         public int UpdateDossierStatus()
         {
-            string query = "UPDATE bonreception SET etatdossier = @etat WHERE id = @bon_id";
-
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                this.databaseObject.openConnection();
-                myCommand.Parameters.AddWithValue("@etat", this.GetDossierStatus(this.dossier));
-                myCommand.Parameters.AddWithValue("@bon_id", this.id);
+                string query = "UPDATE bonreception SET etatdossier = @etat WHERE id = @bon_id";
 
-                return Convert.ToInt32(myCommand.ExecuteNonQuery());
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+                {
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@etat", this.GetDossierStatus(this.dossier));
+                    myCommand.Parameters.AddWithValue("@bon_id", this.id);
+
+                    return Convert.ToInt32(myCommand.ExecuteNonQuery());
+                }
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
             }
         }
 

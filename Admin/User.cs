@@ -91,18 +91,25 @@ namespace espaceNetSAV.Admin
         /// <returns></returns>
         public int createUser()
         {
-            string query = "INSERT INTO `users`( `username`, `password`, `isAdmin`, `createdat`, `cat_id`) VALUES (@username, @password, @isAdmin, @created, @cat_id)";
-
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
+                string query = "INSERT INTO `users`( `username`, `password`, `isAdmin`, `createdat`, `cat_id`) VALUES (@username, @password, @isAdmin, @created, @cat_id)";
 
-                this.databaseObject.openConnection();
-                myCommand.Parameters.AddWithValue("@username", this.Name);
-                myCommand.Parameters.AddWithValue("@password", this.Password);
-                myCommand.Parameters.AddWithValue("@isAdmin", this.GetUserRole(this.role)); //This needs more work 
-                myCommand.Parameters.AddWithValue("@created", this.date);
-                myCommand.Parameters.AddWithValue("@cat_id", this.category.ID);
-                return Convert.ToInt32(myCommand.ExecuteNonQuery());
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+                {
+
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@username", this.Name);
+                    myCommand.Parameters.AddWithValue("@password", this.Password);
+                    myCommand.Parameters.AddWithValue("@isAdmin", this.GetUserRole(this.role)); //This needs more work 
+                    myCommand.Parameters.AddWithValue("@created", this.date);
+                    myCommand.Parameters.AddWithValue("@cat_id", this.category.ID);
+                    return Convert.ToInt32(myCommand.ExecuteNonQuery());
+                }
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
             }
         }
 
@@ -154,14 +161,21 @@ namespace espaceNetSAV.Admin
         public bool Delete()
         {
 
-            string query = "DELETE FROM users WHERE id = @user_id";
-
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                this.databaseObject.openConnection();
-                myCommand.Parameters.AddWithValue("@user_id", this.ID);
+                string query = "DELETE FROM users WHERE id = @user_id";
 
-                return (myCommand.ExecuteNonQuery() == 1) ? true : false;
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+                {
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@user_id", this.ID);
+
+                    return (myCommand.ExecuteNonQuery() == 1) ? true : false;
+                }
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
             }
         }
         //Check whether the user is admin or not 
@@ -205,16 +219,23 @@ namespace espaceNetSAV.Admin
         /// <returns></returns>
         private bool UserAlreadyExists(string username)
         {
-            string query = "SELECT * FROM users WHERE username like @username";
-
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                this.databaseObject.openConnection();
-                myCommand.Parameters.AddWithValue("@username", username);
-                MySqlDataReader myReader = myCommand.ExecuteReader();
+                string query = "SELECT * FROM users WHERE username like @username";
 
-                return myReader.HasRows;
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+                {
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@username", username);
+                    MySqlDataReader myReader = myCommand.ExecuteReader();
 
+                    return myReader.HasRows;
+
+                }
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
             }
         }
 
@@ -227,25 +248,32 @@ namespace espaceNetSAV.Admin
 
         public bool CheckCredentials(string username, string cryptedPassword)
         {
-            string query = "SELECT * FROM users WHERE username like @username AND password LIKE @pwd";
-
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                this.databaseObject.openConnection();
-                myCommand.Parameters.AddWithValue("@username", username);
-                myCommand.Parameters.AddWithValue("@pwd", cryptedPassword);
+                string query = "SELECT * FROM users WHERE username like @username AND password LIKE @pwd";
 
-                using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
-                    if(myReader.HasRows)
-                    {
-                        return true;
-                    }
-                }
-                
-            }
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@username", username);
+                    myCommand.Parameters.AddWithValue("@pwd", cryptedPassword);
 
-            return false;
+                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                    {
+                        if (myReader.HasRows)
+                        {
+                            return true;
+                        }
+                    }
+
+                }
+
+                return false;
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
         }
 
         /// <summary>
@@ -256,32 +284,39 @@ namespace espaceNetSAV.Admin
         /// <returns></returns>
         public User GetUser(string username, string password)
         {
-            string query = "SELECT * FROM users WHERE username like @username AND password like @password";
-
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                this.databaseObject.openConnection();
-                myCommand.Parameters.AddWithValue("@username", username);
-                myCommand.Parameters.AddWithValue("@password", password);
+                string query = "SELECT * FROM users WHERE username like @username AND password like @password";
 
-                using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
-                    if (myReader.HasRows)
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@username", username);
+                    myCommand.Parameters.AddWithValue("@password", password);
+
+                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
                     {
-                        while (myReader.Read())
+                        if (myReader.HasRows)
                         {
-                            this.ID = Convert.ToInt32(myReader[0]);
-                            this.Name = myReader[1].ToString();
-                            this.Password = myReader[2].ToString();
-                            this.date = Convert.ToDateTime(myReader[4]);
-                            this.role = this.GetUserRole(Convert.ToInt32(myReader[3]));
-                        } 
+                            while (myReader.Read())
+                            {
+                                this.ID = Convert.ToInt32(myReader[0]);
+                                this.Name = myReader[1].ToString();
+                                this.Password = myReader[2].ToString();
+                                this.date = Convert.ToDateTime(myReader[4]);
+                                this.role = this.GetUserRole(Convert.ToInt32(myReader[3]));
+                            }
+                        }
                     }
                 }
+
+
+                return this;
             }
-
-
-            return this;
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
         }
 
         /// <summary>
@@ -290,23 +325,30 @@ namespace espaceNetSAV.Admin
         /// <returns></returns>
         public bool isAdmin()
         {
-            string query = "SELECT isAdmin FROM users WHERE username like @username";
-
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                this.databaseObject.openConnection();
-                myCommand.Parameters.AddWithValue("@username", this.Name);
-                using (MySqlDataReader myReader = myCommand.ExecuteReader()) 
+                string query = "SELECT isAdmin FROM users WHERE username like @username";
+
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
-                    if(myReader.HasRows)
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@username", this.Name);
+                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
                     {
-                        while (myReader.Read()) 
+                        if (myReader.HasRows)
                         {
-                            return (Convert.ToInt32(myReader[0]) == 1) ? true : false;
+                            while (myReader.Read())
+                            {
+                                return (Convert.ToInt32(myReader[0]) == 1) ? true : false;
+                            }
                         }
+                        return false;
                     }
-                    return false;
                 }
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
             }
         }
 
@@ -316,17 +358,24 @@ namespace espaceNetSAV.Admin
         /// <returns></returns>
         public int saveChanges()
         {
-            //This will save the changes made to the object to the database 
-            string query = "UPDATE `users` SET `username`=@username,`password`=@password,`cat_id`=@cat_id WHERE `id` = @userID"; //TODO: Fix te query 
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                this.databaseObject.openConnection();
-                myCommand.Parameters.AddWithValue("@username", this.Name);
-                myCommand.Parameters.AddWithValue("@password", this.Password);
-                myCommand.Parameters.AddWithValue("@cat_id", this.category.ID);
-                myCommand.Parameters.AddWithValue("@userID", this.ID);
+                //This will save the changes made to the object to the database 
+                string query = "UPDATE `users` SET `username`=@username,`password`=@password,`cat_id`=@cat_id WHERE `id` = @userID"; //TODO: Fix te query 
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+                {
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@username", this.Name);
+                    myCommand.Parameters.AddWithValue("@password", this.Password);
+                    myCommand.Parameters.AddWithValue("@cat_id", this.category.ID);
+                    myCommand.Parameters.AddWithValue("@userID", this.ID);
 
-                return myCommand.ExecuteNonQuery();
+                    return myCommand.ExecuteNonQuery();
+                }
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
             }
         }
 
@@ -347,32 +396,39 @@ namespace espaceNetSAV.Admin
         /// <returns></returns>
         public User GetUser(int userID)
         {
-            string query = "SELECT * FROM users WHERE id = @user_id";
-
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                this.databaseObject.openConnection();
-                myCommand.Parameters.AddWithValue("@user_id", userID);
+                string query = "SELECT * FROM users WHERE id = @user_id";
 
-                using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
-                    if (myReader.HasRows)
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@user_id", userID);
+
+                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
                     {
-                        while (myReader.Read())
+                        if (myReader.HasRows)
                         {
-                            this.ID = Convert.ToInt32(myReader[0]);
-                            this.Name = myReader[1].ToString();
-                            this.Password = this.DeCryptPassword(myReader[2].ToString());
-                            this.role = this.GetUserRole(Convert.ToInt32(myReader[3]));
-                            this.date = Convert.ToDateTime(myReader[4]);
-                            this.category.getCategory(Convert.ToInt32(myReader[5]));
+                            while (myReader.Read())
+                            {
+                                this.ID = Convert.ToInt32(myReader[0]);
+                                this.Name = myReader[1].ToString();
+                                this.Password = this.DeCryptPassword(myReader[2].ToString());
+                                this.role = this.GetUserRole(Convert.ToInt32(myReader[3]));
+                                this.date = Convert.ToDateTime(myReader[4]);
+                                this.category.getCategory(Convert.ToInt32(myReader[5]));
+                            }
                         }
                     }
+
                 }
 
+                return this;
             }
-
-            return this;
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
         }
 
     }

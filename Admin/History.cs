@@ -44,17 +44,24 @@ namespace espaceNetSAV.Admin
 
         public bool Save()
         {
-            string query = "INSERT INTO `historique`(`date`, `oldvalue`, `newvalue`, `user_id`) VALUES (@date, @oldvalue, @newvalue, @user_id)";//TODO: Fix the query 
-
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                this.databaseObject.openConnection();
-                myCommand.Parameters.AddWithValue("@date", this.Date);
-                myCommand.Parameters.AddWithValue("@oldvalue", this.OldValue);
-                myCommand.Parameters.AddWithValue("@newvalue", this.NewValue);
-                myCommand.Parameters.AddWithValue("@user_id", this.User.ID);
+                string query = "INSERT INTO `historique`(`date`, `oldvalue`, `newvalue`, `user_id`) VALUES (@date, @oldvalue, @newvalue, @user_id)";//TODO: Fix the query 
 
-                return (myCommand.ExecuteNonQuery() == 1) ? true : false ;
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+                {
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@date", this.Date);
+                    myCommand.Parameters.AddWithValue("@oldvalue", this.OldValue);
+                    myCommand.Parameters.AddWithValue("@newvalue", this.NewValue);
+                    myCommand.Parameters.AddWithValue("@user_id", this.User.ID);
+
+                    return (myCommand.ExecuteNonQuery() == 1) ? true : false;
+                }
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
             }
         }
 
@@ -64,72 +71,85 @@ namespace espaceNetSAV.Admin
         /// <returns></returns>
         public List<History> GetUserHistory()
         {
-            List<History> myList = new List<History>();
-
-            string query = "SELECT * FROM historique WHERE user_id = @user_id";
-
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                this.databaseObject.openConnection();
-                myCommand.Parameters.AddWithValue("@user_id", this.User.ID);
+                List<History> myList = new List<History>();
 
-                using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                string query = "SELECT * FROM historique WHERE user_id = @user_id";
+
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
-                    if (myReader.HasRows)
-                    {
-                        while (myReader.Read())
-                        {
-                            History history = new History();
-                            history.ID = Convert.ToInt32(myReader[0]);
-                            history.Date = Convert.ToDateTime(myReader[1]);
-                            history.OldValue = myReader[2].ToString();
-                            history.NewValue = myReader[3].ToString();
-                            history.User.GetUser(Convert.ToInt32(myReader[4]));
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@user_id", this.User.ID);
 
-                            myList.Add(history);
+                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                    {
+                        if (myReader.HasRows)
+                        {
+                            while (myReader.Read())
+                            {
+                                History history = new History();
+                                history.ID = Convert.ToInt32(myReader[0]);
+                                history.Date = Convert.ToDateTime(myReader[1]);
+                                history.OldValue = myReader[2].ToString();
+                                history.NewValue = myReader[3].ToString();
+                                history.User.GetUser(Convert.ToInt32(myReader[4]));
+
+                                myList.Add(history);
+                            }
                         }
+
+
                     }
 
-
                 }
-
+                return myList;
             }
-            return myList;
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
         }
 
         public List<History> GetUserHistoryLast30Days()
         {
-            List<History> myList = new List<History>();
-
-            string query = "SELECT * FROM historique WHERE user_id = @user_id AND date BETWEEN now() and date_add(now(), INTERVAL 1 month)";
-
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                this.databaseObject.openConnection();
-                myCommand.Parameters.AddWithValue("@user_id", this.User.ID);
+                List<History> myList = new List<History>();
 
-                using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                string query = "SELECT * FROM historique WHERE user_id = 1 AND date BETWEEN NOW() - INTERVAL 30 DAY AND NOW()";
+
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
-                    if (myReader.HasRows)
-                    {
-                        while (myReader.Read())
-                        {
-                            History history = new History();
-                            history.ID = Convert.ToInt32(myReader[0]);
-                            history.Date = Convert.ToDateTime(myReader[1]);
-                            history.OldValue = myReader[2].ToString();
-                            history.NewValue = myReader[3].ToString();
-                            history.User.GetUser(Convert.ToInt32(myReader[4]));
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@user_id", this.User.ID);
 
-                            myList.Add(history);
+                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                    {
+                        if (myReader.HasRows)
+                        {
+                            while (myReader.Read())
+                            {
+                                History history = new History();
+                                history.ID = Convert.ToInt32(myReader[0]);
+                                history.Date = Convert.ToDateTime(myReader[1]);
+                                history.OldValue = myReader[2].ToString();
+                                history.NewValue = myReader[3].ToString();
+                                history.User.GetUser(Convert.ToInt32(myReader[4]));
+
+                                myList.Add(history);
+                            }
                         }
+
                     }
 
-
                 }
-
+                return myList;
             }
-            return myList;
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
         }
 
         /// <summary>
@@ -138,45 +158,59 @@ namespace espaceNetSAV.Admin
         /// <returns></returns>
         public bool EmptyHistory()
         {
-            string query = "TRUNCATE TABLE historique";
-
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                this.databaseObject.openConnection();
-                return (myCommand.ExecuteNonQuery() == 0)? true : false;
+                string query = "TRUNCATE TABLE historique";
+
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+                {
+                    this.databaseObject.openConnection();
+                    return (myCommand.ExecuteNonQuery() == 0) ? true : false;
+                }
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
             }
         }
 
         public List<History> GetCompleteHistoryWithUsers()
         {
-            List<History> myList = new List<History>();
-
-            string query = "SELECT * FROM historique";
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                this.databaseObject.openConnection();
+                List<History> myList = new List<History>();
 
-                using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                string query = "SELECT * FROM historique";
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
-                    if (myReader.HasRows)
+                    this.databaseObject.openConnection();
+
+                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
                     {
-                        while (myReader.Read())
+                        if (myReader.HasRows)
                         {
-                            History history = new History();
+                            while (myReader.Read())
+                            {
+                                History history = new History();
 
-                            history.ID = Convert.ToInt32(myReader[0]);
-                            history.Date = Convert.ToDateTime(myReader[1]);
-                            history.OldValue = myReader[2].ToString();
-                            history.NewValue = myReader[3].ToString();
-                            history.User.GetUser(Convert.ToInt32(myReader[4]));
+                                history.ID = Convert.ToInt32(myReader[0]);
+                                history.Date = Convert.ToDateTime(myReader[1]);
+                                history.OldValue = myReader[2].ToString();
+                                history.NewValue = myReader[3].ToString();
+                                history.User.GetUser(Convert.ToInt32(myReader[4]));
 
-                            myList.Add(history);
+                                myList.Add(history);
+                            }
                         }
                     }
                 }
-            }
 
-            return myList;
+                return myList;
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
         }
 
 

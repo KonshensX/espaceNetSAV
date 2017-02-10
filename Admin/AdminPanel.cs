@@ -74,6 +74,7 @@ namespace espaceNetSAV.Admin
         private void AdminPanel_Load(object sender, EventArgs e)
         {
 
+
             this.ResizeColumns();
             this.FillSomeDummyData();
             clearStatusBarWithMessage("");

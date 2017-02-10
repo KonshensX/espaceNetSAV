@@ -60,12 +60,19 @@ namespace espaceNetSAV.Admin
         /// </summary>
         internal void saveToDatabase()
         {
-            string query = "INSERT INTO category (`name`) VALUES (@name)";
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                this.databaseObject.openConnection();
-                myCommand.Parameters.AddWithValue("@name", this.Name);
-                myCommand.ExecuteNonQuery();
+                string query = "INSERT INTO category (`name`) VALUES (@name)";
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+                {
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@name", this.Name);
+                    myCommand.ExecuteNonQuery();
+                }
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
             }
         }
 
@@ -75,31 +82,38 @@ namespace espaceNetSAV.Admin
         /// <returns></returns>
         public List<Category> GetCategories()
         {
-            List<Category> myList = new List<Category>();
-
-            string query = "SELECT * FROM category"; //TODO: Insert the proper query.
-
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                this.databaseObject.openConnection();
-                using (MySqlDataReader myReader = myCommand.ExecuteReader())
-                {
-                    Category catObject;
-                    if (myReader.HasRows)
-                    {
-                        while (myReader.Read())
-                        {
-                            catObject = new Category();
-                            catObject.ID = Convert.ToInt32(myReader[0]);
-                            catObject.Name = myReader[1].ToString();
+                List<Category> myList = new List<Category>();
 
-                            myList.Add(catObject);
+                string query = "SELECT * FROM category"; //TODO: Insert the proper query.
+
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+                {
+                    this.databaseObject.openConnection();
+                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                    {
+                        Category catObject;
+                        if (myReader.HasRows)
+                        {
+                            while (myReader.Read())
+                            {
+                                catObject = new Category();
+                                catObject.ID = Convert.ToInt32(myReader[0]);
+                                catObject.Name = myReader[1].ToString();
+
+                                myList.Add(catObject);
+                            }
                         }
                     }
                 }
-            }
 
-            return myList;
+                return myList;
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
         }
 
         /// <summary>
@@ -109,22 +123,29 @@ namespace espaceNetSAV.Admin
         /// <returns></returns>
         public Category getCategory(int CAT_ID)
         {
-            string query = "SELECT * FROM category WHERE id = @id";
-
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                myCommand.Parameters.AddWithValue("@id", CAT_ID);
-                this.databaseObject.openConnection();
-                using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                string query = "SELECT * FROM category WHERE id = @id";
+
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
-                    while (myReader.Read())
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@id", CAT_ID);
+                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
                     {
-                        this.ID = Convert.ToInt32(myReader[0]);
-                        this.Name = myReader[1].ToString();
+                        while (myReader.Read())
+                        {
+                            this.ID = Convert.ToInt32(myReader[0]);
+                            this.Name = myReader[1].ToString();
+                        }
                     }
                 }
+                return this;
             }
-            return this;
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
         }
 
         /// <summary>
@@ -134,24 +155,31 @@ namespace espaceNetSAV.Admin
         /// <returns></returns>
         public int GetIDBasedOnName(string name)
         {
-            string query = "SELECT id FROM category WHERE name like @name";   
-
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                this.databaseObject.openConnection();
-                myCommand.Parameters.AddWithValue("@name", name);
-                using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                string query = "SELECT id FROM category WHERE name like @name";
+
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
-                    if (myReader.HasRows)
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@name", name);
+                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
                     {
-                        while (myReader.Read())
+                        if (myReader.HasRows)
                         {
-                            return Convert.ToInt32(myReader[0]);
+                            while (myReader.Read())
+                            {
+                                return Convert.ToInt32(myReader[0]);
+                            }
                         }
                     }
                 }
+                return -1;
             }
-            return -1;
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
         }
 
         /// <summary>
@@ -160,25 +188,32 @@ namespace espaceNetSAV.Admin
         /// <param name="name">ID of the category</param>
         public Category FetchCategoryBasedOnName(string name)
         {
-            string query = "SELECT * FROM category WHERE name like @name";
-            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            try
             {
-                this.databaseObject.openConnection();
-                myCommand.Parameters.AddWithValue("@name", name);
-                using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                string query = "SELECT * FROM category WHERE name like @name";
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
-                    if (myReader.HasRows)
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@name", name);
+                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
                     {
-                        while (myReader.Read())
+                        if (myReader.HasRows)
                         {
-                            this.ID = Convert.ToInt32(myReader[0]);
-                            this.Name = myReader[1].ToString();
+                            while (myReader.Read())
+                            {
+                                this.ID = Convert.ToInt32(myReader[0]);
+                                this.Name = myReader[1].ToString();
+                            }
                         }
                     }
                 }
-            }
 
-            return this;
+                return this;
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
         }
     }
 }
