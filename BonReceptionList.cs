@@ -22,18 +22,14 @@ namespace espaceNetSAV
         {
             InitializeComponent();
             bonReceptionService = new BonReception();
-            myDataSource = bonReceptionService.GetData();
-            
-            dataView = new DataView(myDataSource);
+
         }
 
         private void BonReceptionList_Load(object sender, EventArgs e)
         {
+            this.GetDataFromDataBase();
+            this.LoadDataIntoDataGrid();
 
-            BonDataGrid.RowTemplate.Height = 30;
-            BonDataGrid.DataSource = dataView;
-
-            
             BonDataGrid.Columns["Bon N°"].Visible = true;
             BonDataGrid.Columns["Client ID"].Visible = false;
             BonDataGrid.Columns["Designations ID"].Visible = false;
@@ -43,6 +39,7 @@ namespace espaceNetSAV
             BonDataGrid.Columns["ID Bon"].Visible = false;
             BonDataGrid.Columns["Tech ID ID"].Visible = false;
             BonDataGrid.Columns["Etat"].Visible = false; //Index of this field is 20 (Original Field)
+            BonDataGrid.Columns["Validé"].Visible = false;
             //Adding a new text columns to the checkbox 
             myEtatColumn = new DataGridViewTextBoxColumn() 
             {
@@ -74,9 +71,11 @@ namespace espaceNetSAV
 
             BonDataGrid.Columns.Add(myCheckbox);
 
-            this.onLoadUpdateStatusText();
             //this.changeRowsColors();
-            this.onLoadCheckboxStatusChange();
+            //this.onLoadCheckboxStatusChange();
+            this.BonDataGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_CellValueChanged);
+
+            this.onLoadUpdateStatusText();
         }
 
         private void BonDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -199,7 +198,7 @@ namespace espaceNetSAV
 
             for (int i = 0; i < myDataSource.Rows.Count; i++)
             {
-                var valueOfField = myDataSource.Rows[i].ItemArray[21].ToString();
+                var valueOfField = myDataSource.Rows[i].ItemArray[22].ToString();
                 BonDataGrid.Rows[i].Cells[myEtatColumn.Index].Value = ((valueOfField == "1")? "Réparé" : "Pas Encore");
             }
         }
@@ -265,16 +264,58 @@ namespace espaceNetSAV
 
         private void BonDataGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (howMay == 1) 
-            {
-                howMay++;
-                return;
-            }
-
+            
             if (e.ColumnIndex == myCheckbox.Index)
             {
-                MessageBox.Show("Status: " + BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells[myCheckbox.Index].Value);
+                if (AccessRow(e.RowIndex, myCheckbox.Index).ToLower() == "true")
+                {
+                    if (MessageBox.Show("This requires your attention!", "Attention", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                    {
+                        BonReception bonObject = new BonReception().getItem(Convert.ToInt32(BonDataGrid.Rows[e.RowIndex].Cells["Bon N°"].Value));
+
+                        bonObject.dossier = Dossier.Valide;
+
+                        bonObject.UpdateDossierStatus();
+                        var rowIndex = e.RowIndex;
+                        this.statusStrip1.Items.Clear();
+                        this.statusStrip1.Items.Add("Ayyeee");
+                        this.DoWork();
+                        //dataView.Delete();
+                    }
+                } 
             }
         }
+
+        private string AccessRow(int rowIndex, int cellIndex)
+        {
+            return BonDataGrid.Rows[rowIndex].Cells[cellIndex].Value.ToString();
+        }
+
+        private string AccessRow(int rowIndex, string cellIndex)
+        {
+            return BonDataGrid.Rows[rowIndex].Cells[cellIndex].Value.ToString();
+        }
+
+        private void LoadDataIntoDataGrid()
+        {
+
+            BonDataGrid.RowTemplate.Height = 30;
+            BonDataGrid.DataSource = dataView;
+        }
+
+        private void DoWork()
+        {
+            this.GetDataFromDataBase();
+            this.LoadDataIntoDataGrid();
+            this.onLoadUpdateStatusText();      
+        }
+
+        public void GetDataFromDataBase()
+        {
+            myDataSource = bonReceptionService.GetData();
+
+            dataView = new DataView(myDataSource);
+        }
+
     }
 }

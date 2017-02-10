@@ -87,7 +87,7 @@ namespace espaceNetSAV
         {
             try
             {
-                string query = "SELECT * FROM bonReception, client, receptiondesignation, techniques WHERE bonReception.client_id = client.id AND bonReception.designation_id = receptiondesignation.id AND (techniques.id = bonreception.tech_id) OR (techniques.id = null)";
+                string query = "SELECT * FROM bonReception, client, receptiondesignation, techniques WHERE bonReception.client_id = client.id AND bonReception.designation_id = receptiondesignation.id AND bonreception.etatdossier = 0 AND (techniques.id = bonreception.tech_id) OR (techniques.id = null)";
                 //string query = "SELECT * FROM client";
                 MySqlDataAdapter adapter;
                 using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
@@ -302,6 +302,24 @@ namespace espaceNetSAV
         public void onLoadUpdateEtat()
         {
 
+        }
+
+        /// <summary>
+        /// This updates the current object `Folder` status
+        /// </summary>
+        /// <returns></returns>
+        public int UpdateDossierStatus()
+        {
+            string query = "UPDATE bonreception SET etatdossier = @etat WHERE id = @bon_id";
+
+            using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+            {
+                this.databaseObject.openConnection();
+                myCommand.Parameters.AddWithValue("@etat", this.GetDossierStatus(this.dossier));
+                myCommand.Parameters.AddWithValue("@bon_id", this.id);
+
+                return Convert.ToInt32(myCommand.ExecuteNonQuery());
+            }
         }
 
         /// <summary>
