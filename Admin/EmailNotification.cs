@@ -11,7 +11,7 @@ namespace espaceNetSAV.Admin
         MailAddress to = new MailAddress("kingofmad16@gmail.com", "Salah BAZA");
 
 
-        public EmailNotification(string content)
+        public EmailNotification(BonReception bonObject)
         {
             /*
             mail = new MailMessage(SENDER, RECIEVER);
@@ -39,8 +39,8 @@ namespace espaceNetSAV.Admin
             };
 
             using (MailMessage message = new MailMessage(from, to) {
-              Subject = "Subject goes here!",
-              Body = "Body goes here!"
+              Subject = String.Format("Notification Dossier N° {0}, Client: {1}", bonObject.id, bonObject.client.nom),
+              Body = String.Format("Object N°: {0} est validé", bonObject.id)
             })
             {
                 client.Send(message);

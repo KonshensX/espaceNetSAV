@@ -18,7 +18,7 @@ namespace espaceNetSAV
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BonReceptionList());
+            Application.Run(new Admin.AdminPanel());
         }
     }
 }

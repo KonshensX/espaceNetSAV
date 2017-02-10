@@ -282,7 +282,8 @@ namespace espaceNetSAV.Admin
 
         private void historiqueToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            CompleteHistoryList formObject = new CompleteHistoryList();
+            formObject.Show();
         }
     }
 }
