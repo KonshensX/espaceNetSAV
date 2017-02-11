@@ -45,6 +45,9 @@ namespace espaceNetSAV
             //Update the values of etat according to the datat from the database
 
             dataView = new DataView(myDataSource);
+
+            dataView.Sort = "Bon N° DESC";
+
             BonDataGrid.DataSource = dataView;
             
             //END OF A SECIOTN 
@@ -87,7 +90,7 @@ namespace espaceNetSAV
             if(dataView.Count > 0)
                 BonDataGrid.Rows[0].Selected = true;
 
-            Program._USER = new Admin.User().GetUser(1);
+            //Program._USER = new Admin.User().GetUser(1);
 
             this.BonDataGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_CellValueChanged);
         }

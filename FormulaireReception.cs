@@ -48,7 +48,7 @@ namespace espaceNetSAV
 
             clientComboBox.AutoCompleteCustomSource = clientsDataSource;
 
-            Program._USER = new Admin.User().GetUser(1);
+            //Program._USER = new Admin.User().GetUser(1);
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)

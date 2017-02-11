@@ -185,6 +185,12 @@ namespace espaceNetSAV.Admin
 
         private void saveChangesBtn_Click(object sender, EventArgs e)
         {
+
+            if (usersList.SelectedNode == null )
+            {
+                MessageBox.Show("Nothing is selected!");
+                return;
+            }
             if (MessageBox.Show("Vraiment??", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 //Checking if the password is okay or not 
@@ -284,6 +290,11 @@ namespace espaceNetSAV.Admin
         {
             CompleteHistoryList formObject = new CompleteHistoryList();
             formObject.Show();
+        }
+
+        private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

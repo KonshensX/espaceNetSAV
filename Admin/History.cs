@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using MySql.Data.MySqlClient;
 
 namespace espaceNetSAV.Admin
@@ -117,7 +118,7 @@ namespace espaceNetSAV.Admin
             {
                 List<History> myList = new List<History>();
 
-                string query = "SELECT * FROM historique WHERE user_id = 1 AND date BETWEEN NOW() - INTERVAL 30 DAY AND NOW()";
+                string query = "SELECT * FROM historique WHERE user_id = @user_id AND date BETWEEN NOW() - INTERVAL 30 DAY AND NOW()";
 
                 using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
@@ -144,7 +145,7 @@ namespace espaceNetSAV.Admin
                     }
 
                 }
-                return myList;
+                return myList.OrderByDescending(o => o.Date).ToList(); ;
             }
             finally
             {
@@ -205,7 +206,7 @@ namespace espaceNetSAV.Admin
                     }
                 }
 
-                return myList;
+                return myList.OrderByDescending(o => o.Date).ToList(); 
             }
             finally
             {

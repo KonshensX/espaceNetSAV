@@ -16,7 +16,6 @@ namespace espaceNetSAV
         DataTable myDataSource;
         DataGridViewTextBoxColumn myEtatColumn;
         DataGridViewCheckBoxColumn myCheckbox;
-        int howMay = 0;
 
         public BonReceptionList()
         {
@@ -318,6 +317,7 @@ namespace espaceNetSAV
             myDataSource = bonReceptionService.GetData();
 
             dataView = new DataView(myDataSource);
+            dataView.Sort = "Bon N° DESC";
         }
 
     }

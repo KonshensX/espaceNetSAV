@@ -122,7 +122,6 @@ namespace espaceNetSAV
                 table.Columns["tasks"].ColumnName = "Tàches Effectuer";
                 table.Columns["bon_id"].ColumnName = "ID BON";
                 table.Columns["fixed"].ColumnName = "Etat";
-                
                 return table;
             }
             catch (Exception)

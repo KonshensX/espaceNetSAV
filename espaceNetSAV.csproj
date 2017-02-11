@@ -82,13 +82,14 @@
     <Compile Include="Admin\CrysptingService.cs" />
     <Compile Include="Admin\EmailNotification.cs" />
     <Compile Include="Admin\History.cs" />
-    <Compile Include="Admin\Login.cs" />
     <Compile Include="Admin\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Admin\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Permission.cs" />
+    <Compile Include="Admin\Permissions.cs" />
     <Compile Include="Admin\User.cs" />
     <Compile Include="BonReception.cs" />
     <Compile Include="BonReceptionList.cs">
@@ -222,6 +223,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\131-spinner9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok ok ok ok.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

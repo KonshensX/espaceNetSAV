@@ -46,9 +46,18 @@ namespace espaceNetSAV.Admin
                     formObject.Show();
                     this.Hide();
                 }
+                return;
             }
 
+            errorHolderLabel.Visible = true;
+
+            errorHolderLabel.Text = "Mot de passe ou Pseudo erroné";
             
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            errorHolderLabel.Visible = false;
         }
     }
 }

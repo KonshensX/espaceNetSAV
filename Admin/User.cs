@@ -33,7 +33,6 @@ namespace espaceNetSAV.Admin
 
         public User(string username, string password, Category category)
         {
-            this.EncryptPassword();
             this.databaseObject = new Database();
             this.ID = this.GetLastID() + 1;
             this.Name = username;
@@ -41,6 +40,7 @@ namespace espaceNetSAV.Admin
             this.date = DateTime.Now;
             this.role = Role.User;
             this.category = category;
+            this.EncryptPassword();
         }
 
 
@@ -86,7 +86,7 @@ namespace espaceNetSAV.Admin
 
         
         /// <summary>
-        /// Create a user - Persist the user to teh database
+        /// Create a user - Persist the user to the database
         /// </summary>
         /// <returns></returns>
         public int createUser()
