@@ -21,7 +21,6 @@ namespace espaceNetSAV
         {
             InitializeComponent();
             bonReceptionService = new BonReception();
-
         }
 
         private void BonReceptionList_Load(object sender, EventArgs e)
@@ -37,7 +36,7 @@ namespace espaceNetSAV
             BonDataGrid.Columns["Clients ID"].Visible = false;
             BonDataGrid.Columns["ID Bon"].Visible = false;
             BonDataGrid.Columns["Tech ID ID"].Visible = false;
-            BonDataGrid.Columns["Etat"].Visible = false; //Index of this field is 20 (Original Field)
+            BonDataGrid.Columns["Etat"].Visible = true; //Index of this field is 20 (Original Field)
             BonDataGrid.Columns["Validé"].Visible = false;
             //Adding a new text columns to the checkbox 
             myEtatColumn = new DataGridViewTextBoxColumn() 
@@ -73,8 +72,9 @@ namespace espaceNetSAV
             //this.changeRowsColors();
             //this.onLoadCheckboxStatusChange();
             this.BonDataGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_CellValueChanged);
-
+            
             this.onLoadUpdateStatusText();
+            //this.onLoadCheckboxStatusChange();
         }
 
         private void BonDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -275,12 +275,19 @@ namespace espaceNetSAV
                         bonObject.dossier = Dossier.Valide;
 
                         bonObject.UpdateDossierStatus();
-                        var rowIndex = e.RowIndex;
                         this.statusStrip1.Items.Clear();
                         this.statusStrip1.Items.Add("Ayyeee");
                         this.DoWork();
 
-                        new Admin.EmailNotification(bonObject);
+                        try
+                        {
+                            new Admin.EmailNotification(bonObject);
+                        }
+                        catch (Exception ex)
+                        {
+
+                            MessageBox.Show("Error : " + ex.StackTrace, ex.Message);
+                        }
 
                         //dataView.Delete();
                     }
@@ -309,7 +316,7 @@ namespace espaceNetSAV
         {
             this.GetDataFromDataBase();
             this.LoadDataIntoDataGrid();
-            this.onLoadUpdateStatusText();      
+            this.onLoadUpdateStatusText();
         }
 
         public void GetDataFromDataBase()
@@ -317,7 +324,7 @@ namespace espaceNetSAV
             myDataSource = bonReceptionService.GetData();
 
             dataView = new DataView(myDataSource);
-            dataView.Sort = "Bon N° DESC";
+            //dataView.Sort = "Bon N° DESC";
         }
 
     }

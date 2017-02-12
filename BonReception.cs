@@ -90,7 +90,7 @@ namespace espaceNetSAV
         {
             try
             {
-                string query = "SELECT * FROM bonReception, client, receptiondesignation, techniques WHERE bonReception.client_id = client.id AND bonReception.designation_id = receptiondesignation.id AND bonreception.etatdossier = 0 AND (techniques.id = bonreception.tech_id) OR (techniques.id = null)";
+                string query = "SELECT * FROM bonReception, client, receptiondesignation, techniques WHERE bonReception.client_id = client.id AND bonReception.designation_id = receptiondesignation.id AND bonreception.etatdossier = 0 AND (techniques.id = bonreception.tech_id) OR (techniques.id = null) order by bonReception.id DESC";
                 //string query = "SELECT * FROM client";
                 MySqlDataAdapter adapter;
                 using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))

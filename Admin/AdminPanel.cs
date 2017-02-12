@@ -261,6 +261,7 @@ namespace espaceNetSAV.Admin
                 //Confirm the delete proccess
                 if (currentUser.Delete())
                 {
+                    usersList.SelectedNode.Remove();
                     MessageBox.Show("L'utilisateur a été bien suprprimé!", "Notifications", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }

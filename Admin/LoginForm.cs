@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace espaceNetSAV.Admin
 {
@@ -58,6 +59,16 @@ namespace espaceNetSAV.Admin
         private void LoginForm_Load(object sender, EventArgs e)
         {
             errorHolderLabel.Visible = false;
+            //The logic for remember me button goes here 
+            //Checking if the file exists 
+            //If the file exists it means that last time the user logged in he checked this option
+            string fileName = "config.data";
+            if (File.Exists(fileName))
+            {
+                File.Open(fileName, FileMode.Open);
+                return;
+            }
+            File.Create(fileName);
         }
         int howMany = 0;
         private void passwordTBox_KeyUp(object sender, KeyEventArgs e)

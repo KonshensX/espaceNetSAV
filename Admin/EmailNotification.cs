@@ -43,7 +43,15 @@ namespace espaceNetSAV.Admin
               Body = String.Format("Object N°: {0} est validé", bonObject.id)
             })
             {
-                client.Send(message);
+                try
+                {
+                    client.Send(message);
+                }
+                catch (Exception)
+                {
+                    
+                    throw;
+                }
             }
         }
     }
