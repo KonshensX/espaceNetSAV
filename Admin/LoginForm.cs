@@ -65,7 +65,8 @@ namespace espaceNetSAV.Admin
             string fileName = "config.data";
             if (File.Exists(fileName))
             {
-                File.Open(fileName, FileMode.Open);
+                FileStream file = File.Open(fileName, FileMode.Open);
+                
                 return;
             }
             File.Create(fileName);
