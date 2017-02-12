@@ -353,5 +353,26 @@ namespace espaceNetSAV.Admin
             temp.Text = usernameEditTbox.Text;
 
         }
+
+        private void réceptionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormulaireReception formObject = new FormulaireReception();
+
+            formObject.Show();
+        }
+
+        private void listCompleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BonReceptionList formObject = new BonReceptionList();
+
+            formObject.Show();
+        }
+
+        private void techniqueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TechniquesList formObject = new TechniquesList();
+
+            formObject.Show();
+        }
     }
 }

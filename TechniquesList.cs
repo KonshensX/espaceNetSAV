@@ -116,11 +116,11 @@ namespace espaceNetSAV
         //TODO
         private void BonDataGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (howMany == 1)
-            {
-                howMany++;
-                return;
-            }
+            //if (howMany == 1)
+            //{
+            //    howMany++;
+            //    return;
+            //}
             //Handle the checkbox state change here 
             if (e.ColumnIndex == repeared.Index)
             {
@@ -133,7 +133,6 @@ namespace espaceNetSAV
                 if (((bool)BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells[repeared.Index].Value) == true)
                 {
                     //This where the value should be updated to 1 which means it was fixed 
-                    
                     techObject.updateItemStatus((cellValue) ? Status.Fixed : Status.BeingRepeared);
 
                     new Admin.History("Bon N° etat: En Cours ", "Réparé", Program._USER).Save();
@@ -144,6 +143,7 @@ namespace espaceNetSAV
                     ///TODO: THIS IS NOT PERSIST TO HISTORY FIX IT.
                     //This is where the value updates to 0 which means the item was not fixed or its still being repeared
                     techObject.updateItemStatus((cellValue) ? Status.Fixed : Status.BeingRepeared);
+
                     new Admin.History("Bon N° etat: Réparé", "En Cours", Program._USER).Save();
                 }
                 this.ClearStatusBarWithMessage("Etat bien changer");
@@ -336,6 +336,11 @@ namespace espaceNetSAV
         private string AccessRow(int rowIndex, string cellsIndexName)
         {
             return BonDataGrid.Rows[rowIndex].Cells[cellsIndexName].Value.ToString();
+        }
+
+        private void TechniquesList_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

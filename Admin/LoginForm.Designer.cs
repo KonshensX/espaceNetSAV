@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.errorHolderLabel = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.passwordTBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.connecter = new System.Windows.Forms.Button();
             this.usernameTBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.errorHolderLabel = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -57,6 +57,37 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Login section";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::espaceNetSAV.Properties.Resources.ok_ok_ok_ok;
+            this.pictureBox1.Location = new System.Drawing.Point(51, 66);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(220, 129);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            // 
+            // errorHolderLabel
+            // 
+            this.errorHolderLabel.AutoSize = true;
+            this.errorHolderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorHolderLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.errorHolderLabel.Location = new System.Drawing.Point(48, 370);
+            this.errorHolderLabel.Name = "errorHolderLabel";
+            this.errorHolderLabel.Size = new System.Drawing.Size(104, 15);
+            this.errorHolderLabel.TabIndex = 5;
+            this.errorHolderLabel.Text = "Message d\'erreur";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(51, 336);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(153, 17);
+            this.checkBox1.TabIndex = 3;
+            this.checkBox1.Text = "Se souvient de moi (BETA)";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // passwordTBox
             // 
@@ -104,37 +135,6 @@
             this.label1.Size = new System.Drawing.Size(63, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Pseudo";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(51, 336);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(116, 17);
-            this.checkBox1.TabIndex = 3;
-            this.checkBox1.Text = "Se souvient de moi";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // errorHolderLabel
-            // 
-            this.errorHolderLabel.AutoSize = true;
-            this.errorHolderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.errorHolderLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this.errorHolderLabel.Location = new System.Drawing.Point(48, 370);
-            this.errorHolderLabel.Name = "errorHolderLabel";
-            this.errorHolderLabel.Size = new System.Drawing.Size(104, 15);
-            this.errorHolderLabel.TabIndex = 5;
-            this.errorHolderLabel.Text = "Message d\'erreur";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::espaceNetSAV.Properties.Resources.ok_ok_ok_ok;
-            this.pictureBox1.Location = new System.Drawing.Point(51, 66);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(220, 129);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
             // 
             // LoginForm
             // 

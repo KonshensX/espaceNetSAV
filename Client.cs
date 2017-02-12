@@ -22,7 +22,6 @@ namespace espaceNetSAV
         public string tel;
         public string email;
         public string fax;
-        public string contact;
         public ClientType clientType;
 
         //Default constructor
@@ -42,7 +41,6 @@ namespace espaceNetSAV
             this.tel = tel;
             this.email = email;
             this.fax = fax;
-            this.contact = contact;
             this.clientType = typeClient;
         }
 
@@ -74,7 +72,6 @@ namespace espaceNetSAV
                     myCommand.Parameters.AddWithValue("@tel", this.tel);
                     myCommand.Parameters.AddWithValue("@email", this.email);
                     myCommand.Parameters.AddWithValue("@fax", this.fax);
-                    myCommand.Parameters.AddWithValue("@contact", this.contact);
                     myCommand.Parameters.AddWithValue("@clientType", getClientType(this.clientType));
 
                     var someResult = myCommand.ExecuteNonQuery();
@@ -169,8 +166,7 @@ namespace espaceNetSAV
                             client.tel = myReader[2].ToString();
                             client.email = myReader[3].ToString();
                             client.fax = myReader[4].ToString();
-                            client.contact = myReader[5].ToString();
-                            client.clientType = setClientType(Convert.ToInt32(myReader[6]));
+                            client.clientType = setClientType(Convert.ToInt32(myReader[5]));
                         }
                     }
                 }
@@ -208,8 +204,7 @@ namespace espaceNetSAV
                             client.tel = myReader[2].ToString();
                             client.email = myReader[3].ToString();
                             client.fax = myReader[4].ToString();
-                            client.contact = myReader[5].ToString();
-                            client.clientType = setClientType(Convert.ToInt32(myReader[6]));
+                            client.clientType = setClientType(Convert.ToInt32(myReader[5]));
                         }
                     }
                 }
@@ -292,8 +287,7 @@ namespace espaceNetSAV
                         this.tel = myReader[2].ToString();
                         this.email = myReader[3].ToString();
                         this.fax = myReader[4].ToString();
-                        this.contact = myReader[5].ToString();
-                        this.clientType = getType(Convert.ToInt32(myReader[6]));
+                        this.clientType = getType(Convert.ToInt32(myReader[5]));
                     }
                 }
 

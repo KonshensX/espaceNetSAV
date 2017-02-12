@@ -69,8 +69,6 @@
             this.BonDataGrid.TabIndex = 1;
             this.BonDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_CellContentClick);
             this.BonDataGrid.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.BonDataGrid_CellMouseUp);
-            
-
             this.BonDataGrid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_RowEnter);
             this.BonDataGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BonDataGrid_KeyDown);
             // 
@@ -180,6 +178,7 @@
             this.Name = "TechniquesList";
             this.ShowIcon = false;
             this.Text = "Technique";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TechniquesList_FormClosed);
             this.Load += new System.EventHandler(this.TechniquesList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.BonDataGrid)).EndInit();
             this.groupBox1.ResumeLayout(false);

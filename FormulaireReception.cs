@@ -138,7 +138,6 @@ namespace espaceNetSAV
             clientObject = clientObject.getClientByName(clientComboBox.Text);
             faxTBox.Text = clientObject.fax;
             telTBox.Text = clientObject.tel;
-            contactTBox.Text = clientObject.contact;
             emailTBox.Text = clientObject.email;
 
         }

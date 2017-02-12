@@ -138,7 +138,7 @@
             this.clientComboBox.Location = new System.Drawing.Point(238, 35);
             this.clientComboBox.Name = "clientComboBox";
             this.clientComboBox.Size = new System.Drawing.Size(158, 21);
-            this.clientComboBox.TabIndex = 22;
+            this.clientComboBox.TabIndex = 2;
             this.clientComboBox.SelectedIndexChanged += new System.EventHandler(this.clientComboBox_SelectedIndexChanged);
             this.clientComboBox.TextChanged += new System.EventHandler(this.clientComboBox_TextChanged);
             // 
@@ -147,7 +147,7 @@
             this.refAchattbox.Location = new System.Drawing.Point(238, 116);
             this.refAchattbox.Name = "refAchattbox";
             this.refAchattbox.Size = new System.Drawing.Size(158, 20);
-            this.refAchattbox.TabIndex = 21;
+            this.refAchattbox.TabIndex = 7;
             // 
             // label8
             // 
@@ -178,7 +178,7 @@
             this.clientTypeRB.Location = new System.Drawing.Point(6, 19);
             this.clientTypeRB.Name = "clientTypeRB";
             this.clientTypeRB.Size = new System.Drawing.Size(59, 20);
-            this.clientTypeRB.TabIndex = 11;
+            this.clientTypeRB.TabIndex = 0;
             this.clientTypeRB.TabStop = true;
             this.clientTypeRB.Text = "Client";
             this.clientTypeRB.UseVisualStyleBackColor = true;
@@ -191,7 +191,7 @@
             this.rsTypeRB.Location = new System.Drawing.Point(6, 46);
             this.rsTypeRB.Name = "rsTypeRB";
             this.rsTypeRB.Size = new System.Drawing.Size(118, 20);
-            this.rsTypeRB.TabIndex = 12;
+            this.rsTypeRB.TabIndex = 1;
             this.rsTypeRB.TabStop = true;
             this.rsTypeRB.Text = "Raison Sociale";
             this.rsTypeRB.UseVisualStyleBackColor = true;
@@ -202,7 +202,7 @@
             this.contactTBox.Location = new System.Drawing.Point(507, 77);
             this.contactTBox.Name = "contactTBox";
             this.contactTBox.Size = new System.Drawing.Size(158, 20);
-            this.contactTBox.TabIndex = 18;
+            this.contactTBox.TabIndex = 5;
             // 
             // contactLabel
             // 
@@ -219,7 +219,7 @@
             this.emailTBox.Location = new System.Drawing.Point(747, 77);
             this.emailTBox.Name = "emailTBox";
             this.emailTBox.Size = new System.Drawing.Size(158, 20);
-            this.emailTBox.TabIndex = 16;
+            this.emailTBox.TabIndex = 6;
             // 
             // label7
             // 
@@ -236,7 +236,7 @@
             this.faxTBox.Location = new System.Drawing.Point(747, 33);
             this.faxTBox.Name = "faxTBox";
             this.faxTBox.Size = new System.Drawing.Size(158, 20);
-            this.faxTBox.TabIndex = 14;
+            this.faxTBox.TabIndex = 4;
             // 
             // label4
             // 
@@ -286,7 +286,7 @@
             this.designTBox.Multiline = true;
             this.designTBox.Name = "designTBox";
             this.designTBox.Size = new System.Drawing.Size(379, 145);
-            this.designTBox.TabIndex = 7;
+            this.designTBox.TabIndex = 8;
             // 
             // label5
             // 

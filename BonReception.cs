@@ -21,7 +21,7 @@ namespace espaceNetSAV
         public string ref_achat;
         public string devis;
         public Dossier dossier;
-
+        public string contact;
         #region Methodes 
         public BonReception() 
         {
@@ -37,6 +37,7 @@ namespace espaceNetSAV
             this.tech = new Technique();
             this.ref_achat = "";
             this.devis = "";
+            this.contact = "";
         }
 
         public BonReception(Client client,  DesignationReception desReception, Technique techObject, string ref_achat)
@@ -48,6 +49,7 @@ namespace espaceNetSAV
             this.client = client;
             this.designationReception = desReception;
             this.ref_achat = ref_achat;
+            this.contact = "";
         }
         #endregion
         /// <summary>
@@ -56,7 +58,7 @@ namespace espaceNetSAV
         public void persistObjectToDatabase()
         {
             //TODO: fix the query 
-            string query = "INSERT INTO `bonreception`(`bonDate`, `client_id`, `designation_id`, `ref_achat`, `tech_id`) VALUES (@date, @client_id, @designation_id, @ref_achat, @tech_id)";
+            string query = "INSERT INTO `bonreception`(`bonDate`, `client_id`, `designation_id`, `ref_achat`, `tech_id`, `contact`) VALUES (@date, @client_id, @designation_id, @ref_achat, @tech_id, @contact)";
             try
             {
                 using (MySqlCommand myCommand = new MySqlCommand(query, databaseObject.getConnection()))
@@ -67,6 +69,7 @@ namespace espaceNetSAV
                     myCommand.Parameters.AddWithValue("@designation_id", this.designationReception.id);
                     myCommand.Parameters.AddWithValue("@ref_achat", this.ref_achat);
                     myCommand.Parameters.AddWithValue("@tech_id", this.tech.id);
+                    myCommand.Parameters.AddWithValue("@contact", this.contact);
                     myCommand.ExecuteNonQuery();
                 }
             }
@@ -152,6 +155,7 @@ namespace espaceNetSAV
                         this.date = Convert.ToDateTime(myReader[1]);
                         this.ref_achat = myReader[4].ToString();
                         this.devis = myReader[6].ToString();
+                        this.contact = myReader[8].ToString();
                     }
                 }
 
@@ -208,6 +212,7 @@ namespace espaceNetSAV
                         this.ref_achat = myReader[4].ToString();
                         this.devis = myReader[6].ToString();
                         this.dossier = this.GetDossierStatus(Convert.ToInt32(myReader[7]));
+                        this.contact = myReader[8].ToString();
                     }
                     myReader.Close();
                 }

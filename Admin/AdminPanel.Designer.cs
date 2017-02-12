@@ -31,6 +31,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.gérerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cetegoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.historiqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.historiqueToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,6 +45,7 @@
             this.deleteUserBtn = new System.Windows.Forms.Button();
             this.saveChangesBtn = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -71,8 +73,9 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label8 = new System.Windows.Forms.Label();
+            this.réceptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listCompleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.techniqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -106,6 +109,10 @@
             // 
             // gérerToolStripMenuItem
             // 
+            this.gérerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.réceptionToolStripMenuItem,
+            this.listCompleteToolStripMenuItem,
+            this.techniqueToolStripMenuItem});
             this.gérerToolStripMenuItem.Name = "gérerToolStripMenuItem";
             this.gérerToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.gérerToolStripMenuItem.Text = "Gérer";
@@ -117,6 +124,13 @@
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
+            // 
+            // quitterToolStripMenuItem
+            // 
+            this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
+            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.quitterToolStripMenuItem.Text = "Quitter";
+            this.quitterToolStripMenuItem.Click += new System.EventHandler(this.quitterToolStripMenuItem_Click);
             // 
             // cetegoryToolStripMenuItem
             // 
@@ -258,6 +272,16 @@
             this.groupBox4.TabIndex = 19;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Permissions";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(78, 96);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(138, 24);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "PAS ENCORE ";
             // 
             // groupBox3
             // 
@@ -505,22 +529,26 @@
             this.toolStripStatusLabel1.Spring = true;
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
-            // quitterToolStripMenuItem
+            // réceptionToolStripMenuItem
             // 
-            this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.quitterToolStripMenuItem.Text = "Quitter";
-            this.quitterToolStripMenuItem.Click += new System.EventHandler(this.quitterToolStripMenuItem_Click);
+            this.réceptionToolStripMenuItem.Name = "réceptionToolStripMenuItem";
+            this.réceptionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.réceptionToolStripMenuItem.Text = "Réception";
+            this.réceptionToolStripMenuItem.Click += new System.EventHandler(this.réceptionToolStripMenuItem_Click);
             // 
-            // label8
+            // listCompleteToolStripMenuItem
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(78, 96);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(138, 24);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "PAS ENCORE ";
+            this.listCompleteToolStripMenuItem.Name = "listCompleteToolStripMenuItem";
+            this.listCompleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.listCompleteToolStripMenuItem.Text = "List complete";
+            this.listCompleteToolStripMenuItem.Click += new System.EventHandler(this.listCompleteToolStripMenuItem_Click);
+            // 
+            // techniqueToolStripMenuItem
+            // 
+            this.techniqueToolStripMenuItem.Name = "techniqueToolStripMenuItem";
+            this.techniqueToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.techniqueToolStripMenuItem.Text = "Technique";
+            this.techniqueToolStripMenuItem.Click += new System.EventHandler(this.techniqueToolStripMenuItem_Click);
             // 
             // AdminPanel
             // 
@@ -607,6 +635,9 @@
         private System.Windows.Forms.ToolStripMenuItem viderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ToolStripMenuItem réceptionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem listCompleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem techniqueToolStripMenuItem;
 
     }
 }
