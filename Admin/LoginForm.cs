@@ -59,5 +59,22 @@ namespace espaceNetSAV.Admin
         {
             errorHolderLabel.Visible = false;
         }
+        int howMany = 0;
+        private void passwordTBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (howMany == 0)
+            {
+                howMany++;
+                return;
+            }
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.button1_Click(sender, e);
+                passwordTBox.Text = "";
+            }
+
+        }
+
+        
     }
 }

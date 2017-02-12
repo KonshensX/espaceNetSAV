@@ -35,6 +35,8 @@ namespace espaceNetSAV
 
         private void FormulaireReception_Load(object sender, EventArgs e)
         {
+
+            //Program._USER = new Admin.User().GetUser(2);
             this.clearStatusBarWithMessage("Bienvenue!");
             dateValuelbl.Text = DateTime.Now.ToString();
             Client clientObject = new Client();
@@ -100,8 +102,8 @@ namespace espaceNetSAV
                 techObject.persistObjectToDatabase(bonReceptionObject.id);
                 bonReceptionObject.persistObjectToDatabase();
 
-                Admin.History history = new Admin.History(String.Format("Creation du bon: N°: {0}", bonReceptionObject.client), "", Program._USER);
-                history.Save();
+                //Admin.History history = new Admin.History(String.Format("Creation du bon: N°: {0}", bonReceptionObject.client), "", Program._USER);
+                //history.Save();
                 BonReception bonObject = new BonReception();
 
                 bonObject.getItem(bonObject.GetLastID());

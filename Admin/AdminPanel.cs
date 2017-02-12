@@ -104,7 +104,7 @@ namespace espaceNetSAV.Admin
                 //var array = tempArray.Where(c => c.Text.Equals("Empty node to be deleted!"));
                 //TreeNode[] realArray = new TreeNode[]
 
-                myNode = new TreeNode(category.Name, tempList.ToArray());
+                myNode = new TreeNode(category.Name, tempList.ToArray()) { Name = category.Name };
                 usersList.Nodes.Add(myNode);
 
             }
@@ -132,6 +132,12 @@ namespace espaceNetSAV.Admin
 
         private void createBtn_Click(object sender, EventArgs e)
         {
+            if (!pwdTBox.Text.Equals(pwdTBoxConf.Text))
+            {
+                MessageBox.Show("Les mots de passes ne sont pas identiques", "Erreur mot de passe", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             CrysptingService cryptObject = new CrysptingService();
 
             var crypted = cryptObject.Encrypt(pwdTBox.Text, Program._KEY);
@@ -142,7 +148,10 @@ namespace espaceNetSAV.Admin
 
             User userObject = new User(usernameTBox.Text, crypted, categoryObject);
 
+
+            this.createUserAndAddToUI(userObject, categoryObject);
             var queriesResult = userObject.createUser();
+
 
             MessageBox.Show(queriesResult.ToString());
 
@@ -150,6 +159,19 @@ namespace espaceNetSAV.Admin
             {
                 this.clearStatusBarWithMessage("Utilisateur bien creé");
             }
+
+            usersListDB = userObject.GetAllUsers();
+        }
+
+        private void createUserAndAddToUI(User userObject, Category category)
+        {
+
+            TreeNode[] result = usersList.Nodes.Find(category.Name, true);
+
+            TreeNode myTempNode = new TreeNode(userObject.Name);
+
+            result[0].Nodes.Add(myTempNode);
+            
         }
 
         private void usersList_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -158,8 +180,12 @@ namespace espaceNetSAV.Admin
 
         }
 
+
         private void usersList_AfterSelect(object sender, TreeViewEventArgs e)
         {
+
+            
+            
             //Checking whether the selected node is a parent node or a child node 
             if (!(usersList.SelectedNode.Parent == null))
             {
@@ -171,8 +197,8 @@ namespace espaceNetSAV.Admin
 
                 usernameEditTbox.Text = currentUser.Name;
 
-                passwordEditTBox.Text = "**********";
-                passwordEditTboxConf.Text = "**********";
+                passwordEditTBox.Text = "Nouveau mot de passe";
+                passwordEditTboxConf.Text = "Confirmation de nouveau mot de passe";
 
                 categoryEditCbox.SelectedItem = currentUser.category.Name;
 
@@ -185,13 +211,26 @@ namespace espaceNetSAV.Admin
 
         private void saveChangesBtn_Click(object sender, EventArgs e)
         {
+            this.tempName();
+
+            if (passwordEditTBox.Text.Equals("Nouveau mot de passe"))
+            {
+                MessageBox.Show("Enter nouveau mot de passe", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (passwordEditTBox.Text.Equals(""))
+            { 
+                MessageBox.Show("Champs mot de passe est vide!");
+                return;
+            }
 
             if (usersList.SelectedNode == null )
             {
                 MessageBox.Show("Nothing is selected!");
                 return;
             }
-            if (MessageBox.Show("Vraiment??", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (MessageBox.Show("Confimer les nouveaux modifications ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 //Checking if the password is okay or not 
                 if (passwordEditTBox.Text.Equals(passwordEditTboxConf.Text))
@@ -249,10 +288,10 @@ namespace espaceNetSAV.Admin
         /// </summary>
         private void FillSomeDummyData()
         {
-            new History("sxcvbn", "edfghjklm", new User().GetUser(1)).Save();
-            new History("ioreoirezio", "ioreoirezio", new User().GetUser(1)).Save();
-            new History("dfghjk,;", "dfghjk,;", new User().GetUser(1)).Save();
-            new History("itititit", "itititit", new User().GetUser(1)).Save();
+            //new History("sxcvbn", "edfghjklm", new User().GetUser(1)).Save();
+            //new History("ioreoirezio", "ioreoirezio", new User().GetUser(1)).Save();
+            //new History("dfghjk,;", "dfghjk,;", new User().GetUser(1)).Save();
+            //new History("itititit", "itititit", new User().GetUser(1)).Save();
         }
 
         private void ResizeColumns()
@@ -266,7 +305,7 @@ namespace espaceNetSAV.Admin
         {
             if (MessageBox.Show("Confirmation de suppression!!", "Attention", MessageBoxButtons.OKCancel, MessageBoxIcon.Error) == DialogResult.OK)
             {
-                if (new History().EmptyHistory())
+                if (new History(Program._USER).EmptyHistory())
                 {
 
                     this.EmptyListView();
@@ -295,6 +334,24 @@ namespace espaceNetSAV.Admin
         private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void passwordEditTBox_Enter(object sender, EventArgs e)
+        {
+            if (passwordEditTBox.Text.Equals("Nouveau mot de passe"))
+            {
+                passwordEditTBox.Text = "";
+                passwordEditTboxConf.Text = "";
+            }
+        }
+
+        private void tempName()
+        {
+            var temp = usersList.SelectedNode;
+            if (temp.Parent == null)
+                return;
+            temp.Text = usernameEditTbox.Text;
+
         }
     }
 }

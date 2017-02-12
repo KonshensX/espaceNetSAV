@@ -65,6 +65,7 @@
             this.passwordTBox.PasswordChar = '*';
             this.passwordTBox.Size = new System.Drawing.Size(212, 20);
             this.passwordTBox.TabIndex = 2;
+            this.passwordTBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.passwordTBox_KeyUp);
             // 
             // label2
             // 

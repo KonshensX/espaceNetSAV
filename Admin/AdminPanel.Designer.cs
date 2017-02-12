@@ -334,6 +334,7 @@
             this.passwordEditTBox.Name = "passwordEditTBox";
             this.passwordEditTBox.Size = new System.Drawing.Size(156, 20);
             this.passwordEditTBox.TabIndex = 4;
+            this.passwordEditTBox.Enter += new System.EventHandler(this.passwordEditTBox_Enter);
             // 
             // passwordEditTboxConf
             // 
@@ -386,21 +387,21 @@
             this.categoryCBox.Location = new System.Drawing.Point(122, 159);
             this.categoryCBox.Name = "categoryCBox";
             this.categoryCBox.Size = new System.Drawing.Size(419, 21);
-            this.categoryCBox.TabIndex = 14;
+            this.categoryCBox.TabIndex = 12;
             // 
             // pwdTBoxConf
             // 
             this.pwdTBoxConf.Location = new System.Drawing.Point(122, 114);
             this.pwdTBoxConf.Name = "pwdTBoxConf";
             this.pwdTBoxConf.Size = new System.Drawing.Size(419, 20);
-            this.pwdTBoxConf.TabIndex = 13;
+            this.pwdTBoxConf.TabIndex = 11;
             // 
             // pwdTBox
             // 
             this.pwdTBox.Location = new System.Drawing.Point(122, 84);
             this.pwdTBox.Name = "pwdTBox";
             this.pwdTBox.Size = new System.Drawing.Size(419, 20);
-            this.pwdTBox.TabIndex = 12;
+            this.pwdTBox.TabIndex = 10;
             // 
             // label2
             // 
@@ -432,7 +433,7 @@
             this.createBtn.Location = new System.Drawing.Point(239, 212);
             this.createBtn.Name = "createBtn";
             this.createBtn.Size = new System.Drawing.Size(302, 23);
-            this.createBtn.TabIndex = 10;
+            this.createBtn.TabIndex = 13;
             this.createBtn.Text = "Créé";
             this.createBtn.UseVisualStyleBackColor = true;
             this.createBtn.Click += new System.EventHandler(this.createBtn_Click);

@@ -15,18 +15,11 @@ namespace espaceNetSAV.Admin
         public string NewValue { get; set; }
         public User User { get; set; }
 
-        public History() 
-        {
-            this.databaseObject = new Database();
-            this.Date = DateTime.Now;
-            this.OldValue = "";
-            this.NewValue = "";
-            this.User = new User();
-        }
 
         public History(string oldValue, string newValue, User user)
         {
             this.databaseObject = new Database();
+            this.ID = 1;
             this.Date = DateTime.Now;
             this.OldValue = oldValue;
             this.NewValue = newValue;
@@ -89,7 +82,7 @@ namespace espaceNetSAV.Admin
                         {
                             while (myReader.Read())
                             {
-                                History history = new History();
+                                History history = new History(Program._USER);
                                 history.ID = Convert.ToInt32(myReader[0]);
                                 history.Date = Convert.ToDateTime(myReader[1]);
                                 history.OldValue = myReader[2].ToString();
@@ -131,7 +124,7 @@ namespace espaceNetSAV.Admin
                         {
                             while (myReader.Read())
                             {
-                                History history = new History();
+                                History history = new History(Program._USER);
                                 history.ID = Convert.ToInt32(myReader[0]);
                                 history.Date = Convert.ToDateTime(myReader[1]);
                                 history.OldValue = myReader[2].ToString();
@@ -192,7 +185,7 @@ namespace espaceNetSAV.Admin
                         {
                             while (myReader.Read())
                             {
-                                History history = new History();
+                                History history = new History(Program._USER);
 
                                 history.ID = Convert.ToInt32(myReader[0]);
                                 history.Date = Convert.ToDateTime(myReader[1]);

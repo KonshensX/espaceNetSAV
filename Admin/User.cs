@@ -155,6 +155,7 @@ namespace espaceNetSAV.Admin
             }
         }
 
+        
         /// <summary>
         /// Delete the current user from the database
         /// </summary>

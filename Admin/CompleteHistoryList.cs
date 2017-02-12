@@ -19,7 +19,7 @@ namespace espaceNetSAV.Admin
 
         private void CompleteHistoryList_Load(object sender, EventArgs e)
         {
-            List<History> myList = new History().GetCompleteHistoryWithUsers();
+            List<History> myList = new History(Program._USER).GetCompleteHistoryWithUsers();
 
             foreach (History item in myList)
             {
