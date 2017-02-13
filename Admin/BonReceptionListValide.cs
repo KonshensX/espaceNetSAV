@@ -36,7 +36,7 @@ namespace espaceNetSAV.Admin
             BonDataGrid.Columns["Clients ID"].Visible = false;
             BonDataGrid.Columns["ID Bon"].Visible = false;
             BonDataGrid.Columns["Tech ID ID"].Visible = false;
-            BonDataGrid.Columns["Etat"].Visible = true; //Index of this field is 20 (Original Field)
+            BonDataGrid.Columns["Etat"].Visible = false; //Index of this field is 20 (Original Field)
             BonDataGrid.Columns["Validé"].Visible = false;
             //Adding a new text columns to the checkbox 
             myEtatColumn = new DataGridViewTextBoxColumn() 
