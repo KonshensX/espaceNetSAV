@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -388,6 +389,28 @@ namespace espaceNetSAV.Admin
             BonReceptionListValide formObject = new BonReceptionListValide();
 
             formObject.Show();
+        }
+
+        private void déconnecterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            LoginForm formObject = new LoginForm();
+
+            formObject.Show();
+            string filename = "config.data";
+            try
+            {
+                if (File.Exists(filename))
+                {
+                    File.Delete(filename);
+                }
+            }
+            finally
+            {
+                this.Close();
+                this.Dispose();
+            }
+
         }
     }
 }
