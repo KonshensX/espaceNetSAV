@@ -376,7 +376,7 @@ namespace espaceNetSAV.Admin
 
         private void valdéToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //List des dossier validés 
+            //List des dossier validés
             BonReceptionListValide formObject = new BonReceptionListValide();
 
             formObject.Show();
@@ -385,7 +385,7 @@ namespace espaceNetSAV.Admin
         private void pasEncoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Pas Encore 
-            BonReceptionList formObject = new BonReceptionList();
+            BonReceptionListValide formObject = new BonReceptionListValide();
 
             formObject.Show();
         }

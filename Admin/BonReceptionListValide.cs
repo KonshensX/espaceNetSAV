@@ -36,7 +36,7 @@ namespace espaceNetSAV.Admin
             BonDataGrid.Columns["Clients ID"].Visible = false;
             BonDataGrid.Columns["ID Bon"].Visible = false;
             BonDataGrid.Columns["Tech ID ID"].Visible = false;
-            BonDataGrid.Columns["Etat"].Visible = false; //Index of this field is 20 (Original Field)
+            BonDataGrid.Columns["Etat"].Visible = true; //Index of this field is 20 (Original Field)
             BonDataGrid.Columns["Validé"].Visible = false;
             //Adding a new text columns to the checkbox 
             myEtatColumn = new DataGridViewTextBoxColumn() 
@@ -45,9 +45,9 @@ namespace espaceNetSAV.Admin
                 Name = "myEtatColumn"
             };
             BonDataGrid.Columns.Add(myEtatColumn);
-            ////End of adding the text box
-            //BonDataGrid.Columns["Client Type"].Visible = false;
-            ////PDF button 
+            //End of adding the text box
+            BonDataGrid.Columns["Client Type"].Visible = false;
+            //PDF button 
             //DataGridViewButtonColumn pdfButton = new DataGridViewButtonColumn();
 
             //BonDataGrid.Columns.Add(pdfButton);
@@ -72,41 +72,41 @@ namespace espaceNetSAV.Admin
             ////this.changeRowsColors();
             ////this.onLoadCheckboxStatusChange();
             //this.BonDataGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_CellValueChanged);
-
+            
             this.onLoadUpdateStatusText();
-            ////this.onLoadCheckboxStatusChange();
+            //this.onLoadCheckboxStatusChange();
         }
 
         private void BonDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var senderGrid = (DataGridView)sender;
+            //var senderGrid = (DataGridView)sender;
 
-            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
-            {
-                //MessageBox.Show(BonDataGrid.CurrentRow.Cells[BonDataGrid.Columns["Bon N°"].Index].Value.ToString());
-                //TODO - Button Clicked - Execute Code Here
-                //MessageBox.Show(String.Format("Bon réception ID: {0}", BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells[0].Value));
-                BonReception passObject = new BonReception();
-                passObject.getDataForPdf((int)BonDataGrid.CurrentRow.Cells[BonDataGrid.Columns["Bon N°"].Index].Value);
-                PdfGenerator pdfObject = new PdfGenerator(passObject);
+            //if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            //{
+            //    //MessageBox.Show(BonDataGrid.CurrentRow.Cells[BonDataGrid.Columns["Bon N°"].Index].Value.ToString());
+            //    //TODO - Button Clicked - Execute Code Here
+            //    //MessageBox.Show(String.Format("Bon réception ID: {0}", BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells[0].Value));
+            //    BonReception passObject = new BonReception();
+            //    passObject.getDataForPdf((int)BonDataGrid.CurrentRow.Cells[BonDataGrid.Columns["Bon N°"].Index].Value);
+            //    PdfGenerator pdfObject = new PdfGenerator(passObject);
 
-                statusStrip1.Items.Add("Pdf bien générer");
+            //    statusStrip1.Items.Add("Pdf bien générer");
 
-                Process.Start(@"myPdf.pdf");
+            //    Process.Start(@"myPdf.pdf");
 
-            }
+            //}
         }
 
 
         private void BonDataGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            var rowIndex = BonDataGrid.CurrentRow.Index;
+            //var rowIndex = BonDataGrid.CurrentRow.Index;
 
-            BonReception bonObject = new BonReception();
-            var id = (int)BonDataGrid.Rows[rowIndex].Cells[0].Value;
-            bonObject.getItem((int)BonDataGrid.Rows[rowIndex].Cells[0].Value);
-            UpdateBon formObject = new UpdateBon(bonObject);
-            formObject.Show();
+            //BonReception bonObject = new BonReception();
+            //var id = (int)BonDataGrid.Rows[rowIndex].Cells[0].Value;
+            //bonObject.getItem((int)BonDataGrid.Rows[rowIndex].Cells[0].Value);
+            //UpdateBon formObject = new UpdateBon(bonObject);
+            //formObject.Show();
 
         }
 
@@ -186,10 +186,10 @@ namespace espaceNetSAV.Admin
 
         private void changeRowsColors()
         {
-            foreach (DataGridViewRow row in BonDataGrid.Rows)
-            {
-                row.DefaultCellStyle.BackColor = Color.OrangeRed;
-            }
+        //    foreach (DataGridViewRow row in BonDataGrid.Rows)
+        //    {
+        //        row.DefaultCellStyle.BackColor = Color.OrangeRed;
+        //    }
         }
 
         private void onLoadUpdateStatusText()
@@ -198,7 +198,7 @@ namespace espaceNetSAV.Admin
             for (int i = 0; i < myDataSource.Rows.Count; i++)
             {
                 var valueOfField = myDataSource.Rows[i].ItemArray[22].ToString();
-                BonDataGrid.Rows[i].Cells[myEtatColumn.Index].Value = ((valueOfField == "1")? "Réparé" : "Pas Encore");
+                BonDataGrid.Rows[i].Cells[myEtatColumn.Index].Value = ((valueOfField == "1")? "Réparé" : "Pas Réparé");
             }
         }
 
@@ -215,7 +215,7 @@ namespace espaceNetSAV.Admin
                 }
                 else
                 {
-                    BonDataGrid.Rows[counter++].Cells[myEtatColumn.Index].Value = "pas Encore";
+                    BonDataGrid.Rows[counter++].Cells[myEtatColumn.Index].Value = "Pas Réparé";
                 }
             }
         }
@@ -235,64 +235,64 @@ namespace espaceNetSAV.Admin
         {
 
             //Update the checkbox 
-            int counter = 0;
-            foreach (DataRow row in myDataSource.Rows)
-            {
+            //int counter = 0;
+            //foreach (DataRow row in myDataSource.Rows)
+            //{
 
-                var valueOfStatusField = Convert.ToInt32(row.ItemArray[row.ItemArray.Length - 1]);
-                if (valueOfStatusField == 1)
-                {
-                    BonDataGrid.Rows[counter].Cells[myCheckbox.Index].Value = true;
-                }
-                else
-                {
-                    BonDataGrid.Rows[counter].Cells[myCheckbox.Index].Value = false;
-                }
-                counter++;
-            }
+            //    var valueOfStatusField = Convert.ToInt32(row.ItemArray[row.ItemArray.Length - 1]);
+            //    if (valueOfStatusField == 1)
+            //    {
+            //        BonDataGrid.Rows[counter].Cells[myCheckbox.Index].Value = true;
+            //    }
+            //    else
+            //    {
+            //        BonDataGrid.Rows[counter].Cells[myCheckbox.Index].Value = false;
+            //    }
+            //    counter++;
+            //}
             //End of updating the checkbox
         }
 
         private void BonDataGrid_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.ColumnIndex == myCheckbox.Index)
-            {
-                BonDataGrid.EndEdit();
-            }
+            //if (e.ColumnIndex == myCheckbox.Index)
+            //{
+            //    BonDataGrid.EndEdit();
+            //}
         }
 
         private void BonDataGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             
-            if (e.ColumnIndex == myCheckbox.Index)
-            {
-                if (AccessRow(e.RowIndex, myCheckbox.Index).ToLower() == "true")
-                {
-                    if (MessageBox.Show("This requires your attention!", "Attention", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
-                    {
-                        BonReception bonObject = new BonReception().getItem(Convert.ToInt32(BonDataGrid.Rows[e.RowIndex].Cells["Bon N°"].Value));
+            //if (e.ColumnIndex == myCheckbox.Index)
+            //{
+            //    if (AccessRow(e.RowIndex, myCheckbox.Index).ToLower() == "true")
+            //    {
+            //        if (MessageBox.Show("This requires your attention!", "Attention", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+            //        {
+            //            BonReception bonObject = new BonReception().getItem(Convert.ToInt32(BonDataGrid.Rows[e.RowIndex].Cells["Bon N°"].Value));
 
-                        bonObject.dossier = Dossier.Valide;
+            //            bonObject.dossier = Dossier.Valide;
 
-                        bonObject.UpdateDossierStatus();
-                        this.statusStrip1.Items.Clear();
-                        this.statusStrip1.Items.Add("Ayyeee");
-                        this.DoWork();
+            //            bonObject.UpdateDossierStatus();
+            //            this.statusStrip1.Items.Clear();
+            //            this.statusStrip1.Items.Add("Ayyeee");
+            //            this.DoWork();
 
-                        try
-                        {
-                            new Admin.EmailNotification(bonObject);
-                        }
-                        catch (Exception ex)
-                        {
+            //            try
+            //            {
+            //                new Admin.EmailNotification(bonObject);
+            //            }
+            //            catch (Exception ex)
+            //            {
 
-                            MessageBox.Show("Error : " + ex.StackTrace, ex.Message);
-                        }
+            //                MessageBox.Show("Error : " + ex.StackTrace, ex.Message);
+            //            }
 
-                        //dataView.Delete();
-                    }
-                } 
-            }
+            //            //dataView.Delete();
+            //        }
+            //    } 
+            //}
         }
 
         private string AccessRow(int rowIndex, int cellIndex)
