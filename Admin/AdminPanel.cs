@@ -364,14 +364,28 @@ namespace espaceNetSAV.Admin
 
         private void listCompleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BonReceptionList formObject = new BonReceptionList();
-
-            formObject.Show();
+            
         }
 
         private void techniqueToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TechniquesList formObject = new TechniquesList();
+
+            formObject.Show();
+        }
+
+        private void valdéToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //List des dossier validés 
+            BonReceptionListValide formObject = new BonReceptionListValide();
+
+            formObject.Show();
+        }
+
+        private void pasEncoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Pas Encore 
+            BonReceptionListValide formObject = new BonReceptionListValide();
 
             formObject.Show();
         }

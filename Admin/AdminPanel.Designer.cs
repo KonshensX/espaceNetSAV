@@ -70,6 +70,8 @@
             this.gérerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.réceptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listCompleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.valdéToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasEncoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.techniqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -217,6 +219,9 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.usernameEditTbox);
@@ -225,7 +230,6 @@
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.passwordEditTBox);
             this.groupBox3.Controls.Add(this.passwordEditTboxConf);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox3.Location = new System.Drawing.Point(3, 3);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(269, 336);
@@ -513,11 +517,30 @@
             // 
             // listCompleteToolStripMenuItem
             // 
+            this.listCompleteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.valdéToolStripMenuItem,
+            this.pasEncoreToolStripMenuItem});
             this.listCompleteToolStripMenuItem.Image = global::espaceNetSAV.Properties.Resources._039_file_text2;
             this.listCompleteToolStripMenuItem.Name = "listCompleteToolStripMenuItem";
             this.listCompleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.listCompleteToolStripMenuItem.Text = "List complete";
             this.listCompleteToolStripMenuItem.Click += new System.EventHandler(this.listCompleteToolStripMenuItem_Click);
+            // 
+            // valdéToolStripMenuItem
+            // 
+            this.valdéToolStripMenuItem.Image = global::espaceNetSAV.Properties.Resources._273_checkmark;
+            this.valdéToolStripMenuItem.Name = "valdéToolStripMenuItem";
+            this.valdéToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.valdéToolStripMenuItem.Text = "Validé";
+            this.valdéToolStripMenuItem.Click += new System.EventHandler(this.valdéToolStripMenuItem_Click);
+            // 
+            // pasEncoreToolStripMenuItem
+            // 
+            this.pasEncoreToolStripMenuItem.Image = global::espaceNetSAV.Properties.Resources._131_spinner91;
+            this.pasEncoreToolStripMenuItem.Name = "pasEncoreToolStripMenuItem";
+            this.pasEncoreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pasEncoreToolStripMenuItem.Text = "Pas encore";
+            this.pasEncoreToolStripMenuItem.Click += new System.EventHandler(this.pasEncoreToolStripMenuItem_Click);
             // 
             // techniqueToolStripMenuItem
             // 
@@ -657,6 +680,8 @@
         private System.Windows.Forms.ToolStripMenuItem réceptionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listCompleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem techniqueToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem valdéToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pasEncoreToolStripMenuItem;
 
     }
 }
