@@ -7,8 +7,8 @@ namespace espaceNetSAV.Admin
 {
     class EmailNotification
     {
-        MailAddress to = new MailAddress("mohamedbaza16@gmail.com", "Mohammed BAZA");
-        MailAddress from = new MailAddress("kingofmad16@gmail.com", "Salah BAZA");
+        MailAddress from = new MailAddress("mohamedbaza16@gmail.com", "Mohammed BAZA");
+        MailAddress to = new MailAddress("kingofmad16@gmail.com", "Salah BAZA");
 
 
         public EmailNotification(BonReception bonObject)

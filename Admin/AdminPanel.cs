@@ -385,7 +385,7 @@ namespace espaceNetSAV.Admin
         private void pasEncoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Pas Encore 
-            BonReceptionList formObject = new BonReceptionList();
+            BonReceptionListValide formObject = new BonReceptionListValide();
 
             formObject.Show();
         }
