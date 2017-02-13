@@ -36,7 +36,7 @@ namespace espaceNetSAV
             BonDataGrid.Columns["Clients ID"].Visible = false;
             BonDataGrid.Columns["ID Bon"].Visible = false;
             BonDataGrid.Columns["Tech ID ID"].Visible = false;
-            BonDataGrid.Columns["Etat"].Visible = true; //Index of this field is 20 (Original Field)
+            BonDataGrid.Columns["Etat"].Visible = false; //Index of this field is 20 (Original Field)
             BonDataGrid.Columns["Validé"].Visible = false;
             //Adding a new text columns to the checkbox 
             myEtatColumn = new DataGridViewTextBoxColumn() 
@@ -275,6 +275,11 @@ namespace espaceNetSAV
                         bonObject.dossier = Dossier.Valide;
 
                         bonObject.UpdateDossierStatus();
+
+                        new Admin.History(string.Format("Validé le dossier N° {0} de {1}", AccessRow(e.RowIndex, "Bon N°"), AccessRow(e.RowIndex, "Nom")), "", Program._USER).Save();
+                        this.statusStrip1.Items.Clear();
+
+                        this.statusStrip1.Items.Add("Dossier validé et notification mail a été envoyé");
                         this.statusStrip1.Items.Clear();
                         this.statusStrip1.Items.Add("Ayyeee");
                         this.DoWork();

@@ -132,6 +132,58 @@ namespace espaceNetSAV
                 throw;
             }
         }
+
+        /// <summary>
+        /// Gets all the data in the Bon Reception table
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetDataValide()
+        {
+            try
+            {
+                string query = "SELECT * FROM bonReception, client, receptiondesignation, techniques WHERE bonReception.client_id = client.id AND bonReception.designation_id = receptiondesignation.id AND bonreception.etatdossier = 1 AND (techniques.id = bonreception.tech_id) OR (techniques.id = null) order by bonReception.id DESC";
+                //string query = "SELECT * FROM client";
+                MySqlDataAdapter adapter;
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+                {
+                    adapter = new MySqlDataAdapter();
+                    adapter.SelectCommand = myCommand;
+                }
+
+                DataTable table = new DataTable();
+                table.Locale = System.Globalization.CultureInfo.InvariantCulture;
+                adapter.Fill(table);
+                table.Columns["id"].ColumnName = "Bon N°";
+                table.Columns["bonDate"].ColumnName = "Date";
+                table.Columns["client_id"].ColumnName = "Client ID";
+                table.Columns["designation_id"].ColumnName = "Designation ID";
+                table.Columns["ref_achat"].ColumnName = "Ref Achat";
+                table.Columns["devis"].ColumnName = "Devis";
+                table.Columns["etatdossier"].ColumnName = "Validé";
+                table.Columns["tech_id"].ColumnName = "Tech ID";
+                table.Columns["id1"].ColumnName = "Clients ID";
+                table.Columns["nom"].ColumnName = "Nom";
+                table.Columns["tel"].ColumnName = "Telephone";
+                table.Columns["fax"].ColumnName = "Fax";
+                table.Columns["email"].ColumnName = "Email";
+                table.Columns["contact"].ColumnName = "Contact";
+                table.Columns["client_type"].ColumnName = "Client Type";
+                table.Columns["id2"].ColumnName = "Designations ID";
+                table.Columns["designation"].ColumnName = "Designation";
+                table.Columns["probleme"].ColumnName = "Problème";
+                table.Columns["id3"].ColumnName = "Tech ID ID";
+                table.Columns["diagno"].ColumnName = "Diagnostics";
+                table.Columns["tasks"].ColumnName = "Tàches Effectuer";
+                table.Columns["bon_id"].ColumnName = "ID BON";
+                table.Columns["fixed"].ColumnName = "Etat";
+                return table;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         /// <summary>
         /// Gets the data for the PDF file
         /// </summary>

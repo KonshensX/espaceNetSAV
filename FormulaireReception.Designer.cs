@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.makePdfButton = new System.Windows.Forms.Button();
-            this.diusplayListBtn = new System.Windows.Forms.Button();
             this.clientComboBox = new System.Windows.Forms.ComboBox();
             this.refAchattbox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -66,9 +63,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.makePdfButton);
-            this.groupBox1.Controls.Add(this.diusplayListBtn);
             this.groupBox1.Controls.Add(this.clientComboBox);
             this.groupBox1.Controls.Add(this.refAchattbox);
             this.groupBox1.Controls.Add(this.label8);
@@ -95,40 +89,6 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Formulaire";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(446, 337);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 38);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Technique List";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // makePdfButton
-            // 
-            this.makePdfButton.Location = new System.Drawing.Point(302, 345);
-            this.makePdfButton.Name = "makePdfButton";
-            this.makePdfButton.Size = new System.Drawing.Size(123, 23);
-            this.makePdfButton.TabIndex = 24;
-            this.makePdfButton.Text = "Make pdf";
-            this.makePdfButton.UseVisualStyleBackColor = true;
-            this.makePdfButton.Visible = false;
-            this.makePdfButton.Click += new System.EventHandler(this.makePdfButton_Click);
-            // 
-            // diusplayListBtn
-            // 
-            this.diusplayListBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.diusplayListBtn.Location = new System.Drawing.Point(155, 337);
-            this.diusplayListBtn.Name = "diusplayListBtn";
-            this.diusplayListBtn.Size = new System.Drawing.Size(123, 38);
-            this.diusplayListBtn.TabIndex = 23;
-            this.diusplayListBtn.Text = "Display List";
-            this.diusplayListBtn.UseVisualStyleBackColor = true;
-            this.diusplayListBtn.Visible = false;
-            this.diusplayListBtn.Click += new System.EventHandler(this.diusplayListBtn_Click);
             // 
             // clientComboBox
             // 
@@ -367,22 +327,25 @@
             // 
             // oKOKToolStripMenuItem
             // 
+            this.oKOKToolStripMenuItem.Image = global::espaceNetSAV.Properties.Resources._119_user_tie;
             this.oKOKToolStripMenuItem.Name = "oKOKToolStripMenuItem";
-            this.oKOKToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.oKOKToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
             this.oKOKToolStripMenuItem.Text = "Réception";
             this.oKOKToolStripMenuItem.Click += new System.EventHandler(this.oKOKToolStripMenuItem_Click);
             // 
             // nOTOKOKToolStripMenuItem
             // 
+            this.nOTOKOKToolStripMenuItem.Image = global::espaceNetSAV.Properties.Resources._035_file_text;
             this.nOTOKOKToolStripMenuItem.Name = "nOTOKOKToolStripMenuItem";
-            this.nOTOKOKToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
+            this.nOTOKOKToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
             this.nOTOKOKToolStripMenuItem.Text = "List Complete";
             this.nOTOKOKToolStripMenuItem.Click += new System.EventHandler(this.nOTOKOKToolStripMenuItem_Click);
             // 
             // technqiueToolStripMenuItem
             // 
+            this.technqiueToolStripMenuItem.Image = global::espaceNetSAV.Properties.Resources._429_steam;
             this.technqiueToolStripMenuItem.Name = "technqiueToolStripMenuItem";
-            this.technqiueToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
+            this.technqiueToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.technqiueToolStripMenuItem.Text = "Technqiue";
             this.technqiueToolStripMenuItem.Click += new System.EventHandler(this.technqiueToolStripMenuItem_Click);
             // 
@@ -435,13 +398,10 @@
         private System.Windows.Forms.TextBox refAchattbox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox clientComboBox;
-        private System.Windows.Forms.Button diusplayListBtn;
-        private System.Windows.Forms.Button makePdfButton;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.ToolStripMenuItem oKOKToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nOTOKOKToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem technqiueToolStripMenuItem;
     }
 }

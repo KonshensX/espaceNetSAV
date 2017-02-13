@@ -35,20 +35,20 @@ namespace espaceNetSAV
         private void GridTesting_Load(object sender, EventArgs e)
         {
 
-            // Set the view to show details.
-            listView1.View = View.Details;
-            // Allow the user to edit item text.
-            listView1.LabelEdit = true;
-            // Allow the user to rearrange columns.
-            listView1.AllowColumnReorder = true;
-            // Display check boxes.
-            listView1.CheckBoxes = true;
-            // Select the item and subitems when selection is made.
-            listView1.FullRowSelect = true;
-            // Display grid lines.
-            listView1.GridLines = true;
-            // Sort the items in the list in ascending order.
-            listView1.Sorting = SortOrder.Ascending;
+            //// Set the view to show details.
+            //listView1.View = View.Details;
+            //// Allow the user to edit item text.
+            //listView1.LabelEdit = true;
+            //// Allow the user to rearrange columns.
+            //listView1.AllowColumnReorder = true;
+            //// Display check boxes.
+            //listView1.CheckBoxes = true;
+            //// Select the item and subitems when selection is made.
+            //listView1.FullRowSelect = true;
+            //// Display grid lines.
+            //listView1.GridLines = true;
+            //// Sort the items in the list in ascending order.
+            //listView1.Sorting = SortOrder.Ascending;
 
             // Create three items and three sets of subitems for each item.
             //ListViewItem item1 = new ListViewItem("item1", 0);
@@ -83,7 +83,6 @@ namespace espaceNetSAV
 
 
             // Add the ListView to the control collection.
-            this.Controls.Add(listView1);
         }
     }
 }
