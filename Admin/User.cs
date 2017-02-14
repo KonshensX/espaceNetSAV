@@ -19,6 +19,7 @@ namespace espaceNetSAV.Admin
         public DateTime date;
         public Role role;
         public Category category;
+        public Permissions Permissions { get; set; }
 
         public User()
         {
@@ -29,6 +30,7 @@ namespace espaceNetSAV.Admin
             this.date = DateTime.Now;
             this.role = Role.User;
             this.category = new Category();
+            this.Permissions = new Permissions();
         }
 
         public User(string username, string password, Category category)
@@ -41,6 +43,8 @@ namespace espaceNetSAV.Admin
             this.role = Role.User;
             this.category = category;
             this.EncryptPassword();
+            this.Permissions = new Permissions();
+
         }
 
 
@@ -306,6 +310,7 @@ namespace espaceNetSAV.Admin
                                 this.Password = myReader[2].ToString();
                                 this.date = Convert.ToDateTime(myReader[4]);
                                 this.role = this.GetUserRole(Convert.ToInt32(myReader[3]));
+                                this.Permissions.GetUserPermissions();
                             }
                         }
                     }
@@ -418,6 +423,7 @@ namespace espaceNetSAV.Admin
                                 this.role = this.GetUserRole(Convert.ToInt32(myReader[3]));
                                 this.date = Convert.ToDateTime(myReader[4]);
                                 this.category.getCategory(Convert.ToInt32(myReader[5]));
+                                this.Permissions.GetUserPermissions();
                             }
                         }
                     }

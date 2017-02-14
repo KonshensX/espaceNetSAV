@@ -97,6 +97,7 @@
     <Compile Include="Admin\Permission.cs" />
     <Compile Include="Admin\Permissions.cs" />
     <Compile Include="Admin\User.cs" />
+    <Compile Include="Admin\UserPermission.cs" />
     <Compile Include="BonReception.cs" />
     <Compile Include="BonReceptionList.cs">
       <SubType>Form</SubType>

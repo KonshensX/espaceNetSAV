@@ -8,7 +8,7 @@ namespace espaceNetSAV
 {
     static class Program
     {
-        public static espaceNetSAV.Admin.User _USER{get;set;}
+        public static espaceNetSAV.Admin.User _USER = new Admin.User();
         public static string _KEY = "ESPACENETSAV";
         /// <summary>
         /// The main entry point for the application.

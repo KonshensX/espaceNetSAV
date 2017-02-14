@@ -1,8 +1,9 @@
 ﻿using System;
+using MySql.Data.MySqlClient;
 
 namespace espaceNetSAV.Admin
 {
-    public enum UserPermission {
+    public enum EnumUserPermission {
         //1
         Allowed,
         //0
@@ -10,13 +11,44 @@ namespace espaceNetSAV.Admin
     }
     class Permission
     {
+        private Database databaseObject;
         public int ID { get; set; }
         public string Name { get; set; }
-        public UserPermission permission;
 
         public Permission()
         {
-            permission = UserPermission.NotAllowed;
+            this.databaseObject = new Database();
+        }
+
+        public Permission GetPermission(int permissionID)
+        {
+            try
+            {
+                string query = "SELECT * FROM permissions WHERE id = @permission_id";
+
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+                {
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@permission_id", permissionID);
+                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                    {
+                        if (myReader.HasRows)
+                        {
+                            while (myReader.Read())
+                            {
+                                this.ID = Convert.ToInt32(myReader[0]);
+                                this.Name = myReader[1].ToString();
+                            }
+                        }
+                    }
+                }
+
+                return this;
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
         }
 
         /// <summary>
@@ -24,27 +56,27 @@ namespace espaceNetSAV.Admin
         /// </summary>
         /// <param name="permission"></param>
         /// <returns></returns>
-        public UserPermission GetPermissionStatus(int permission)
+        public EnumUserPermission GetPermissionStatus(int permission)
         {
             switch (permission)
             {
                 case 1:
-                    return UserPermission.Allowed;
+                    return EnumUserPermission.Allowed;
                 case 2 :
-                    return UserPermission.NotAllowed;
+                    return EnumUserPermission.NotAllowed;
                 default:
-                    return UserPermission.NotAllowed;
+                    return EnumUserPermission.NotAllowed;
             }
         }
 
         //Gets the user permissions based on the UserPermission Enum 
-        public int GetPermissionStatus(UserPermission permission)
+        public int GetPermissionStatus(EnumUserPermission permission)
         {
             switch (permission)
             {
-                case UserPermission.Allowed:
+                case EnumUserPermission.Allowed:
                     return 1;
-                case UserPermission.NotAllowed:
+                case EnumUserPermission.NotAllowed:
                     return 0;
                 default: 
                     return 0;

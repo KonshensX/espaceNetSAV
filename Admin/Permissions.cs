@@ -1,18 +1,23 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic;
+
 
 namespace espaceNetSAV.Admin
 {
     class Permissions
     {
         private Database databaseObject;
-        public bool CanSeeHistory;
-        public bool CanSeeBonList;
+        public bool CanSeeHistory { get; set; }
+        public bool CanSeeBonList { get; set; }
 
-        public Permissions() { this.databaseObject = new Database(); }
+        List<UserPermission> UserPermissions;
 
-        private Permission GetPermission(string permission)
-        {
+        public Permissions() { this.databaseObject = new Database(); UserPermissions = new List<UserPermission>(); }
+
+        //private Permission GetPermission(string permission)
+        //{
+            /*
             try
             {
                 //TODO: Fix the query 
@@ -43,12 +48,45 @@ namespace espaceNetSAV.Admin
             {
                 this.databaseObject.closeConnection();
             }
-        }
+             * */
+        //}
 
         private void UpdateUserPermisisons()
         {
             //var result = this.GetPermission("")
         }
+
+        public Permissions GetUserPermissions()
+        {
+            //Will get the user permission data 
+            UserPermission userObject = new UserPermission();
+
+            List<UserPermission> myPermissionsList = new List<UserPermission>();
+
+            myPermissionsList = userObject.FetchUserPermission(Program._USER.ID);
+
+            foreach (UserPermission permission in myPermissionsList)
+            {
+                if (permission.Permission.Name.Contains("history"))
+                {
+                    this.CanSeeHistory = true;
+                    continue;
+                } 
+                
+            }
+            
+            return this;
+
+            //Update the above values (the permissions)
+            this.UpdatePermissions();
+        }
+
+        private void UpdatePermissions()
+        {
+            throw new NotImplementedException();
+        }
+
+        
 
     }
 }
