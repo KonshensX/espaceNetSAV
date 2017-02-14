@@ -6,6 +6,7 @@ namespace espaceNetSAV
 {
     class Database
     {
+        private const int _MAX_POOL_SIZE = 100;
         private MySqlConnection connection;
         private string server;
         private string database;
@@ -22,7 +23,7 @@ namespace espaceNetSAV
                 this.database = "espaceNetSav";
                 this.uid = "root";
                 this.password = "";
-                string connectionString = "Server=" + server + ";Port= " + port + ";" + "Database=" + database + ";" + "Uid=" + uid + ";" + "Pwd=" + password + ";";
+                string connectionString = "Server=" + server + ";Port= " + port + ";" + "Database=" + database + ";" + "Uid=" + uid + ";" + "Pwd=" + password + ";Max Pool Size= " + _MAX_POOL_SIZE;
 
                 this.connection = new MySqlConnection(connectionString);
             }

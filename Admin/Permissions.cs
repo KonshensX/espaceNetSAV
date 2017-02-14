@@ -56,29 +56,36 @@ namespace espaceNetSAV.Admin
             //var result = this.GetPermission("")
         }
 
+
+        /// <summary>
+        /// Update the permissions according to result in the list.
+        /// </summary>
+        /// <returns></returns>
         public Permissions GetUserPermissions()
         {
             //Will get the user permission data 
-            UserPermission userObject = new UserPermission();
 
             List<UserPermission> myPermissionsList = new List<UserPermission>();
 
-            myPermissionsList = userObject.FetchUserPermission(Program._USER.ID);
+            myPermissionsList = new UserPermission().FetchUserPermissions(Program._USER.ID);
 
             foreach (UserPermission permission in myPermissionsList)
             {
                 if (permission.Permission.Name.Contains("history"))
                 {
                     this.CanSeeHistory = true;
-                    continue;
                 } 
+                if (permission.Permission.Name.Contains("valdie"))
+                {
+                    this.CanSeeBonList = true;
+                }
                 
             }
             
+            //this.UpdatePermissions();
             return this;
 
             //Update the above values (the permissions)
-            this.UpdatePermissions();
         }
 
         private void UpdatePermissions()

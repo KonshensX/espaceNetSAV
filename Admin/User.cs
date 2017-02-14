@@ -61,20 +61,23 @@ namespace espaceNetSAV.Admin
                 using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
                     this.databaseObject.openConnection();
-                    MySqlDataReader reader = myCommand.ExecuteReader();
-                    if (reader.HasRows)
+                    using (MySqlDataReader reader = myCommand.ExecuteReader())
                     {
-                        while (reader.Read())
+                        if (reader.HasRows)
                         {
-                            if (reader[0] is DBNull)
+                            while (reader.Read())
                             {
-                                return 0;
+                                if (reader[0] is DBNull)
+                                {
+                                    return 0;
+                                }
+                                return Convert.ToInt32(reader[0]);
                             }
-                            return Convert.ToInt32(reader[0]);
                         }
+                        reader.Close();
+                        return 0;
                     }
-                    reader.Close();
-                    return 0;
+                    
                 }
             }
             catch (Exception)

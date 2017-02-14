@@ -8,7 +8,7 @@ namespace espaceNetSAV.Admin
     {
         private Database databaseObject;
 
-        public User User { get; set; }
+        //public User User { get; set; }
         public Permission Permission { get; set; }
 
         public bool Allowed { get; set; }
@@ -16,15 +16,15 @@ namespace espaceNetSAV.Admin
         public UserPermission()
         {
             this.databaseObject = new Database();
-            this.User = new Admin.User();
+            //this.User = new Admin.User();
             this.Permission = new Admin.Permission();
             Allowed = false;
         }
 
-        public UserPermission (User user, Permission permission, bool allowed)
+        public UserPermission (Permission permission, bool allowed)
         {
             this.databaseObject = new Database();
-            this.User = user;
+            //this.User = user;
             this.Permission = permission;
             this.Allowed = allowed;
         }
@@ -37,7 +37,7 @@ namespace espaceNetSAV.Admin
         /// <summary>
         /// This will fetch the users permission from the users_permissions table
         /// </summary>
-        public List<UserPermission> FetchUserPermission(int userID)
+        public List<UserPermission> FetchUserPermissions(int userID)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace espaceNetSAV.Admin
                             {
                                 UserPermission userPermission = new UserPermission();
 
-                                userPermission.User.GetUser(Convert.ToInt32(myReader[0]));
+                                //userPermission.User.GetUser(Convert.ToInt32(myReader[0]));
                                 userPermission.Permission.GetPermission(Convert.ToInt32(myReader[1]));
                                 userPermission.Allowed = this.CheckIfAllowed(Convert.ToInt32(myReader[2]));
 
@@ -64,6 +64,7 @@ namespace espaceNetSAV.Admin
                         }
                     }
                 }
+                //06 31 53 43 34
                 return list;
             }
             finally

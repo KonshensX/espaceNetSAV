@@ -20,6 +20,11 @@ namespace espaceNetSAV
         private void GridTesting_Load(object sender, EventArgs e)
         {
             Program._USER.GetUser(1);
+
+            if (Program._USER.Permissions.CanSeeHistory)
+                MessageBox.Show("You can see the history list");
+            else 
+                MessageBox.Show("you cannot see the history list");
         }
     }
 }
