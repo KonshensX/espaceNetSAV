@@ -13,6 +13,11 @@ namespace espaceNetSAV.Admin
 
         List<UserPermission> UserPermissions;
 
+        //public Permissions()
+        //{
+            
+        //}
+
         public Permissions() { this.databaseObject = new Database(); UserPermissions = new List<UserPermission>(); }
 
         //private Permission GetPermission(string permission)
@@ -71,15 +76,7 @@ namespace espaceNetSAV.Admin
 
             foreach (UserPermission permission in myPermissionsList)
             {
-                if (permission.Permission.Name.Contains("history"))
-                {
-                    this.CanSeeHistory = true;
-                } 
-                if (permission.Permission.Name.Contains("valdie"))
-                {
-                    this.CanSeeBonList = true;
-                }
-                
+                this.UpdatePermissions(permission);
             }
             
             //this.UpdatePermissions();
@@ -88,12 +85,22 @@ namespace espaceNetSAV.Admin
             //Update the above values (the permissions)
         }
 
-        private void UpdatePermissions()
+        private void UpdatePermissions(UserPermission permission)
         {
-            throw new NotImplementedException();
+            if (permission.Permission.Name.Contains("history"))
+            {
+                this.CanSeeHistory = true;
+            }
+            if (permission.Permission.Name.Contains("valdie"))
+            {
+                this.CanSeeBonList = true;
+            }
         }
 
-        
+        public void NewUserPermissions()
+        {
+            string query = "INSERT INTO user_permissions VALUES ";
+        }
 
     }
 }
