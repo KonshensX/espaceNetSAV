@@ -154,7 +154,7 @@ namespace espaceNetSAV.Admin
             var queriesResult = userObject.createUser();
 
 
-            MessageBox.Show(queriesResult.ToString());
+            //MessageBox.Show(queriesResult.ToString());
 
             if (queriesResult > 0)
             {
