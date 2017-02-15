@@ -9,7 +9,7 @@ namespace espaceNetSAV.Admin
     {
         private Database databaseObject;
         public bool CanSeeHistory { get; set; }
-        public bool CanSeeBonList { get; set; }
+        public bool CanValideDossier { get; set; }
 
         List<UserPermission> UserPermissions;
 
@@ -93,7 +93,7 @@ namespace espaceNetSAV.Admin
             }
             if (permission.Permission.Name.Contains("valdie"))
             {
-                this.CanSeeBonList = true;
+                this.CanValideDossier = true;
             }
         }
 

@@ -107,6 +107,12 @@ namespace espaceNetSAV
             //Program._USER = new Admin.User().GetUser(1);
 
             this.BonDataGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_CellValueChanged);
+
+            if (!Program._USER.Permissions.CanValideDossier)
+            {
+                myButton.ReadOnly = false;
+                repeared.ReadOnly = false;
+            }
         }
 
 
@@ -138,6 +144,7 @@ namespace espaceNetSAV
             //Handle the checkbox state change here 
             if (e.ColumnIndex == repeared.Index)
             {
+                
                 var cellValue = (bool)BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells[repeared.Index].Value;
                 var techID = Convert.ToInt32(BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells["Tech ID"].Value);
                 var rowIndex = BonDataGrid.CurrentRow.Index;
@@ -182,7 +189,7 @@ namespace espaceNetSAV
 
             //MessageBox.Show("CurrentRow index is " + BonDataGrid.CurrentRow.Index.ToString());
 
-            if (e.ColumnIndex == myButton.Index) 
+            if (e.ColumnIndex == myButton.Index && !myButton.ReadOnly)
             {
                 var diagnosticsText = BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells["Diagnostics"].Value.ToString();
                 var tasksText = BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells["Tàches Effectuer"].Value.ToString();
