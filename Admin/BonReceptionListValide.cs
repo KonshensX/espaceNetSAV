@@ -61,6 +61,9 @@ namespace espaceNetSAV.Admin
 
             ////`Folder` Checbox 
 
+
+            
+
             //myCheckbox = new DataGridViewCheckBoxColumn();
 
             //myCheckbox.HeaderText = "Validé";

@@ -37,14 +37,17 @@ namespace espaceNetSAV.Admin
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(from.Address, "Bazaking16")
             };
+            
 
             using (MailMessage message = new MailMessage(from, to) {
-              Subject = String.Format("Notification Dossier N° {0}, Client: {1}", bonObject.id, bonObject.client.nom),
-              Body = String.Format("Object N°: {0} est validé", bonObject.id)
+                IsBodyHtml = true,
+                Subject = String.Format("Notification Instance N° {0}, Client: {1}", bonObject.id, bonObject.client.nom),
+                Body = String.Format("Instance N°: {0} est validé<br>Client: <strong>{1}</strong><br>Contact: {2}<br>Prix: <strong>{3}</strong>", bonObject.id, bonObject.client.nom, bonObject.contact, bonObject.tech.price)
             })
             {
                 try
                 {
+                    
                     client.Send(message);
                 }
                 catch (Exception)

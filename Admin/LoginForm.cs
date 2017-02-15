@@ -17,6 +17,7 @@ namespace espaceNetSAV.Admin
         string username;
         string password;
         bool Remembered = false;
+
         public LoginForm()
         {
             InitializeComponent();
@@ -55,6 +56,7 @@ namespace espaceNetSAV.Admin
             //File.Create(fileName);
             //file.Close();
             //this.ConnectUser(username, password);
+            this.ConnectUser("admin", "admin");
         }
         int howMany = 0;
         private void passwordTBox_KeyUp(object sender, KeyEventArgs e)

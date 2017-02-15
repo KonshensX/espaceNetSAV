@@ -17,6 +17,7 @@ namespace espaceNetSAV
         public string diagnostics;
         public string tasks;
         public Status status = Status.BeingRepeared;
+        public double price;
 
         public Technique() 
         {
@@ -64,6 +65,7 @@ namespace espaceNetSAV
                         this.tasks = myReader[2].ToString();
                         this.bon_id = (int)myReader[3];
                         this.status = getStatus(Convert.ToInt32(myReader["fixed"]));
+                        this.price = Convert.ToDouble(myReader["prix"]);
                     }
                     myReader.Close();
                 }
@@ -119,7 +121,7 @@ namespace espaceNetSAV
         {
             try
             {
-                string query = "INSERT INTO `techniques`(`diagno`, `tasks`, `bon_id`, `fixed`) VALUES (@diagno, @tasks, @bon_id, @fixed)";
+                string query = "INSERT INTO `techniques`(`diagno`, `tasks`, `bon_id`, `fixed`, `prix`) VALUES (@diagno, @tasks, @bon_id, @fixed, @prix)";
                 using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
                     this.databaseObject.openConnection();
@@ -127,6 +129,7 @@ namespace espaceNetSAV
                     myCommand.Parameters.AddWithValue("@tasks", this.tasks);
                     myCommand.Parameters.AddWithValue("@bon_id", bon_id);
                     myCommand.Parameters.AddWithValue("@fixed", this.getStatus(status));
+                    myCommand.Parameters.AddWithValue("@prix", this.price);
 
                     myCommand.ExecuteNonQuery();
                 }
@@ -168,14 +171,14 @@ namespace espaceNetSAV
         /// <summary>
         /// This will update o arow in the database
         /// </summary>
-        public int UpdateObject(string diagno, string tasks, int bon_id)
+        public int UpdateObject(string diagno, string tasks, int bon_id, double price)
         {
             try
             {
                 //Temporarely passing the values here 
                 //Maybe i should re design the whole project and be done with this mess 
                 //TODO UPDATE THE QUERY
-                string query = "UPDATE `techniques` SET `diagno`= @diagno,`tasks`= @tasks WHERE bon_id = @bon_id ";
+                string query = "UPDATE `techniques` SET `diagno`= @diagno,`tasks`= @tasks, `prix` = @price WHERE bon_id = @bon_id";
 
                 using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
@@ -183,7 +186,7 @@ namespace espaceNetSAV
                     myCommand.Parameters.AddWithValue("@bon_id", bon_id);
                     myCommand.Parameters.AddWithValue("@diagno", diagno);
                     myCommand.Parameters.AddWithValue("@tasks", tasks);
-
+                    myCommand.Parameters.AddWithValue("@price", price);
                     return myCommand.ExecuteNonQuery();
                 }
             } catch (Exception)
@@ -226,7 +229,7 @@ namespace espaceNetSAV
             }
         }
 
-        public void updateItemStatus(Status myStatus)
+        public int updateItemStatus(Status myStatus)
         {
             try
             {
@@ -238,7 +241,7 @@ namespace espaceNetSAV
                     this.databaseObject.openConnection();
                     myCommand.Parameters.AddWithValue("@status", this.getStatus(myStatus));
                     myCommand.Parameters.AddWithValue("@tech_id", this.id);
-                    myCommand.ExecuteNonQuery();
+                    return Convert.ToInt32(myCommand.ExecuteNonQuery());
                 }
             }
             finally

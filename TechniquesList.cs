@@ -19,12 +19,14 @@ namespace espaceNetSAV
         DataGridViewCheckBoxColumn repeared;
         DataGridViewButtonColumn myButton;
 
+        //DataGridViewTextBoxColumn myPrixColumn;
             
 
         //Vars 
 
         string initialDiagnostic;
         string initialTasks;
+        string intitialPrice;
 
         public TechniquesList()
         {
@@ -56,6 +58,16 @@ namespace espaceNetSAV
             BonDataGrid.Columns.Add(repeared);
             repeared.HeaderText = "Status";
             repeared.Name = "status";
+
+            //Adding a new text columns to the checkbox 
+            //Why this Field?
+            //myPrixColumn = new DataGridViewTextBoxColumn()
+            //{
+            //    HeaderText = "Prix",
+            //    Name = "myPrixColumn",
+                
+            //};
+            //BonDataGrid.Columns.Add(myPrixColumn);
 
             //Adding a Datagrid type button just for testing purposes
 
@@ -89,6 +101,8 @@ namespace espaceNetSAV
 
             if(dataView.Count > 0)
                 BonDataGrid.Rows[0].Selected = true;
+
+
 
             //Program._USER = new Admin.User().GetUser(1);
 
@@ -135,7 +149,11 @@ namespace espaceNetSAV
                     //This where the value should be updated to 1 which means it was fixed 
                     techObject.updateItemStatus((cellValue) ? Status.Fixed : Status.BeingRepeared);
 
-                    new Admin.History("Bon N° etat: En Cours ", "Réparé", Program._USER).Save();
+                    new Admin.History("Bon N° état: En Cours ", "Réparé", Program._USER).Save();
+
+                    //Send mail to notify admin that the item is ready to be handed
+
+                    new Admin.EmailNotification(new BonReception().getItem(Convert.ToInt32(AccessRow(e.RowIndex, "Bon N°"))));
 
                 }
                 else if (((bool)BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells[repeared.Index].Value) == false)
@@ -169,17 +187,19 @@ namespace espaceNetSAV
                 var diagnosticsText = BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells["Diagnostics"].Value.ToString();
                 var tasksText = BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells["Tàches Effectuer"].Value.ToString();
                 var numeroBon = Convert.ToInt32(BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells["ID Bon"].Value);
+                var price = Convert.ToDouble(AccessRow(e.RowIndex, "Prix"));
+                //var price = BonDataGrid.Rows[e.RowIndex].Cells[myPrixColumn.Index].Value.ToString();
                 //SO FAR SO GOOD 
 
                 //Persist the values to the database
                 Technique techObject = new Technique();
                 //This is passing the bon id but the query actualy wants the Tech.id ???
                 techObject.getItem(Convert.ToInt32(numeroBon));
-                techObject.UpdateObject(diagnosticsText, tasksText, numeroBon);
+                techObject.UpdateObject(diagnosticsText, tasksText, numeroBon, price);
 
                 this.ClearStatusBarWithMessage("Changes were saved!");
 
-                if (AccessRow(e.RowIndex, "Diagnostics").Equals(initialDiagnostic) && AccessRow(e.RowIndex, "Tàches Effectuer").Equals(initialTasks))
+                if (AccessRow(e.RowIndex, "Diagnostics").Equals(initialDiagnostic) && AccessRow(e.RowIndex, "Tàches Effectuer").Equals(initialTasks) && AccessRow(e.RowIndex, "Prix").Equals(intitialPrice))
                     return;
 
                 if (!initialDiagnostic.Equals(BonDataGrid.Rows[e.RowIndex].Cells["Diagnostics"].Value.ToString()))
@@ -193,7 +213,14 @@ namespace espaceNetSAV
                     var tasks = AccessRow(e.RowIndex, "Tàches Effectuer");
                     new Admin.History(String.Format("Bon N°: {0} - {1}", this.AccessRow(e.RowIndex, "Bon N°"), initialTasks), tasks, Program._USER).Save();
                 }
-                
+
+                MessageBox.Show(AccessRow(e.RowIndex, "Prix"));
+
+                if (!intitialPrice.Equals(BonDataGrid.Rows[e.RowIndex].Cells["Prix"].Value.ToString()))
+                {
+                    //This is going to hold the history section*
+                    new Admin.History(String.Format("Ancienne Valeur: {0}", intitialPrice), String.Format("Nouvelle Valeur: {0}", AccessRow(e.RowIndex, "Prix")), Program._USER).Save();
+                }
 
             }
 
@@ -287,7 +314,7 @@ namespace espaceNetSAV
             foreach (DataRow row in myDataSource.Rows)
             {
 
-                var valueOfStatusField = Convert.ToInt32(row.ItemArray[row.ItemArray.Length - 1]);
+                var valueOfStatusField = Convert.ToInt32(row.ItemArray[row.ItemArray.Length - 2]);
                 if (valueOfStatusField == 1)
                 {
                     BonDataGrid.Rows[counter].Cells[repeared.Index].Value = true;
@@ -324,6 +351,7 @@ namespace espaceNetSAV
         {
             initialDiagnostic = BonDataGrid.Rows[e.RowIndex].Cells["Diagnostics"].Value.ToString();
             initialTasks = BonDataGrid.Rows[e.RowIndex].Cells["Tàches Effectuer"].Value.ToString();
+            intitialPrice = BonDataGrid.Rows[e.RowIndex].Cells["Prix"].Value.ToString();
         }
 
 

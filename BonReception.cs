@@ -58,7 +58,7 @@ namespace espaceNetSAV
         public void persistObjectToDatabase()
         {
             //TODO: fix the query 
-            string query = "INSERT INTO `bonreception`(`bonDate`, `client_id`, `designation_id`, `ref_achat`, `tech_id`, `contact`) VALUES (@date, @client_id, @designation_id, @ref_achat, @tech_id, @contact)";
+            string query = "INSERT INTO `bonreception`(`bonDate`, `client_id`, `designation_id`, `ref_achat`, `tech_id`, `contact`) VALUES (@date, @client_id, @designation_id, @ref_achat, @tech_id, @contact, )";
             try
             {
                 using (MySqlCommand myCommand = new MySqlCommand(query, databaseObject.getConnection()))
@@ -125,6 +125,7 @@ namespace espaceNetSAV
                 table.Columns["tasks"].ColumnName = "Tàches Effectuer";
                 table.Columns["bon_id"].ColumnName = "ID BON";
                 table.Columns["fixed"].ColumnName = "Etat";
+                table.Columns["prix"].ColumnName = "Prix";
                 return table;
             }
             catch (Exception)
@@ -176,6 +177,7 @@ namespace espaceNetSAV
                 table.Columns["tasks"].ColumnName = "Tàches Effectuer";
                 table.Columns["bon_id"].ColumnName = "ID BON";
                 table.Columns["fixed"].ColumnName = "Etat";
+                table.Columns["prix"].ColumnName = "Prix";
                 return table;
             }
             catch (Exception)
@@ -334,7 +336,9 @@ namespace espaceNetSAV
             }
         }
 
-
+        /// <summary>
+        /// Updates the devis Field 
+        /// </summary>
         public void updateDevis()
         {
             try
@@ -354,6 +358,7 @@ namespace espaceNetSAV
                 this.databaseObject.closeConnection();
             }
         }
+
 
         public void onLoadUpdateEtat()
         {
