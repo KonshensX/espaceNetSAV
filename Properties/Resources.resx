@@ -130,8 +130,8 @@
   <data name="ESPACENET" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ESPACENET.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="131-spinner91" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\131-spinner91.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="150-cogs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\150-cogs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="119-user-tie" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\119-user-tie.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -142,6 +142,9 @@
   <data name="033-books" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\033-books.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="131-spinner91" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\131-spinner91.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="273-checkmark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\273-checkmark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -150,9 +153,6 @@
   </data>
   <data name="117-user-minus" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\117-user-minus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="150-cogs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\150-cogs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="131-spinner9" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\131-spinner9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,16 +166,22 @@
   <data name="ESPACENET1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ESPACENET.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="429-steam" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\429-steam.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="173-bin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\173-bin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ok.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SplashScreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SplashScreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ESPACENET2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ESPACENET.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="429-steam" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\429-steam.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SplashScreen1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SplashScreen1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
