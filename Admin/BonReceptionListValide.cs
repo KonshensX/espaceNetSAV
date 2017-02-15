@@ -15,7 +15,7 @@ namespace espaceNetSAV.Admin
         BonReception bonReceptionService;
         DataTable myDataSource;
         DataGridViewTextBoxColumn myEtatColumn;
-        DataGridViewCheckBoxColumn myCheckbox;
+        //DataGridViewCheckBoxColumn myCheckbox;
 
         public BonReceptionListValide()
         {

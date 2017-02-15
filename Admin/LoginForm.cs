@@ -14,9 +14,6 @@ namespace espaceNetSAV.Admin
     public partial class LoginForm : Form
     {
         string fileName = "config.data";
-        string username;
-        string password;
-        bool Remembered = false;
 
         public LoginForm()
         {
@@ -112,9 +109,17 @@ namespace espaceNetSAV.Admin
                 }
                 else if (!Program._USER.isAdmin())
                 {
-                    FormulaireReception formObject = new FormulaireReception();
-                    formObject.Show();
+                    if (Program._USER.category.Name.Equals("Réception"))
+                    {
+                        FormulaireReception formObject = new FormulaireReception();
+                        formObject.Show();
+                        this.Hide();
+                        return;
+                    }
+                    TechniquesList techFormObject = new TechniquesList();
+                    techFormObject.Show();
                     this.Hide();
+
                 }
                 return;
             }

@@ -99,7 +99,7 @@ namespace espaceNetSAV.Admin
 
         public void NewUserPermissions()
         {
-            string query = "INSERT INTO user_permissions VALUES ";
+            //string query = "INSERT INTO user_permissions VALUES ";
         }
 
     }
