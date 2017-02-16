@@ -376,7 +376,7 @@ namespace espaceNetSAV.Admin
                 {
                     this.databaseObject.openConnection();
                     myCommand.Parameters.AddWithValue("@username", this.Name);
-                    myCommand.Parameters.AddWithValue("@password", this.Password);
+                    myCommand.Parameters.AddWithValue("@password", new CrysptingService().Encrypt(this.Password, Program._KEY));
                     myCommand.Parameters.AddWithValue("@cat_id", this.category.ID);
                     myCommand.Parameters.AddWithValue("@userID", this.ID);
 

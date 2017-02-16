@@ -31,6 +31,7 @@ namespace espaceNetSAV.Admin
         private void LoginForm_Load(object sender, EventArgs e)
         {
             errorHolderLabel.Visible = false;
+            checkBox1.Visible = false;
             //string fileName = "config.data";
             //StreamReader file = new StreamReader(fileName);
             ////The logic for remember me button goes here 
