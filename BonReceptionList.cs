@@ -208,14 +208,14 @@ namespace espaceNetSAV
             foreach (DataRow row in table.Rows)
             {
 
-                var valueOfStatusField = Convert.ToInt32(row.ItemArray[row.ItemArray.Length - 1]);
+                var valueOfStatusField = Convert.ToInt32(row.ItemArray[row.ItemArray.Length - 2]);
                 if (valueOfStatusField == 1)
                 {
                     BonDataGrid.Rows[counter++].Cells[myEtatColumn.Index].Value = "Réparé";
                 }
                 else
                 {
-                    BonDataGrid.Rows[counter++].Cells[myEtatColumn.Index].Value = "pas Encore";
+                    BonDataGrid.Rows[counter++].Cells[myEtatColumn.Index].Value = "Pas Encore";
                 }
             }
         }

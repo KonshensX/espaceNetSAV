@@ -18,11 +18,14 @@ namespace espaceNetSAV
         {
             try
             {
-                this.server = "192.168.1.2";
+                //this.server = "192.168.1.2";
+                this.server = "localhost";
                 this.port = 3306;
                 this.database = "espaceNetSav";
-                this.uid = "espacenet";
-                this.password = "123456";
+                //this.uid = "espacenet";
+                this.uid = "root";
+                //this.password = "123456";
+                this.password = "";
                 string connectionString = "Server=" + server + ";Port= " + port + ";" + "Database=" + database + ";" + "Uid=" + uid + ";" + "Pwd=" + password + ";Max Pool Size= " + _MAX_POOL_SIZE;
 
                 this.connection = new MySqlConnection(connectionString);

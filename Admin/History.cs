@@ -26,6 +26,15 @@ namespace espaceNetSAV.Admin
             this.User = user;
         }
 
+        public History()
+        {
+            this.databaseObject = new Database();
+            this.Date = DateTime.Now;
+            this.OldValue = "";
+            this.NewValue = "";
+            this.User = new User();
+        }
+
         public History(User currentUser)
         {
             this.databaseObject = new Database();
@@ -111,7 +120,7 @@ namespace espaceNetSAV.Admin
             {
                 List<History> myList = new List<History>();
 
-                string query = "SELECT * FROM historique WHERE user_id = @user_id AND date BETWEEN NOW() - INTERVAL 30 DAY AND NOW()";
+                string query = "SELECT * FROM historique WHERE user_id = @user_id AND (date(date)) > (date(now()) - interval 30 day)";
 
                 using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
@@ -185,7 +194,7 @@ namespace espaceNetSAV.Admin
                         {
                             while (myReader.Read())
                             {
-                                History history = new History(Program._USER);
+                                History history = new History();
 
                                 history.ID = Convert.ToInt32(myReader[0]);
                                 history.Date = Convert.ToDateTime(myReader[1]);

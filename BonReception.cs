@@ -58,7 +58,7 @@ namespace espaceNetSAV
         public void persistObjectToDatabase()
         {
             //TODO: fix the query 
-            string query = "INSERT INTO `bonreception`(`bonDate`, `client_id`, `designation_id`, `ref_achat`, `tech_id`, `contact`) VALUES (@date, @client_id, @designation_id, @ref_achat, @tech_id, @contact, )";
+            string query = "INSERT INTO `bonreception`(`bonDate`, `client_id`, `designation_id`, `ref_achat`, `tech_id`, `contact`) VALUES (@date, @client_id, @designation_id, @ref_achat, @tech_id, @contact )";
             try
             {
                 using (MySqlCommand myCommand = new MySqlCommand(query, databaseObject.getConnection()))

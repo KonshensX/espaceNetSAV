@@ -112,7 +112,7 @@
             // 
             this.bonNumTBox.Location = new System.Drawing.Point(242, 53);
             this.bonNumTBox.Name = "bonNumTBox";
-            this.bonNumTBox.Size = new System.Drawing.Size(155, 20);
+            this.bonNumTBox.Size = new System.Drawing.Size(208, 20);
             this.bonNumTBox.TabIndex = 6;
             this.bonNumTBox.TextChanged += new System.EventHandler(this.bonNumTBox_TextChanged);
             // 

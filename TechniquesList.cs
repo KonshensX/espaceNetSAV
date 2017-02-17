@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace espaceNetSAV
 {
@@ -39,6 +40,9 @@ namespace espaceNetSAV
 
         private void TechniquesList_Load(object sender, EventArgs e)
         {
+            Stopwatch sw = new Stopwatch();
+
+            sw.Start();
             howMany++;
             //dataView = new dataView()
             BonDataGrid.RowTemplate.Height = 30;
@@ -103,9 +107,6 @@ namespace espaceNetSAV
                 BonDataGrid.Rows[0].Selected = true;
 
 
-
-            //Program._USER = new Admin.User().GetUser(1);
-
             this.BonDataGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_CellValueChanged);
 
             if (!Program._USER.Permissions.CanValideDossier)
@@ -113,6 +114,10 @@ namespace espaceNetSAV
                 myButton.ReadOnly = false;
                 repeared.ReadOnly = false;
             }
+
+            sw.Stop();
+
+            MessageBox.Show("Time taken to load form: " + sw.Elapsed);
         }
 
 
@@ -245,8 +250,12 @@ namespace espaceNetSAV
             }
             else
             {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
                 BonDataGrid.DataSource = myDataSource;
                 this.onLoadCheckboxStatusChange();
+                sw.Stop();
+                MessageBox.Show("Time elapsed: " + sw.Elapsed);
             }
         }
 
@@ -341,7 +350,7 @@ namespace espaceNetSAV
             foreach (DataRow row in table.Rows)
             {
 
-                var valueOfStatusField = Convert.ToInt32(row.ItemArray[row.ItemArray.Length - 1]);
+                var valueOfStatusField = Convert.ToInt32(row.ItemArray[row.ItemArray.Length - 2]);
                 if (valueOfStatusField == 1)
                 {
                     BonDataGrid.Rows[counter].Cells[repeared.Index].Value = true;
