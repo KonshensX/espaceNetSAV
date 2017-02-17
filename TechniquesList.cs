@@ -19,6 +19,7 @@ namespace espaceNetSAV
         DataTable myDataSource;
         DataGridViewCheckBoxColumn repeared;
         DataGridViewButtonColumn myButton;
+        bool isClicked = false;
 
         //DataGridViewTextBoxColumn myPrixColumn;
             
@@ -107,7 +108,6 @@ namespace espaceNetSAV
                 BonDataGrid.Rows[0].Selected = true;
 
 
-            this.BonDataGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_CellValueChanged);
 
             if (!Program._USER.Permissions.CanValideDossier)
             {
@@ -118,6 +118,7 @@ namespace espaceNetSAV
             sw.Stop();
 
             MessageBox.Show("Time taken to load form: " + sw.Elapsed);
+            this.BonDataGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_CellValueChanged);
         }
 
 
@@ -147,7 +148,7 @@ namespace espaceNetSAV
             //    return;
             //}
             //Handle the checkbox state change here 
-            if (e.ColumnIndex == repeared.Index)
+            if (e.ColumnIndex == repeared.Index )
             {
                 
                 var cellValue = (bool)BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells[repeared.Index].Value;
