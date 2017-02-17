@@ -44,7 +44,6 @@ namespace espaceNetSAV.Admin
             this.User = currentUser;
         }
 
-
         public bool Save()
         {
             try
@@ -183,7 +182,7 @@ namespace espaceNetSAV.Admin
             {
                 List<History> myList = new List<History>();
 
-                string query = "SELECT * FROM historique";
+                string query = "SELECT * FROM historique, users WHERE historique.user_id = users.id";
                 using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
                     this.databaseObject.openConnection();
@@ -200,7 +199,7 @@ namespace espaceNetSAV.Admin
                                 history.Date = Convert.ToDateTime(myReader[1]);
                                 history.OldValue = myReader[2].ToString();
                                 history.NewValue = myReader[3].ToString();
-                                history.User.GetUser(Convert.ToInt32(myReader[4]));
+                                history.User.Name = myReader["username"].ToString();
 
                                 myList.Add(history);
                             }

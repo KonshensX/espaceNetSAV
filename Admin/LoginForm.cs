@@ -106,7 +106,7 @@ namespace espaceNetSAV.Admin
 
                     adminPanelObject.Show();
 
-                    this.Hide();
+                    this.Close();
                 }
                 else if (!Program._USER.isAdmin())
                 {
@@ -114,7 +114,7 @@ namespace espaceNetSAV.Admin
                     {
                         FormulaireReception formObject = new FormulaireReception();
                         formObject.Show();
-                        this.Hide();
+                        this.Close();
                         return;
                     }
                     TechniquesList techFormObject = new TechniquesList();

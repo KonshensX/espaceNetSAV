@@ -185,14 +185,14 @@ namespace espaceNetSAV
         {
 
             //MessageBox.Show("CurrentRow index is " + BonDataGrid.CurrentRow.Index.ToString());
-            if (MessageBox.Show("Confirmation du click!", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
-            {
-                if (AccessRow(e.RowIndex, "Validé") == "true")
-                {
-                    BonDataGrid.Rows[e.RowIndex].Cells["Validé"].Value = false;
-                }
-                return;
-            }
+            //if (MessageBox.Show("Confirmation du click!", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
+            //{
+            //    if (AccessRow(e.RowIndex, "Validé") == "true")
+            //    {
+            //        BonDataGrid.Rows[e.RowIndex].Cells["Validé"].Value = false;
+            //    }
+            //    return;
+            //}
 
             if (e.ColumnIndex == repeared.Index)
             {
@@ -232,7 +232,6 @@ namespace espaceNetSAV
                     new Admin.History(String.Format("Bon N°: {0} - {1}", this.AccessRow(e.RowIndex, "Bon N°"), initialTasks), tasks, Program._USER).Save();
                 }
 
-                MessageBox.Show(AccessRow(e.RowIndex, "Prix"));
 
                 if (!intitialPrice.Equals(BonDataGrid.Rows[e.RowIndex].Cells["Prix"].Value.ToString()))
                 {
