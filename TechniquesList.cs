@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Diagnostics;
 
 namespace espaceNetSAV
 {
@@ -41,9 +34,7 @@ namespace espaceNetSAV
 
         private void TechniquesList_Load(object sender, EventArgs e)
         {
-            Stopwatch sw = new Stopwatch();
 
-            sw.Start();
             howMany++;
             //dataView = new dataView()
             BonDataGrid.RowTemplate.Height = 30;
@@ -100,6 +91,8 @@ namespace espaceNetSAV
             BonDataGrid.Columns["Tech ID"].Visible = false;
             BonDataGrid.Columns["Devis"].Visible = false;
             BonDataGrid.Columns["Tech ID ID"].Visible = false;
+            BonDataGrid.Columns["Validé"].Visible = false;
+            BonDataGrid.Columns["Status"].HeaderText = "Validé";
             //MessageBox.Show(repeared.Index.ToString());
 
             this.onLoadCheckboxStatusChange();
@@ -115,9 +108,7 @@ namespace espaceNetSAV
                 repeared.ReadOnly = false;
             }
 
-            sw.Stop();
 
-            MessageBox.Show("Time taken to load form: " + sw.Elapsed);
             this.BonDataGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_CellValueChanged);
         }
 
@@ -194,6 +185,14 @@ namespace espaceNetSAV
         {
 
             //MessageBox.Show("CurrentRow index is " + BonDataGrid.CurrentRow.Index.ToString());
+            if (MessageBox.Show("Confirmation du click!", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
+            {
+                if (AccessRow(e.RowIndex, "Validé") == "true")
+                {
+                    BonDataGrid.Rows[e.RowIndex].Cells["Validé"].Value = false;
+                }
+                return;
+            }
 
             if (e.ColumnIndex == repeared.Index)
             {
@@ -257,12 +256,8 @@ namespace espaceNetSAV
             }
             else
             {
-                Stopwatch sw = new Stopwatch();
-                sw.Start();
                 BonDataGrid.DataSource = myDataSource;
                 this.onLoadCheckboxStatusChange();
-                sw.Stop();
-                MessageBox.Show("Time elapsed: " + sw.Elapsed);
             }
             isClicked = false;
         }
@@ -284,6 +279,8 @@ namespace espaceNetSAV
                 BonDataGrid.DataSource = myDataSource;
                 this.onLoadCheckboxStatusChange();
             }
+
+            isClicked = false;
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -321,6 +318,8 @@ namespace espaceNetSAV
                 BonDataGrid.DataSource = myDataSource;
                 this.onLoadCheckboxStatusChange();
             }
+
+            isClicked = false;
         }
 
         public void ClearStatusBarWithMessage(string message)

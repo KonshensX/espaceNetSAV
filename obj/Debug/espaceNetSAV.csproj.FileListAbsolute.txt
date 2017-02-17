@@ -1,7 +1,6 @@
 c:\users\konshensx\documents\visual studio 2013\Projects\espaceNetSAV\espaceNetSAV\bin\Debug\espaceNetSAV.exe.config
 c:\users\konshensx\documents\visual studio 2013\Projects\espaceNetSAV\espaceNetSAV\bin\Debug\espaceNetSAV.exe
 c:\users\konshensx\documents\visual studio 2013\Projects\espaceNetSAV\espaceNetSAV\bin\Debug\espaceNetSAV.pdb
-c:\users\konshensx\documents\visual studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.csprojResolveAssemblyReference.cache
 c:\users\konshensx\documents\visual studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.Form1.resources
 c:\users\konshensx\documents\visual studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.Properties.Resources.resources
 c:\users\konshensx\documents\visual studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.csproj.GenerateResource.Cache
@@ -22,3 +21,4 @@ C:\Users\konshensx\Documents\Visual Studio 2013\Projects\espaceNetSAV\espaceNetS
 C:\Users\konshensx\Documents\Visual Studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.Admin.CompleteHistoryList.resources
 C:\Users\konshensx\Documents\Visual Studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.Admin.BonReceptionListValide.resources
 C:\Users\konshensx\Documents\Visual Studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.SplashScreen.resources
+C:\Users\konshensx\Documents\Visual Studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.csprojResolveAssemblyReference.cache
