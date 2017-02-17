@@ -148,7 +148,7 @@ namespace espaceNetSAV
             //    return;
             //}
             //Handle the checkbox state change here 
-            if (e.ColumnIndex == repeared.Index )
+            if (e.ColumnIndex == repeared.Index && isClicked)
             {
                 
                 var cellValue = (bool)BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells[repeared.Index].Value;
@@ -194,6 +194,12 @@ namespace espaceNetSAV
         {
 
             //MessageBox.Show("CurrentRow index is " + BonDataGrid.CurrentRow.Index.ToString());
+
+            if (e.ColumnIndex == repeared.Index)
+            {
+                isClicked = true;
+                return;
+            }
 
             if (e.ColumnIndex == myButton.Index && !myButton.ReadOnly)
             {
@@ -258,6 +264,7 @@ namespace espaceNetSAV
                 sw.Stop();
                 MessageBox.Show("Time elapsed: " + sw.Elapsed);
             }
+            isClicked = false;
         }
 
         private void telTBox_TextChanged(object sender, EventArgs e)
