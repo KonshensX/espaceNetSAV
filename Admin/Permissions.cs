@@ -84,14 +84,65 @@ namespace espaceNetSAV.Admin
             //Update the above values (the permissions)
         }
 
+
+        /// <summary>
+        /// Get user permissions based on given user object
+        /// </summary>
+        /// <param name="user">User object</param>
+        /// <returns></returns>
+        public Permissions GetUserPermissions(User user)
+        {
+            //Will get the user permission data 
+
+            List<UserPermission> myPermissionsList = new List<UserPermission>();
+
+            myPermissionsList = new UserPermission().FetchUserPermissions(user.ID);
+
+            foreach (UserPermission permission in myPermissionsList)
+            {
+                this.UpdatePermissions(permission);
+            }
+
+            //this.UpdatePermissions();
+            return this;
+
+            //Update the above values (the permissions)
+        }
+
+        /// <summary>
+        /// Get user permissions based on given user ID
+        /// </summary>
+        /// <param name="user">User ID</param>
+        /// <returns></returns>
+        public Permissions GetUserPermissions(int user)
+        {
+            //Will get the user permission data 
+
+            List<UserPermission> myPermissionsList = new List<UserPermission>();
+
+            myPermissionsList = new UserPermission().FetchUserPermissions(user);
+
+            foreach (UserPermission permission in myPermissionsList)
+            {
+                this.UpdatePermissions(permission);
+            }
+
+            //this.UpdatePermissions();
+            return this;
+
+            //Update the above values (the permissions)
+        }
+
         private void UpdatePermissions(UserPermission permission)
         {
             if (permission.Permission.Name.Contains("history"))
             {
-                this.CanSeeHistory = true;
+                if (permission.Allowed)
+                    this.CanSeeHistory = true;
             }
-            if (permission.Permission.Name.Contains("valdie"))
+            if (permission.Permission.Name.Contains("valide"))
             {
+                if (permission.Allowed)
                 this.CanValideDossier = true;
             }
         }

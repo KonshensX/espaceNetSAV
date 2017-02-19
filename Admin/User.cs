@@ -148,6 +148,7 @@ namespace espaceNetSAV.Admin
                         user.Name = myReader[1].ToString();
                         user.Password = myReader[2].ToString();
                         user.category.getCategory(Convert.ToInt32(myReader[5]));
+                        user.Permissions.GetUserPermissions(user.ID);
                         myList.Add(user);
                     }
                 }
@@ -428,7 +429,8 @@ namespace espaceNetSAV.Admin
                                 this.role = this.GetUserRole(Convert.ToInt32(myReader[3]));
                                 this.date = Convert.ToDateTime(myReader[4]);
                                 this.category.getCategory(Convert.ToInt32(myReader[5]));
-                                this.Permissions.GetUserPermissions();
+                                //this.Permissions.GetUserPermissions();
+                                this.Permissions.GetUserPermissions(this);
                             }
                         }
                     }

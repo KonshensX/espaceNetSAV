@@ -51,6 +51,9 @@
             this.deleteUserBtn = new System.Windows.Forms.Button();
             this.saveChangesBtn = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBoxValide = new System.Windows.Forms.CheckBox();
+            this.checkBoxHistory = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -78,9 +81,6 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.checkBoxHistory = new System.Windows.Forms.CheckBox();
-            this.checkBoxValide = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -344,6 +344,39 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Permissions";
             // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(36, 115);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(53, 17);
+            this.checkBox3.TabIndex = 3;
+            this.checkBox3.Text = "Temp";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxValide
+            // 
+            this.checkBoxValide.AutoSize = true;
+            this.checkBoxValide.Location = new System.Drawing.Point(36, 74);
+            this.checkBoxValide.Name = "checkBoxValide";
+            this.checkBoxValide.Size = new System.Drawing.Size(58, 17);
+            this.checkBoxValide.TabIndex = 2;
+            this.checkBoxValide.Text = "Valider";
+            this.checkBoxValide.UseVisualStyleBackColor = true;
+            this.checkBoxValide.CheckedChanged += new System.EventHandler(this.checkBoxValide_CheckedChanged);
+            // 
+            // checkBoxHistory
+            // 
+            this.checkBoxHistory.AutoSize = true;
+            this.checkBoxHistory.Location = new System.Drawing.Point(36, 30);
+            this.checkBoxHistory.Name = "checkBoxHistory";
+            this.checkBoxHistory.Size = new System.Drawing.Size(94, 17);
+            this.checkBoxHistory.TabIndex = 1;
+            this.checkBoxHistory.Text = "Voir Historique";
+            this.checkBoxHistory.UseVisualStyleBackColor = true;
+            this.checkBoxHistory.CheckedChanged += new System.EventHandler(this.checkBoxHistory_CheckedChanged);
+            this.checkBoxHistory.MouseClick += new System.Windows.Forms.MouseEventHandler(this.checkBoxHistory_MouseClick);
+            // 
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -594,36 +627,6 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(888, 17);
             this.toolStripStatusLabel1.Spring = true;
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
-            // 
-            // checkBoxHistory
-            // 
-            this.checkBoxHistory.AutoSize = true;
-            this.checkBoxHistory.Location = new System.Drawing.Point(36, 30);
-            this.checkBoxHistory.Name = "checkBoxHistory";
-            this.checkBoxHistory.Size = new System.Drawing.Size(94, 17);
-            this.checkBoxHistory.TabIndex = 1;
-            this.checkBoxHistory.Text = "Voir Historique";
-            this.checkBoxHistory.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxValide
-            // 
-            this.checkBoxValide.AutoSize = true;
-            this.checkBoxValide.Location = new System.Drawing.Point(36, 74);
-            this.checkBoxValide.Name = "checkBoxValide";
-            this.checkBoxValide.Size = new System.Drawing.Size(58, 17);
-            this.checkBoxValide.TabIndex = 2;
-            this.checkBoxValide.Text = "Valider";
-            this.checkBoxValide.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(36, 115);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(53, 17);
-            this.checkBox3.TabIndex = 3;
-            this.checkBox3.Text = "Temp";
-            this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // AdminPanel
             // 

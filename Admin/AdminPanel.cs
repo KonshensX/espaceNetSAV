@@ -1,13 +1,8 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Linq;
-using System.Drawing;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace espaceNetSAV.Admin
 {
@@ -18,6 +13,8 @@ namespace espaceNetSAV.Admin
         List<Category> myCategoriesList;
         Category catObject;
         User currentUser;
+        int clickCounter = 0;
+
         public const string _KEY = "ESPACENETSAV";
 
         public AdminPanel()
@@ -107,7 +104,7 @@ namespace espaceNetSAV.Admin
 
                 myNode = new TreeNode(category.Name, tempList.ToArray()) { Name = category.Name };
                 usersList.Nodes.Add(myNode);
-
+                clickCounter++;
             }
 
         }
@@ -204,9 +201,12 @@ namespace espaceNetSAV.Admin
 
                 if (currentUser.Permissions.CanSeeHistory)
                     checkBoxHistory.Checked = true;
+                else
+                    checkBoxHistory.Checked = false;
                 if (currentUser.Permissions.CanValideDossier)
                     checkBoxValide.Checked = true;
-
+                else
+                    checkBoxValide.Checked = false;
                 //Display data in the form fields 
 
                 //Load the history of the user
@@ -415,6 +415,74 @@ namespace espaceNetSAV.Admin
                 this.Dispose();
             }
 
+        }
+
+        private void checkBoxHistory_CheckedChanged(object sender, EventArgs e)
+        {
+            Database databaseObject = new Database();
+            int allowed = 0;
+            if (checkBoxHistory.Checked)
+            {
+                allowed = 1;
+            }
+            else if (!checkBoxHistory.Checked)
+            {
+                allowed = 0;
+            }
+            try
+            {
+                string query = "UPDATE users_permissions SET allowed = @allowed WHERE user_id = @user_id AND permission_id = @permission_id";
+                using (MySqlCommand myCommand = new MySqlCommand(query, databaseObject.getConnection()))
+                {
+                    databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@allowed", allowed);
+                    myCommand.Parameters.AddWithValue("@user_id", currentUser.ID);
+                    myCommand.Parameters.AddWithValue("@permission_id", 1);
+                    myCommand.ExecuteNonQuery();
+                    //this.clearStatusBarWithMessage("Values changed check the database!");
+                }
+            } 
+            finally 
+            {
+                databaseObject.closeConnection();
+            }
+            
+        }
+
+        private void checkBoxHistory_MouseClick(object sender, MouseEventArgs e)
+        {
+            clickCounter++;
+        }
+
+        private void checkBoxValide_CheckedChanged(object sender, EventArgs e)
+        {
+            Database databaseObject = new Database();
+            int allowed = 0;
+            if (checkBoxValide.Checked)
+            {
+                allowed = 1;
+            }
+            else if (!checkBoxValide.Checked)
+            {
+                allowed = 0;
+            }
+            try
+            {
+                string query = "UPDATE users_permissions SET allowed = @allowed WHERE user_id = @user_id AND permission_id = @permission_id";
+                using (MySqlCommand myCommand = new MySqlCommand(query, databaseObject.getConnection()))
+                {
+                    databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@allowed", allowed);
+                    myCommand.Parameters.AddWithValue("@user_id", currentUser.ID);
+                    myCommand.Parameters.AddWithValue("@permission_id", 2);
+                    myCommand.ExecuteNonQuery();
+                    //this.clearStatusBarWithMessage("Values changed check the database!");
+                }
+            }
+            finally
+            {
+                databaseObject.closeConnection();
+            }
         }
     }
 }
