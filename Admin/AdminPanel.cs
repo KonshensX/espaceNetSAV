@@ -186,7 +186,6 @@ namespace espaceNetSAV.Admin
         {
 
             
-            
             //Checking whether the selected node is a parent node or a child node 
             if (!(usersList.SelectedNode.Parent == null))
             {
@@ -202,6 +201,11 @@ namespace espaceNetSAV.Admin
                 passwordEditTboxConf.Text = "Confirmation de nouveau mot de passe";
 
                 categoryEditCbox.SelectedItem = currentUser.category.Name;
+
+                if (currentUser.Permissions.CanSeeHistory)
+                    checkBoxHistory.Checked = true;
+                if (currentUser.Permissions.CanValideDossier)
+                    checkBoxValide.Checked = true;
 
                 //Display data in the form fields 
 

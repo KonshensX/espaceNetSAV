@@ -20,6 +20,12 @@ namespace espaceNetSAV.Admin
             this.databaseObject = new Database();
         }
 
+        public Permission (int id, string name)
+        {
+            this.ID = id;
+            this.Name = name;
+        }
+
         public Permission GetPermission(int permissionID)
         {
             try
@@ -82,5 +88,7 @@ namespace espaceNetSAV.Admin
                     return 0;
             }
         }
+
+       
     }
 }

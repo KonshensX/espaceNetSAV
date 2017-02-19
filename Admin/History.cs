@@ -119,7 +119,7 @@ namespace espaceNetSAV.Admin
             {
                 List<History> myList = new List<History>();
 
-                string query = "SELECT * FROM historique WHERE user_id = @user_id AND (date(date)) > (date(now()) - interval 30 day)";
+                string query = "SELECT * FROM historique, users WHERE user_id = @user_id AND (date(date)) > (date(now()) - interval 30 day)";
 
                 using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
@@ -137,7 +137,7 @@ namespace espaceNetSAV.Admin
                                 history.Date = Convert.ToDateTime(myReader[1]);
                                 history.OldValue = myReader[2].ToString();
                                 history.NewValue = myReader[3].ToString();
-                                history.User.GetUser(Convert.ToInt32(myReader[4]));
+                                history.User.Name = myReader["username"].ToString();
 
                                 myList.Add(history);
                             }

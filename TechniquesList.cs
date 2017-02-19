@@ -71,7 +71,7 @@ namespace espaceNetSAV
 
             myButton.Name = "myButton";
             myButton.HeaderText = "Testing";
-            myButton.Text = "Save";
+            myButton.Text = "Enregistrer";
 
             myButton.UseColumnTextForButtonValue = true;
             BonDataGrid.Columns.Add(myButton);
@@ -215,7 +215,7 @@ namespace espaceNetSAV
                 techObject.getItem(Convert.ToInt32(numeroBon));
                 techObject.UpdateObject(diagnosticsText, tasksText, numeroBon, price);
 
-                this.ClearStatusBarWithMessage("Changes were saved!");
+                this.ClearStatusBarWithMessage("Modifications bien enregistré");
 
                 if (AccessRow(e.RowIndex, "Diagnostics").Equals(initialDiagnostic) && AccessRow(e.RowIndex, "Tàches Effectuer").Equals(initialTasks) && AccessRow(e.RowIndex, "Prix").Equals(intitialPrice))
                     return;

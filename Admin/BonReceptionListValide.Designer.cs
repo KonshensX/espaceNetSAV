@@ -29,26 +29,26 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.bonNumTBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.telTBox = new System.Windows.Forms.TextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.clientTBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.telTBox = new System.Windows.Forms.TextBox();
+            this.bonNumTBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.BonDataGrid = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.actualiserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actualiséToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BonDataGrid)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -62,50 +62,21 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filter";
             // 
-            // dateTimePicker1
+            // panel1
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dateTimePicker1.Location = new System.Drawing.Point(615, 44);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(160, 20);
-            this.dateTimePicker1.TabIndex = 3;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(227, 50);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Bon N°";
-            // 
-            // bonNumTBox
-            // 
-            this.bonNumTBox.Location = new System.Drawing.Point(282, 47);
-            this.bonNumTBox.Name = "bonNumTBox";
-            this.bonNumTBox.Size = new System.Drawing.Size(208, 20);
-            this.bonNumTBox.TabIndex = 2;
-            this.bonNumTBox.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(540, 50);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(30, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Date";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(540, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Telephone";
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.dateTimePicker1);
+            this.panel1.Controls.Add(this.clientTBox);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.telTBox);
+            this.panel1.Controls.Add(this.bonNumTBox);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 16);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(944, 81);
+            this.panel1.TabIndex = 8;
             // 
             // label1
             // 
@@ -116,13 +87,15 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Client";
             // 
-            // telTBox
+            // dateTimePicker1
             // 
-            this.telTBox.Location = new System.Drawing.Point(615, 13);
-            this.telTBox.Name = "telTBox";
-            this.telTBox.Size = new System.Drawing.Size(160, 20);
-            this.telTBox.TabIndex = 1;
-            this.telTBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.dateTimePicker1.Location = new System.Drawing.Point(615, 44);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(160, 20);
+            this.dateTimePicker1.TabIndex = 3;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // clientTBox
             // 
@@ -131,6 +104,49 @@
             this.clientTBox.Size = new System.Drawing.Size(208, 20);
             this.clientTBox.TabIndex = 0;
             this.clientTBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(227, 50);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Bon N°";
+            // 
+            // telTBox
+            // 
+            this.telTBox.Location = new System.Drawing.Point(615, 13);
+            this.telTBox.Name = "telTBox";
+            this.telTBox.Size = new System.Drawing.Size(160, 20);
+            this.telTBox.TabIndex = 1;
+            this.telTBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
+            // bonNumTBox
+            // 
+            this.bonNumTBox.Location = new System.Drawing.Point(282, 47);
+            this.bonNumTBox.Name = "bonNumTBox";
+            this.bonNumTBox.Size = new System.Drawing.Size(208, 20);
+            this.bonNumTBox.TabIndex = 2;
+            this.bonNumTBox.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(540, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(58, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Telephone";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(540, 50);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(30, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Date";
             // 
             // groupBox2
             // 
@@ -198,23 +214,7 @@
             this.actualiséToolStripMenuItem.Text = "Actualisé (Beta)";
             this.actualiséToolStripMenuItem.Click += new System.EventHandler(this.actualiséToolStripMenuItem_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.dateTimePicker1);
-            this.panel1.Controls.Add(this.clientTBox);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.telTBox);
-            this.panel1.Controls.Add(this.bonNumTBox);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 16);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(944, 81);
-            this.panel1.TabIndex = 8;
-            // 
-            // BonReceptionList
+            // BonReceptionListValide
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -223,18 +223,18 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "BonReceptionList";
+            this.Name = "BonReceptionListValide";
             this.ShowIcon = false;
-            this.Text = "Liste complete";
+            this.Text = "Liste complete (Validé)";
             this.Load += new System.EventHandler(this.BonReceptionList_Load);
             this.groupBox1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BonDataGrid)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -64,7 +64,6 @@ namespace espaceNetSAV.Admin
                         }
                     }
                 }
-                //06 31 53 43 34
                 return list;
             }
             finally

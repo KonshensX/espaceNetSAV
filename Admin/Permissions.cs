@@ -55,7 +55,6 @@ namespace espaceNetSAV.Admin
             }
              * */
         //}
-
         private void UpdateUserPermisisons()
         {
             //var result = this.GetPermission("")
@@ -96,11 +95,48 @@ namespace espaceNetSAV.Admin
                 this.CanValideDossier = true;
             }
         }
+        
+        int permissionsCount = 2;
 
+        /// <summary>
+        /// This will insert user permissions in the pivot table
+        /// </summary>
         public void NewUserPermissions()
         {
-            //string query = "INSERT INTO user_permissions VALUES ";
+            
+
         }
 
+
+        internal void CreateEmptyUserPermissions(User user)
+        {
+            try
+            {
+                //First Permission 
+                Permission historyPermisison = new Permission().GetPermission(1);
+
+                //Second Permission
+                Permission validePermission = new Permission().GetPermission(2);
+
+                //Persiting the objects to the pivot table
+                string query = "INSERT INTO users_permissions (`user_id`, `permission_id`, `allowed`) VALUES (@user_id, @permission_id, @allowed)";
+                for (int i = 0; i < permissionsCount; i++)
+                {
+                    this.databaseObject.openConnection();
+                    using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+                    {
+                        myCommand.Parameters.AddWithValue("@user_id", user.ID);
+                        myCommand.Parameters.AddWithValue("@permission_id", i + 1);
+                        myCommand.Parameters.AddWithValue("@allowed", 0);
+                        myCommand.ExecuteNonQuery();
+                    }
+                    this.databaseObject.closeConnection();
+                }
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
+        }
     }
 }

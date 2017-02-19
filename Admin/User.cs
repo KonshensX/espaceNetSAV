@@ -46,7 +46,7 @@ namespace espaceNetSAV.Admin
             this.Permissions = new Permissions();
 
         }
-
+        
 
 
         /// <summary>
@@ -111,6 +111,7 @@ namespace espaceNetSAV.Admin
                     myCommand.Parameters.AddWithValue("@isAdmin", this.GetUserRole(this.role)); //This needs more work 
                     myCommand.Parameters.AddWithValue("@created", this.date);
                     myCommand.Parameters.AddWithValue("@cat_id", this.category.ID);
+                    this.Permissions.CreateEmptyUserPermissions(this);
                     return Convert.ToInt32(myCommand.ExecuteNonQuery());
                 }
             }
@@ -162,7 +163,6 @@ namespace espaceNetSAV.Admin
             }
         }
 
-        
         /// <summary>
         /// Delete the current user from the database
         /// </summary>
@@ -186,6 +186,7 @@ namespace espaceNetSAV.Admin
                 this.databaseObject.closeConnection();
             }
         }
+
         //Check whether the user is admin or not 
 
         //Get user role
