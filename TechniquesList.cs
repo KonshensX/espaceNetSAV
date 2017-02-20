@@ -141,7 +141,12 @@ namespace espaceNetSAV
             //Handle the checkbox state change here 
             if (e.ColumnIndex == repeared.Index && isClicked)
             {
-                
+                if (!Program._USER.Permissions.CanValideDossier)
+                {
+                    MessageBox.Show("Vous avez pas le droit de faire ça lol :(!", "Permissions requis", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 var cellValue = (bool)BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells[repeared.Index].Value;
                 var techID = Convert.ToInt32(BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells["Tech ID"].Value);
                 var rowIndex = BonDataGrid.CurrentRow.Index;

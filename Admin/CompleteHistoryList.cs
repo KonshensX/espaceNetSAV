@@ -14,6 +14,8 @@ namespace espaceNetSAV.Admin
 
         private void CompleteHistoryList_Load(object sender, EventArgs e)
         {
+            if (!Program._USER.Permissions.CanSeeHistory)
+                return;
             Stopwatch sw = new Stopwatch();
             sw.Start();
             List<History> myList = new History().GetCompleteHistoryWithUsers();
