@@ -100,12 +100,13 @@ namespace espaceNetSAV.Admin
         {
             try
             {
-                string query = "INSERT INTO `users`( `username`, `password`, `isAdmin`, `createdat`, `cat_id`) VALUES (@username, @password, @isAdmin, @created, @cat_id)";
+                string query = "INSERT INTO `users`(`id`, `username`, `password`, `isAdmin`, `createdat`, `cat_id`) VALUES (@id, @username, @password, @isAdmin, @created, @cat_id)";
 
                 using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
 
                     this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@id", this.ID);
                     myCommand.Parameters.AddWithValue("@username", this.Name);
                     myCommand.Parameters.AddWithValue("@password", this.Password);
                     myCommand.Parameters.AddWithValue("@isAdmin", this.GetUserRole(this.role)); //This needs more work 
@@ -316,7 +317,8 @@ namespace espaceNetSAV.Admin
                                 this.date = Convert.ToDateTime(myReader[4]);
                                 this.role = this.GetUserRole(Convert.ToInt32(myReader[3]));
                                 this.category.getCategory(Convert.ToInt32(myReader["cat_id"]));
-                                this.Permissions.GetUserPermissions();
+                                //this.Permissions.GetUserPermissions();
+                                this.Permissions.GetUserPermissions(this);
                             }
                         }
                     }

@@ -8,7 +8,7 @@ namespace espaceNetSAV.Admin
     class EmailNotification
     {
         MailAddress to = new MailAddress("mohamedbaza16@gmail.com", "Mohammed BAZA");
-        MailAddress from = new MailAddress("kingofmad16@gmail.com", "Salah BAZA");
+        MailAddress from = new MailAddress("noreply.espacenet@gmail.com", "Espace Net Mailer");
 
 
         public EmailNotification(BonReception bonObject)
@@ -35,14 +35,14 @@ namespace espaceNetSAV.Admin
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(from.Address, "Bazaking16")
+                Credentials = new NetworkCredential(from.Address, "E$p@ceNet1")
             };
             
 
             using (MailMessage message = new MailMessage(from, to) {
                 IsBodyHtml = true,
                 Subject = String.Format("Notification Instance N° {0}, Client: {1}", bonObject.id, bonObject.client.nom),
-                Body = String.Format("<h1>Instance N°: {0} est validé<br>Client: {1}<br>Contact: {2}<br>Télephone: {3}<br>Fax: {4}<br>Prix: {5}<br>Désignation: {6}</h1>", bonObject.id, bonObject.client.nom, bonObject.contact, bonObject.client.tel, bonObject.client.fax, bonObject.tech.price, bonObject.designationReception.designation)
+                Body = String.Format("<h1>Instance N°: {0} est validé<br>Client: {1}<br>Contact: {2}<br>Télephone: {3}<br>Fax: {4}<br>Prix: {5} DH<br>Désignation: {6}</h1>", bonObject.id, bonObject.client.nom, bonObject.contact, bonObject.client.tel, bonObject.client.fax, bonObject.tech.price, bonObject.designationReception.designation)
             })
             {
                 try
