@@ -16,8 +16,6 @@ namespace espaceNetSAV.Admin
         {
             if (!Program._USER.Permissions.CanSeeHistory)
                 return;
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
             List<History> myList = new History().GetCompleteHistoryWithUsers();
 
             foreach (History item in myList)
@@ -25,8 +23,6 @@ namespace espaceNetSAV.Admin
                 listView1.Items.Add(new ListViewItem(new string[] { item.User.Name, item.Date.ToString("dd/MM/yyyy HH:mm"), item.OldValue, item.NewValue }));
             }
 
-            sw.Stop();
-            MessageBox.Show(String.Format("Time elapsed : {0}", sw.Elapsed));
         }
     }
 }

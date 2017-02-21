@@ -102,6 +102,8 @@ namespace espaceNetSAV.Admin
 
                 if (Program._USER.isAdmin())
                 {
+                    Program._USER.Permissions.CanSeeHistory = true;
+                    Program._USER.Permissions.CanValideDossier = true;
                     AdminPanel adminPanelObject = new AdminPanel();
 
                     adminPanelObject.Show();

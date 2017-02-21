@@ -181,8 +181,6 @@ namespace espaceNetSAV.Admin
 
         private void usersList_AfterSelect(object sender, TreeViewEventArgs e)
         {
-
-            
             //Checking whether the selected node is a parent node or a child node 
             if (!(usersList.SelectedNode.Parent == null))
             {
@@ -419,6 +417,8 @@ namespace espaceNetSAV.Admin
 
         private void checkBoxHistory_CheckedChanged(object sender, EventArgs e)
         {
+            if (usersList.SelectedNode.Parent == null)
+                return;
             Database databaseObject = new Database();
             int allowed = 0;
             if (checkBoxHistory.Checked)

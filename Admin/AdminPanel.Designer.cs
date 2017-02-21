@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminPanel));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.gérerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.réceptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,7 +41,6 @@
             this.historiqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.historiqueToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.viderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cetegoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.déconnecterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -105,7 +105,6 @@
             this.gérerToolStripMenuItem,
             this.optionsToolStripMenuItem,
             this.historiqueToolStripMenuItem,
-            this.cetegoryToolStripMenuItem,
             this.déconnecterToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -208,13 +207,6 @@
             this.viderToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.viderToolStripMenuItem.Text = "Vider";
             this.viderToolStripMenuItem.Click += new System.EventHandler(this.viderToolStripMenuItem_Click);
-            // 
-            // cetegoryToolStripMenuItem
-            // 
-            this.cetegoryToolStripMenuItem.Name = "cetegoryToolStripMenuItem";
-            this.cetegoryToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.cetegoryToolStripMenuItem.Text = "Category";
-            this.cetegoryToolStripMenuItem.Click += new System.EventHandler(this.cetegoryToolStripMenuItem_Click);
             // 
             // déconnecterToolStripMenuItem
             // 
@@ -353,6 +345,7 @@
             this.checkBox3.TabIndex = 3;
             this.checkBox3.Text = "Temp";
             this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.Visible = false;
             // 
             // checkBoxValide
             // 
@@ -636,6 +629,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "AdminPanel";
             this.Text = "Paneau d\'Administration";
@@ -676,7 +670,6 @@
         private System.Windows.Forms.TreeView usersList;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripMenuItem cetegoryToolStripMenuItem;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.GroupBox groupBox2;

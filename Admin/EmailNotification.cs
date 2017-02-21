@@ -42,7 +42,7 @@ namespace espaceNetSAV.Admin
             using (MailMessage message = new MailMessage(from, to) {
                 IsBodyHtml = true,
                 Subject = String.Format("Notification Instance N° {0}, Client: {1}", bonObject.id, bonObject.client.nom),
-                Body = String.Format("Instance N°: {0} est validé<br>Client: <strong>{1}</strong><br>Contact: {2}<br>Prix: <strong>{3}</strong>", bonObject.id, bonObject.client.nom, bonObject.contact, bonObject.tech.price)
+                Body = String.Format("<h1>Instance N°: {0} est validé<br>Client: {1}<br>Contact: {2}<br>Télephone: {3}<br>Fax: {4}<br>Prix: {5}<br>Désignation: {6}</h1>", bonObject.id, bonObject.client.nom, bonObject.contact, bonObject.client.tel, bonObject.client.fax, bonObject.tech.price, bonObject.designationReception.designation)
             })
             {
                 try
@@ -50,10 +50,10 @@ namespace espaceNetSAV.Admin
                     
                     client.Send(message);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     
-                    throw;
+                    throw ex;
                 }
             }
         }
