@@ -32,11 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashScreen));
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.subOption1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.subOption2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eE333ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
@@ -51,51 +47,22 @@
             this.notifyIcon1.BalloonTipTitle = "Application still running";
             this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "dzdqd";
+            this.notifyIcon1.Text = "Service Après Vente";
             this.notifyIcon1.Visible = true;
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.optionsToolStripMenuItem,
-            this.exitToolStripMenuItem,
-            this.eE333ToolStripMenuItem});
+            this.exitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(117, 70);
-            // 
-            // optionsToolStripMenuItem
-            // 
-            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.subOption1ToolStripMenuItem,
-            this.subOption2ToolStripMenuItem});
-            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.optionsToolStripMenuItem.Text = "Options";
-            // 
-            // subOption1ToolStripMenuItem
-            // 
-            this.subOption1ToolStripMenuItem.Name = "subOption1ToolStripMenuItem";
-            this.subOption1ToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.subOption1ToolStripMenuItem.Text = "Sub Option 1";
-            // 
-            // subOption2ToolStripMenuItem
-            // 
-            this.subOption2ToolStripMenuItem.Name = "subOption2ToolStripMenuItem";
-            this.subOption2ToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.subOption2ToolStripMenuItem.Text = "Sub Option 2";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(112, 26);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Text = "Quitter";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // eE333ToolStripMenuItem
-            // 
-            this.eE333ToolStripMenuItem.Name = "eE333ToolStripMenuItem";
-            this.eE333ToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.eE333ToolStripMenuItem.Text = "EE333";
             // 
             // pictureBox1
             // 
@@ -134,7 +101,7 @@
             this.Name = "SplashScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SplashScreen";
-            this.TransparencyKey = System.Drawing.Color.Transparent;
+            this.TransparencyKey = System.Drawing.Color.Gray;
             this.Load += new System.EventHandler(this.SplashScreen_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -147,11 +114,7 @@
 
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem subOption1ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem subOption2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem eE333ToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label1;

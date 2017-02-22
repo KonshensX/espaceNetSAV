@@ -70,7 +70,7 @@ namespace espaceNetSAV
             myButton = new DataGridViewButtonColumn();
 
             myButton.Name = "myButton";
-            myButton.HeaderText = "Testing";
+            myButton.HeaderText = "Enregistrer";
             myButton.Text = "Enregistrer";
 
             myButton.UseColumnTextForButtonValue = true;
@@ -143,7 +143,7 @@ namespace espaceNetSAV
             {
                 if (!Program._USER.Permissions.CanValideDossier)
                 {
-                    MessageBox.Show("Vous avez pas le droit de faire ça lol :(!", "Permissions requis", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Vous avez pas le droit de modifier ce champs!", "Permissions requis", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -373,7 +373,7 @@ namespace espaceNetSAV
                 counter++;
             }
         }
-
+        
         private void BonDataGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             initialDiagnostic = BonDataGrid.Rows[e.RowIndex].Cells["Diagnostics"].Value.ToString();
@@ -396,6 +396,40 @@ namespace espaceNetSAV
         private void TechniquesList_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Dispose();
+        }
+
+        private void menuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void technqiueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void oKOKToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void historiqueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (!Program._USER.Permissions.CanSeeHistory)
+            {
+                MessageBox.Show("Vous pouvez pas ouvrir ce fenetre!");
+                return;
+            }
+            
+            Admin.CompleteHistoryList formObject = new Admin.CompleteHistoryList();
+            formObject.Show();
+
         }
     }
 }

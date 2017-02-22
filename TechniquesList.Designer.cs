@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BonDataGrid = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -40,8 +40,13 @@
             this.telTBox = new System.Windows.Forms.TextBox();
             this.clientTBox = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.technqiueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.historiqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.BonDataGrid)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // BonDataGrid
@@ -52,20 +57,20 @@
             this.BonDataGrid.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BonDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.BonDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.BonDataGrid.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.BonDataGrid.DefaultCellStyle = dataGridViewCellStyle6;
             this.BonDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BonDataGrid.GridColor = System.Drawing.Color.White;
-            this.BonDataGrid.Location = new System.Drawing.Point(0, 100);
+            this.BonDataGrid.Location = new System.Drawing.Point(0, 119);
             this.BonDataGrid.Name = "BonDataGrid";
             this.BonDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.BonDataGrid.Size = new System.Drawing.Size(968, 373);
+            this.BonDataGrid.Size = new System.Drawing.Size(1111, 393);
             this.BonDataGrid.TabIndex = 1;
             this.BonDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_CellContentClick);
             this.BonDataGrid.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.BonDataGrid_CellMouseUp);
@@ -85,7 +90,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(968, 100);
+            this.groupBox1.Size = new System.Drawing.Size(1111, 119);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filter";
@@ -93,7 +98,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(575, 53);
+            this.dateTimePicker1.Location = new System.Drawing.Point(575, 81);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(160, 20);
             this.dateTimePicker1.TabIndex = 8;
@@ -102,7 +107,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(184, 56);
+            this.label4.Location = new System.Drawing.Point(181, 84);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 7;
@@ -110,7 +115,7 @@
             // 
             // bonNumTBox
             // 
-            this.bonNumTBox.Location = new System.Drawing.Point(242, 53);
+            this.bonNumTBox.Location = new System.Drawing.Point(242, 81);
             this.bonNumTBox.Name = "bonNumTBox";
             this.bonNumTBox.Size = new System.Drawing.Size(208, 20);
             this.bonNumTBox.TabIndex = 6;
@@ -119,7 +124,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(500, 56);
+            this.label3.Location = new System.Drawing.Point(487, 84);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(30, 13);
             this.label3.TabIndex = 5;
@@ -128,7 +133,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(500, 22);
+            this.label2.Location = new System.Drawing.Point(487, 53);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 3;
@@ -137,7 +142,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(184, 22);
+            this.label1.Location = new System.Drawing.Point(181, 52);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 13);
             this.label1.TabIndex = 2;
@@ -145,7 +150,7 @@
             // 
             // telTBox
             // 
-            this.telTBox.Location = new System.Drawing.Point(575, 19);
+            this.telTBox.Location = new System.Drawing.Point(575, 50);
             this.telTBox.Name = "telTBox";
             this.telTBox.Size = new System.Drawing.Size(160, 20);
             this.telTBox.TabIndex = 1;
@@ -153,7 +158,7 @@
             // 
             // clientTBox
             // 
-            this.clientTBox.Location = new System.Drawing.Point(242, 19);
+            this.clientTBox.Location = new System.Drawing.Point(242, 50);
             this.clientTBox.Name = "clientTBox";
             this.clientTBox.Size = new System.Drawing.Size(208, 20);
             this.clientTBox.TabIndex = 0;
@@ -161,17 +166,56 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 451);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 490);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(968, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1111, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // menuStrip2
+            // 
+            this.menuStrip2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.menuStrip2.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.technqiueToolStripMenuItem,
+            this.historiqueToolStripMenuItem});
+            this.menuStrip2.Location = new System.Drawing.Point(9, 9);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Size = new System.Drawing.Size(267, 24);
+            this.menuStrip2.TabIndex = 6;
+            this.menuStrip2.Text = "menuStrip2";
+            // 
+            // technqiueToolStripMenuItem
+            // 
+            this.technqiueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.quitterToolStripMenuItem});
+            this.technqiueToolStripMenuItem.Image = global::espaceNetSAV.Properties.Resources._429_steam;
+            this.technqiueToolStripMenuItem.Name = "technqiueToolStripMenuItem";
+            this.technqiueToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.technqiueToolStripMenuItem.Text = "Options";
+            this.technqiueToolStripMenuItem.Click += new System.EventHandler(this.technqiueToolStripMenuItem_Click);
+            // 
+            // historiqueToolStripMenuItem
+            // 
+            this.historiqueToolStripMenuItem.Image = global::espaceNetSAV.Properties.Resources._033_books;
+            this.historiqueToolStripMenuItem.Name = "historiqueToolStripMenuItem";
+            this.historiqueToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
+            this.historiqueToolStripMenuItem.Text = "Historique";
+            this.historiqueToolStripMenuItem.Click += new System.EventHandler(this.historiqueToolStripMenuItem_Click);
+            // 
+            // quitterToolStripMenuItem
+            // 
+            this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
+            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.quitterToolStripMenuItem.Text = "Quitter";
+            this.quitterToolStripMenuItem.Click += new System.EventHandler(this.quitterToolStripMenuItem_Click);
             // 
             // TechniquesList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(968, 473);
+            this.ClientSize = new System.Drawing.Size(1111, 512);
+            this.Controls.Add(this.menuStrip2);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.BonDataGrid);
             this.Controls.Add(this.groupBox1);
@@ -183,6 +227,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.BonDataGrid)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.menuStrip2.ResumeLayout(false);
+            this.menuStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -201,5 +247,9 @@
         private System.Windows.Forms.TextBox telTBox;
         private System.Windows.Forms.TextBox clientTBox;
         private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem technqiueToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem historiqueToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
     }
 }

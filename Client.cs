@@ -61,7 +61,7 @@ namespace espaceNetSAV
 
         public void persistClientToDatabase()
         {
-            string query = "INSERT INTO `client`(`nom`, `tel`, `email`, `fax`, `contact`, `client_type`) VALUES (@nom, @tel, @email, @fax, @contact, @clientType)";
+            string query = "INSERT INTO `client`(`nom`, `tel`, `email`, `fax`, `client_type`) VALUES (@nom, @tel, @email, @fax, @clientType)";
             try
             {
                 using (MySqlCommand myCommand = new MySqlCommand(query, databaseObject.getConnection()))
@@ -243,13 +243,24 @@ namespace espaceNetSAV
 
             
             string query = "SELECT MAX(id) FROM `client`";
-            int lastId;
+            int lastId = 0;
             try
             {
                 using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
                     this.databaseObject.openConnection();
-                    lastId = (int)myCommand.ExecuteScalar();
+                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                    {
+                        if (myReader.HasRows)
+                        {
+                            while (myReader.Read())
+                            {
+                                if (myReader[0] is DBNull)
+                                    return 0;
+                                return lastId = Convert.ToInt32(myReader[0]);
+                            }
+                        }
+                    }
                     
                 }
             }

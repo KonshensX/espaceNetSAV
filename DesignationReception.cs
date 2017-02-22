@@ -61,9 +61,14 @@ namespace espaceNetSAV
                 {
                     this.databaseObject.openConnection();
                     MySqlDataReader myReader = myCommand.ExecuteReader();
-                    while (myReader.Read())
+                    if (myReader.HasRows)
                     {
-                        lastID = (int)myReader[0];
+                        while (myReader.Read())
+                        {
+                            if (myReader[0] is DBNull)
+                                return 0;
+                            lastID = Convert.ToInt32(myReader[0]);
+                        }
                     }
                     myReader.Close();
                 }

@@ -7,7 +7,7 @@ namespace espaceNetSAV.Admin
 {
     class EmailNotification
     {
-        MailAddress to = new MailAddress("mohamedbaza16@gmail.com", "Mohammed BAZA");
+        MailAddress to = new MailAddress("malik.benmakhlouf@gmail.com", "Malik Benmakhlouf");
         MailAddress from = new MailAddress("noreply.espacenet@gmail.com", "Espace Net Mailer");
 
 

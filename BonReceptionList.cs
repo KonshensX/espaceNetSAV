@@ -268,7 +268,7 @@ namespace espaceNetSAV
             {
                 if (AccessRow(e.RowIndex, myCheckbox.Index).ToLower() == "true")
                 {
-                    if (MessageBox.Show("This requires your attention!", "Attention", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                    if (MessageBox.Show("Attention!", "Attention", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                     {
                         BonReception bonObject = new BonReception().getItem(Convert.ToInt32(BonDataGrid.Rows[e.RowIndex].Cells["Bon N°"].Value));
 
@@ -286,7 +286,7 @@ namespace espaceNetSAV
 
                         try
                         {
-                            new Admin.EmailNotification(bonObject);
+                            //new Admin.EmailNotification(bonObject);
                         }
                         catch (Exception ex)
                         {

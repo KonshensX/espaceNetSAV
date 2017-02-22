@@ -292,7 +292,19 @@ namespace espaceNetSAV
                 using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {
                     this.databaseObject.openConnection();
-                    lastID = Convert.ToInt32(myCommand.ExecuteScalar());
+                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                    {
+                        if (myReader.HasRows)
+                        {
+
+                            while (myReader.Read())
+                            {
+                                if (myReader[0] is DBNull)
+                                    return 0;
+                                   lastID = Convert.ToInt32(myReader[0]);
+                            }
+                        }
+                    }
                 }
                 return lastID;
             } 
