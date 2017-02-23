@@ -140,6 +140,12 @@
       <DependentUpon>BonReceptionList.cs</DependentUpon>
     </Compile>
     <Compile Include="BonReceptionServices.cs" />
+    <Compile Include="ChangeValuesBonReception.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangeValuesBonReception.Designer.cs">
+      <DependentUpon>ChangeValuesBonReception.cs</DependentUpon>
+    </Compile>
     <Compile Include="Client.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="DesignationReception.cs" />
@@ -223,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BonReceptionList.resx">
       <DependentUpon>BonReceptionList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangeValuesBonReception.resx">
+      <DependentUpon>ChangeValuesBonReception.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

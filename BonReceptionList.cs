@@ -16,6 +16,7 @@ namespace espaceNetSAV
         DataTable myDataSource;
         DataGridViewTextBoxColumn myEtatColumn;
         DataGridViewCheckBoxColumn myCheckbox;
+        DataGridViewRow currentSelectedRow;
 
         public BonReceptionList()
         {
@@ -330,6 +331,19 @@ namespace espaceNetSAV
 
             dataView = new DataView(myDataSource);
             //dataView.Sort = "Bon N° DESC";
+        }
+
+        private void modifierLaLigneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BonReception bonObject = new BonReception().getItem(Convert.ToInt32(AccessRow(currentSelectedRow.Index, "Bon N°")));
+            ChangeValuesBonReception formObject = new ChangeValuesBonReception(bonObject);
+
+            formObject.Show();
+        }
+
+        private void BonDataGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            currentSelectedRow = BonDataGrid.Rows[e.RowIndex];
         }
 
     }

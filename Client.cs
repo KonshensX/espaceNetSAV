@@ -44,6 +44,16 @@ namespace espaceNetSAV
             this.clientType = typeClient;
         }
 
+        public Client(string nom, string tel, string email, string fax, string contact)
+        {
+            databaseObject = new Database();
+            this.id = this.getLastID() + 1;
+            this.nom = nom;
+            this.tel = tel;
+            this.email = email;
+            this.fax = fax;
+        }
+
         #region Methodes 
         public int getClientType(ClientType clientType)
         {
@@ -363,6 +373,31 @@ namespace espaceNetSAV
             catch (Exception)
             {
                 throw;
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
+        }
+
+        public void Update()
+        {
+            try
+            {
+                string query = "UPDATE client SET nom = @nom, tel = @tel, email = @email, fax = @fax WHERE id = @id ";
+
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+                {
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@nom", this.nom);
+                    myCommand.Parameters.AddWithValue("@tel", this.tel);
+                    myCommand.Parameters.AddWithValue("@email", this.email);
+                    myCommand.Parameters.AddWithValue("@fax", this.fax);
+                    myCommand.Parameters.AddWithValue("@id", this.id);
+
+                    myCommand.ExecuteNonQuery();
+
+                }
             }
             finally
             {

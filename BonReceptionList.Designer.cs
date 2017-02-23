@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,11 +45,15 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.actualiserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actualiséToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.modifierLaLigneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.detailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BonDataGrid)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -176,6 +181,7 @@
             this.BonDataGrid.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BonDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.BonDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.BonDataGrid.ContextMenuStrip = this.contextMenuStrip1;
             this.BonDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BonDataGrid.GridColor = System.Drawing.Color.White;
             this.BonDataGrid.Location = new System.Drawing.Point(3, 16);
@@ -186,6 +192,7 @@
             this.BonDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_CellContentClick);
             this.BonDataGrid.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_CellContentDoubleClick);
             this.BonDataGrid.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.BonDataGrid_CellMouseUp);
+            this.BonDataGrid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_RowEnter);
             // 
             // menuStrip1
             // 
@@ -214,6 +221,27 @@
             this.actualiséToolStripMenuItem.Text = "Actualisé (Beta)";
             this.actualiséToolStripMenuItem.Click += new System.EventHandler(this.actualiséToolStripMenuItem_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modifierLaLigneToolStripMenuItem,
+            this.detailsToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(161, 48);
+            // 
+            // modifierLaLigneToolStripMenuItem
+            // 
+            this.modifierLaLigneToolStripMenuItem.Name = "modifierLaLigneToolStripMenuItem";
+            this.modifierLaLigneToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.modifierLaLigneToolStripMenuItem.Text = "Modifier la ligne";
+            this.modifierLaLigneToolStripMenuItem.Click += new System.EventHandler(this.modifierLaLigneToolStripMenuItem_Click);
+            // 
+            // detailsToolStripMenuItem
+            // 
+            this.detailsToolStripMenuItem.Name = "detailsToolStripMenuItem";
+            this.detailsToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.detailsToolStripMenuItem.Text = "Details";
+            // 
             // BonReceptionList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -235,6 +263,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.BonDataGrid)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -258,5 +287,8 @@
         private System.Windows.Forms.ToolStripMenuItem actualiserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem actualiséToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem modifierLaLigneToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem detailsToolStripMenuItem;
     }
 }

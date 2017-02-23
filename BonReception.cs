@@ -439,6 +439,12 @@ namespace espaceNetSAV
             }
         }
 
-        
+
+
+        public void Update()
+        {
+            this.client.Update();
+            this.designationReception.Update();
+        }
     }
 }

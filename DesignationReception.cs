@@ -169,5 +169,30 @@ namespace espaceNetSAV
                 this.databaseObject.closeConnection();
             }
         }
+
+        /// <summary>
+        /// Updates the object
+        /// </summary>
+        public void Update()
+        {
+            try
+            {
+                string query = "UPDATE receptiondesignation SET designation = @designation, probleme = @probleme WHERE id = @id";
+
+                using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
+                {
+                    this.databaseObject.openConnection();
+                    myCommand.Parameters.AddWithValue("@designation", this.designation);
+                    myCommand.Parameters.AddWithValue("@probleme", this.probleme);
+                    myCommand.Parameters.AddWithValue("@id", this.id);
+
+                    myCommand.ExecuteNonQuery();
+                }
+            }
+            finally
+            {
+                this.databaseObject.closeConnection();
+            }
+        }
     }
 }
