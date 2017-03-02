@@ -13,4 +13,15 @@
 	* After the app connect and the database is configured i no longer need the file.
 	* I need something to tell me if i should display the initial configuration form for ther user or not.
 	* Proper solution is to do everything in the Program class.
+	
 
+
+
+	/* ---------------- MORE NOTES 03/02/2017 -----------------------*/
+
+	* File must exists 
+	* Checking if the file has any values or not 
+		* If the file is empty then we should display the Configuration form to allow the user to configure the database
+		* If the file is full then i need to read the data out of it 
+		* Pass the data that i got out of the file to the database constructor.
+		* More exception handling is required in this case.

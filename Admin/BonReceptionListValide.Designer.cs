@@ -42,13 +42,10 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.BonDataGrid = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.actualiserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.actualiséToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BonDataGrid)).BeginInit();
-            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -189,30 +186,11 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.actualiserToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(950, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // actualiserToolStripMenuItem
-            // 
-            this.actualiserToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.actualiséToolStripMenuItem});
-            this.actualiserToolStripMenuItem.Name = "actualiserToolStripMenuItem";
-            this.actualiserToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.actualiserToolStripMenuItem.Text = "Options";
-            this.actualiserToolStripMenuItem.Click += new System.EventHandler(this.actualiserToolStripMenuItem_Click);
-            // 
-            // actualiséToolStripMenuItem
-            // 
-            this.actualiséToolStripMenuItem.Image = global::espaceNetSAV.Properties.Resources._131_spinner9;
-            this.actualiséToolStripMenuItem.Name = "actualiséToolStripMenuItem";
-            this.actualiséToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.actualiséToolStripMenuItem.Text = "Actualisé (Beta)";
-            this.actualiséToolStripMenuItem.Click += new System.EventHandler(this.actualiséToolStripMenuItem_Click);
             // 
             // BonReceptionListValide
             // 
@@ -233,8 +211,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BonDataGrid)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,8 +231,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem actualiserToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem actualiséToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
     }
 }
