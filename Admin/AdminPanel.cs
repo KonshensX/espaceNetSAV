@@ -26,6 +26,7 @@ namespace espaceNetSAV.Admin
 
             myCategoriesList = catObject.GetCategories();
 
+
             usersListDB = userObject.GetAllUsers();
             InitializeComponent();
         }
@@ -71,7 +72,7 @@ namespace espaceNetSAV.Admin
 
         private void AdminPanel_Load(object sender, EventArgs e)
         {
-
+            this.createdmessageholder.Visible = false;
 
             this.ResizeColumns();
             this.FillSomeDummyData();
@@ -146,7 +147,11 @@ namespace espaceNetSAV.Admin
 
             User userObject = new User(usernameTBox.Text, crypted, categoryObject);
 
-
+            if (usernameTBox.Text.Equals("") || categoryCBox.Text.Equals("Veuillez selectionner le category"))
+            {
+                createdmessageholder.Text = "Champs Invalid!!";
+                return;
+            }
             this.createUserAndAddToUI(userObject, categoryObject);
             var queriesResult = userObject.createUser();
 
@@ -155,10 +160,20 @@ namespace espaceNetSAV.Admin
 
             if (queriesResult > 0)
             {
-                this.clearStatusBarWithMessage("Utilisateur bien creé");
+                createdmessageholder.Text = "Utilisateur bien creé";
+                //this.clearStatusBarWithMessage("Utilisateur bien creé");
+                this.EmptyAllFieldsAfertAdding();
             }
-
+            
             usersListDB = userObject.GetAllUsers();
+        }
+
+        private void EmptyAllFieldsAfertAdding()
+        {
+            usernameTBox.Text = "";
+            pwdTBox.Text = "";
+            pwdTBoxConf.Text = "";
+            categoryCBox.Text = "Veuillez selectionner le category";
         }
 
         private void createUserAndAddToUI(User userObject, Category category)

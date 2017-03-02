@@ -81,6 +81,7 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.createdmessageholder = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -469,6 +470,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.createdmessageholder);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.categoryCBox);
             this.groupBox2.Controls.Add(this.pwdTBoxConf);
@@ -621,6 +623,17 @@
             this.toolStripStatusLabel1.Spring = true;
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
+            // createdmessageholder
+            // 
+            this.createdmessageholder.AutoSize = true;
+            this.createdmessageholder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createdmessageholder.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.createdmessageholder.Location = new System.Drawing.Point(122, 204);
+            this.createdmessageholder.Name = "createdmessageholder";
+            this.createdmessageholder.Size = new System.Drawing.Size(142, 24);
+            this.createdmessageholder.TabIndex = 16;
+            this.createdmessageholder.Text = "Some message";
+            // 
             // AdminPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -714,6 +727,7 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBoxValide;
         private System.Windows.Forms.CheckBox checkBoxHistory;
+        private System.Windows.Forms.Label createdmessageholder;
 
     }
 }

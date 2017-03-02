@@ -35,6 +35,10 @@ namespace espaceNetSAV
             BonDataGrid.Columns["Tech ID"].Visible = false;
             BonDataGrid.Columns["Designation ID"].Visible = false;
             BonDataGrid.Columns["Clients ID"].Visible = false;
+            BonDataGrid.Columns["Telephone"].Visible = false;
+            BonDataGrid.Columns["Fax"].Visible = false;
+            BonDataGrid.Columns["Contact"].Visible = false;
+            BonDataGrid.Columns["Email"].Visible = false;
             BonDataGrid.Columns["ID Bon"].Visible = false;
             BonDataGrid.Columns["Tech ID ID"].Visible = false;
             BonDataGrid.Columns["Etat"].Visible = false; //Index of this field is 20 (Original Field)

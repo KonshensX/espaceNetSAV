@@ -1,0 +1,16 @@
+﻿- Configuration file is stored in the server and the data will bet fetched from the server;
+
+	* Check in a local computer if the user has configured his database or not.
+	* If the user has not configured the database yet i display the configuration form to fill in the fields.
+	* After that the appication can connect to the database directly.
+
+- HOW??
+
+	* Check whether the file exists on local computer if not then create it.NOO!!
+	* Check if the file has any values or not.
+	* The application checks for the file before connecting to the database.
+	* The app uses the configuration in the file for initial connection.
+	* After the app connect and the database is configured i no longer need the file.
+	* I need something to tell me if i should display the initial configuration form for ther user or not.
+	* Proper solution is to do everything in the Program class.
+

@@ -18,7 +18,7 @@ namespace espaceNetSAV
         {
             try
             {
-                this.server = "localhost"; //local server 
+                this.server = "127.0.0.1"; //local server 
                 this.uid = "root";
                 this.password = "";
                 //this.server = "192.168.1.2"; //Remote server A.K.A Actual Server 

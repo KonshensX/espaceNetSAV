@@ -25,3 +25,4 @@ C:\Users\konshensx\Documents\Visual Studio 2013\Projects\espaceNetSAV\espaceNetS
 C:\Users\konshensx\Documents\Visual Studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.Testing.History.resources
 C:\Users\konshensx\Documents\Visual Studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.Testing.Logger.resources
 C:\Users\konshensx\Documents\Visual Studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.ChangeValuesBonReception.resources
+C:\Users\konshensx\Documents\Visual Studio 2013\Projects\espaceNetSAV\espaceNetSAV\obj\Debug\espaceNetSAV.Admin.Configuration.resources

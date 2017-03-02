@@ -8,12 +8,14 @@ namespace espaceNetSAV.Admin
     class EmailNotification
     {
         //MailAddress to = new MailAddress("malik.benmakhlouf@gmail.com", "Malik Benmakhlouf");
-        MailAddress to = new MailAddress("mohamedbaza16@gmail.com", "Malik Benmakhlouf");
-        MailAddress from = new MailAddress("noreply.espacenet@gmail.com", "Espace Net Mailer");
+        MailAddress to;
+        MailAddress from;
 
 
-        public EmailNotification(BonReception bonObject)
+        public EmailNotification(BonReception bonObject, string receiver)
         {
+            to = new MailAddress(receiver);
+            from = new MailAddress("noreply.espacenet@gmail.com", "Espace Net Mailer");
             /*
             mail = new MailMessage(SENDER, RECIEVER);
             client = new SmtpClient();

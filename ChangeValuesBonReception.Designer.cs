@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChangeValuesBonReception));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cancelbtn = new System.Windows.Forms.Button();
+            this.applybtn = new System.Windows.Forms.Button();
             this.clientTBox = new System.Windows.Forms.TextBox();
             this.refAchattbox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -47,8 +50,6 @@
             this.telTBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.applybtn = new System.Windows.Forms.Button();
-            this.cancelbtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,6 +82,26 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Champs";
+            // 
+            // cancelbtn
+            // 
+            this.cancelbtn.Location = new System.Drawing.Point(574, 323);
+            this.cancelbtn.Name = "cancelbtn";
+            this.cancelbtn.Size = new System.Drawing.Size(137, 36);
+            this.cancelbtn.TabIndex = 42;
+            this.cancelbtn.Text = "Annuler";
+            this.cancelbtn.UseVisualStyleBackColor = true;
+            this.cancelbtn.Click += new System.EventHandler(this.cancelbtn_Click);
+            // 
+            // applybtn
+            // 
+            this.applybtn.Location = new System.Drawing.Point(178, 323);
+            this.applybtn.Name = "applybtn";
+            this.applybtn.Size = new System.Drawing.Size(131, 36);
+            this.applybtn.TabIndex = 41;
+            this.applybtn.Text = "Appliquer";
+            this.applybtn.UseVisualStyleBackColor = true;
+            this.applybtn.Click += new System.EventHandler(this.applybtn_Click);
             // 
             // clientTBox
             // 
@@ -248,34 +269,15 @@
             this.label1.TabIndex = 23;
             this.label1.Text = "Client ";
             // 
-            // applybtn
-            // 
-            this.applybtn.Location = new System.Drawing.Point(178, 323);
-            this.applybtn.Name = "applybtn";
-            this.applybtn.Size = new System.Drawing.Size(131, 36);
-            this.applybtn.TabIndex = 41;
-            this.applybtn.Text = "Appliquer";
-            this.applybtn.UseVisualStyleBackColor = true;
-            this.applybtn.Click += new System.EventHandler(this.applybtn_Click);
-            // 
-            // cancelbtn
-            // 
-            this.cancelbtn.Location = new System.Drawing.Point(574, 323);
-            this.cancelbtn.Name = "cancelbtn";
-            this.cancelbtn.Size = new System.Drawing.Size(137, 36);
-            this.cancelbtn.TabIndex = 42;
-            this.cancelbtn.Text = "Annuler";
-            this.cancelbtn.UseVisualStyleBackColor = true;
-            this.cancelbtn.Click += new System.EventHandler(this.cancelbtn_Click);
-            // 
             // ChangeValuesBonReception
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(864, 406);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ChangeValuesBonReception";
-            this.Text = "ChangeValuesBonReception";
+            this.Text = "Modifier";
             this.Load += new System.EventHandler(this.ChangeValuesBonReception_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

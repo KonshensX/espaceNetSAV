@@ -88,6 +88,10 @@ namespace espaceNetSAV
             BonDataGrid.Columns["Client Type"].Visible = false;
             BonDataGrid.Columns["ID Bon"].Visible = false;
             BonDataGrid.Columns["Etat"].Visible = false;
+            BonDataGrid.Columns["Email"].Visible = false;
+            BonDataGrid.Columns["Telephone"].Visible = true;
+            BonDataGrid.Columns["Email"].Visible = false;
+            BonDataGrid.Columns["Ref Achat"].Visible = false;
             BonDataGrid.Columns["Tech ID"].Visible = false;
             BonDataGrid.Columns["Devis"].Visible = false;
             BonDataGrid.Columns["Tech ID ID"].Visible = false;
@@ -162,7 +166,9 @@ namespace espaceNetSAV
 
                     //Send mail to notify admin that the item is ready to be handed
 
-                    new Admin.EmailNotification(new BonReception().getItem(Convert.ToInt32(AccessRow(e.RowIndex, "Bon N°"))));
+                    new Admin.EmailNotification(new BonReception().getItem(Convert.ToInt32(AccessRow(e.RowIndex, "Bon N°"))), "malik.benmakhlouf@gmail.com");
+
+                    new Admin.EmailNotification(new BonReception().getItem(Convert.ToInt32(AccessRow(e.RowIndex, "Bon N°"))), "en.samira01@gmail.com");
 
                 }
                 else if (((bool)BonDataGrid.Rows[BonDataGrid.CurrentRow.Index].Cells[repeared.Index].Value) == false)

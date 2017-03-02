@@ -48,6 +48,8 @@ namespace espaceNetSAV
 
 
             bonObject.Update();
+            this.Close();
+            //TODO: I need to update the data in the datagridview in order for the user to see the changes.
         }
 
         private void cancelbtn_Click(object sender, EventArgs e)
@@ -56,6 +58,9 @@ namespace espaceNetSAV
             this.Close();
         }
 
+        /// <summary>
+        /// Fill the fields with the passed in data 
+        /// </summary>
         public void FillFieldsWithData()
         {
             clientTBox.Text = bonObject.client.nom;
