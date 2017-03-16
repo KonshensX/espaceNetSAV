@@ -8,7 +8,7 @@ namespace espaceNetSAV
     {
         //Not used yet
         static string filename = "config.data";
-        public static espaceNetSAV.Admin.User _USER ;
+        public static espaceNetSAV.Admin.User _USER = new Admin.User();
 
         //Getting the configs from the database
         
@@ -20,19 +20,19 @@ namespace espaceNetSAV
         static void Main()
         {
             //Initial configuration using the file.
-            Form formObject = new Form();
-            if (CheckForInitialConfiguration()) 
+            //Form formObject = new Form();
+            /*if (CheckForInitialConfiguration()) 
             {
                 //This means the file doesn't have any value there for display the configuration form for the user
-                formObject = new Admin.Configuration();
+                //formObject = new Admin.Configuration();
             }
             else
             {
                 //This means the application is already configured 
                 //This will run when the application is already configured.
-                _USER = new Admin.User();
-                formObject = new SplashScreen();
-            }
+                //_USER = new Admin.User();
+                //formObject = new SplashScreen();
+            }*/
 
             //End of intial configuration
 
