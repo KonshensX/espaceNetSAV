@@ -34,6 +34,12 @@ namespace espaceNetSAV.Admin
             BonDataGrid.Columns["Tech ID"].Visible = false;
             BonDataGrid.Columns["Designation ID"].Visible = false;
             BonDataGrid.Columns["Clients ID"].Visible = false;
+            BonDataGrid.Columns["Telephone"].Visible = false;
+            BonDataGrid.Columns["Ref Achat"].Visible = false;
+            BonDataGrid.Columns["Devis"].Visible = false;
+            BonDataGrid.Columns["Fax"].Visible = false;
+            BonDataGrid.Columns["Contact"].Visible = false;
+            BonDataGrid.Columns["Email"].Visible = false;
             BonDataGrid.Columns["ID Bon"].Visible = false;
             BonDataGrid.Columns["Tech ID ID"].Visible = false;
             BonDataGrid.Columns["Etat"].Visible = false; //Index of this field is 20 (Original Field)
@@ -308,6 +314,7 @@ namespace espaceNetSAV.Admin
             return BonDataGrid.Rows[rowIndex].Cells[cellIndex].Value.ToString();
         }
 
+        //Load the data into the database
         private void LoadDataIntoDataGrid()
         {
 
@@ -322,9 +329,13 @@ namespace espaceNetSAV.Admin
             this.onLoadUpdateStatusText();
         }
 
+        /// <summary>
+        /// Gets the data from the database
+        /// </summary>
         public void GetDataFromDataBase()
         {
-            myDataSource = bonReceptionService.GetData();
+            //I only need to get the rows that are `Valide`, the code below gets all the data from the database
+            myDataSource = bonReceptionService.GetDataValide();
 
             dataView = new DataView(myDataSource);
             //dataView.Sort = "Bon N° DESC";

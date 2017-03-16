@@ -36,6 +36,8 @@ namespace espaceNetSAV
             BonDataGrid.Columns["Designation ID"].Visible = false;
             BonDataGrid.Columns["Clients ID"].Visible = false;
             BonDataGrid.Columns["Telephone"].Visible = false;
+            BonDataGrid.Columns["Ref Achat"].Visible = false;
+            BonDataGrid.Columns["Devis"].Visible = false;
             BonDataGrid.Columns["Fax"].Visible = false;
             BonDataGrid.Columns["Contact"].Visible = false;
             BonDataGrid.Columns["Email"].Visible = false;

@@ -40,7 +40,6 @@
             this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.historiqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.historiqueToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.viderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.déconnecterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -65,6 +64,7 @@
             this.passwordEditTboxConf = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.createdmessageholder = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.categoryCBox = new System.Windows.Forms.ComboBox();
             this.pwdTBoxConf = new System.Windows.Forms.TextBox();
@@ -81,7 +81,6 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.createdmessageholder = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -128,7 +127,7 @@
             // 
             this.réceptionToolStripMenuItem.Image = global::espaceNetSAV.Properties.Resources._119_user_tie;
             this.réceptionToolStripMenuItem.Name = "réceptionToolStripMenuItem";
-            this.réceptionToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.réceptionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.réceptionToolStripMenuItem.Text = "Réception";
             this.réceptionToolStripMenuItem.Click += new System.EventHandler(this.réceptionToolStripMenuItem_Click);
             // 
@@ -139,7 +138,7 @@
             this.pasEncoreToolStripMenuItem});
             this.listCompleteToolStripMenuItem.Image = global::espaceNetSAV.Properties.Resources._039_file_text2;
             this.listCompleteToolStripMenuItem.Name = "listCompleteToolStripMenuItem";
-            this.listCompleteToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.listCompleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.listCompleteToolStripMenuItem.Text = "List complete";
             this.listCompleteToolStripMenuItem.Click += new System.EventHandler(this.listCompleteToolStripMenuItem_Click);
             // 
@@ -163,7 +162,7 @@
             // 
             this.techniqueToolStripMenuItem.Image = global::espaceNetSAV.Properties.Resources._429_steam;
             this.techniqueToolStripMenuItem.Name = "techniqueToolStripMenuItem";
-            this.techniqueToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.techniqueToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.techniqueToolStripMenuItem.Text = "Technique";
             this.techniqueToolStripMenuItem.Click += new System.EventHandler(this.techniqueToolStripMenuItem_Click);
             // 
@@ -179,15 +178,14 @@
             // quitterToolStripMenuItem
             // 
             this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.quitterToolStripMenuItem.Text = "Quitter";
             this.quitterToolStripMenuItem.Click += new System.EventHandler(this.quitterToolStripMenuItem_Click);
             // 
             // historiqueToolStripMenuItem
             // 
             this.historiqueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.historiqueToolStripMenuItem1,
-            this.viderToolStripMenuItem});
+            this.historiqueToolStripMenuItem1});
             this.historiqueToolStripMenuItem.Image = global::espaceNetSAV.Properties.Resources._033_books;
             this.historiqueToolStripMenuItem.Name = "historiqueToolStripMenuItem";
             this.historiqueToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
@@ -197,17 +195,9 @@
             // 
             this.historiqueToolStripMenuItem1.Image = global::espaceNetSAV.Properties.Resources._033_books;
             this.historiqueToolStripMenuItem1.Name = "historiqueToolStripMenuItem1";
-            this.historiqueToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
+            this.historiqueToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.historiqueToolStripMenuItem1.Text = "Liste complete";
             this.historiqueToolStripMenuItem1.Click += new System.EventHandler(this.historiqueToolStripMenuItem1_Click);
-            // 
-            // viderToolStripMenuItem
-            // 
-            this.viderToolStripMenuItem.Image = global::espaceNetSAV.Properties.Resources._173_bin;
-            this.viderToolStripMenuItem.Name = "viderToolStripMenuItem";
-            this.viderToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
-            this.viderToolStripMenuItem.Text = "Vider";
-            this.viderToolStripMenuItem.Click += new System.EventHandler(this.viderToolStripMenuItem_Click);
             // 
             // déconnecterToolStripMenuItem
             // 
@@ -487,6 +477,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Informations";
             // 
+            // createdmessageholder
+            // 
+            this.createdmessageholder.AutoSize = true;
+            this.createdmessageholder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createdmessageholder.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.createdmessageholder.Location = new System.Drawing.Point(122, 204);
+            this.createdmessageholder.Name = "createdmessageholder";
+            this.createdmessageholder.Size = new System.Drawing.Size(142, 24);
+            this.createdmessageholder.TabIndex = 16;
+            this.createdmessageholder.Text = "Some message";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -623,17 +624,6 @@
             this.toolStripStatusLabel1.Spring = true;
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
-            // createdmessageholder
-            // 
-            this.createdmessageholder.AutoSize = true;
-            this.createdmessageholder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createdmessageholder.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.createdmessageholder.Location = new System.Drawing.Point(122, 204);
-            this.createdmessageholder.Name = "createdmessageholder";
-            this.createdmessageholder.Size = new System.Drawing.Size(142, 24);
-            this.createdmessageholder.TabIndex = 16;
-            this.createdmessageholder.Text = "Some message";
-            // 
             // AdminPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -716,7 +706,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ToolStripMenuItem historiqueToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem historiqueToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem viderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem réceptionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listCompleteToolStripMenuItem;

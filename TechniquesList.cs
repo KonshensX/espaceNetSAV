@@ -83,18 +83,18 @@ namespace espaceNetSAV
             BonDataGrid.Columns["Bon N°"].Visible = true;
             BonDataGrid.Columns["Client ID"].Visible = false;
             BonDataGrid.Columns["Designations ID"].Visible = false;
+            BonDataGrid.Columns["Tech ID"].Visible = false;
             BonDataGrid.Columns["Designation ID"].Visible = false;
             BonDataGrid.Columns["Clients ID"].Visible = false;
-            BonDataGrid.Columns["Client Type"].Visible = false;
-            BonDataGrid.Columns["ID Bon"].Visible = false;
-            BonDataGrid.Columns["Etat"].Visible = false;
-            BonDataGrid.Columns["Email"].Visible = false;
-            BonDataGrid.Columns["Telephone"].Visible = true;
-            BonDataGrid.Columns["Email"].Visible = false;
+            BonDataGrid.Columns["Telephone"].Visible = false;
             BonDataGrid.Columns["Ref Achat"].Visible = false;
-            BonDataGrid.Columns["Tech ID"].Visible = false;
             BonDataGrid.Columns["Devis"].Visible = false;
+            BonDataGrid.Columns["Fax"].Visible = false;
+            BonDataGrid.Columns["Contact"].Visible = false;
+            BonDataGrid.Columns["Email"].Visible = false;
+            BonDataGrid.Columns["ID Bon"].Visible = false;
             BonDataGrid.Columns["Tech ID ID"].Visible = false;
+            BonDataGrid.Columns["Etat"].Visible = false; //Index of this field is 20 (Original Field)
             BonDataGrid.Columns["Validé"].Visible = false;
             BonDataGrid.Columns["Status"].HeaderText = "Validé";
             //MessageBox.Show(repeared.Index.ToString());
@@ -426,7 +426,6 @@ namespace espaceNetSAV
 
         private void historiqueToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             if (!Program._USER.Permissions.CanSeeHistory)
             {
                 MessageBox.Show("Vous pouvez pas ouvrir ce fenetre!");
