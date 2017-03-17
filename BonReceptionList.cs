@@ -283,7 +283,7 @@ namespace espaceNetSAV
 
                         bonObject.UpdateDossierStatus();
 
-                        new Admin.History(string.Format("Validé le dossier N° {0} de {1}", AccessRow(e.RowIndex, "Bon N°"), AccessRow(e.RowIndex, "Nom")), "", Program._USER).Save();
+                        new Admin.History(Convert.ToInt32(AccessRow(e.RowIndex, "Bon N°")), String.Format("Validé le dossier N° {0} de {1}", AccessRow(e.RowIndex, "Bon N°"), AccessRow(e.RowIndex, "Nom")), "", Program._USER).Save();
                         this.statusStrip1.Items.Clear();
 
                         this.statusStrip1.Items.Add("Dossier validé et notification mail a été envoyé");

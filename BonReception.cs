@@ -83,7 +83,7 @@ namespace espaceNetSAV
             }
         }
         /// <summary>
-        /// Gets all the data in the Bon Reception table
+        /// Gets all the data in the Bon Reception table where dossieretat is 0 `Pas encore valide`
         /// </summary>
         /// <returns></returns>
         public DataTable GetData()

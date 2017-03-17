@@ -20,7 +20,7 @@ namespace espaceNetSAV.Admin
 
             foreach (History item in myList)
             {
-                listView1.Items.Add(new ListViewItem(new string[] { item.User.Name, item.Date.ToString("dd/MM/yyyy HH:mm"), item.OldValue, item.NewValue }));
+                listView1.Items.Add(new ListViewItem(new string[] { item.User.Name, item.Date.ToString("dd/MM/yyyy HH:mm"), item.OldValue, item.NewValue, item.BonNumero.ToString() }));
             }
 
         }

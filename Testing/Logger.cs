@@ -17,7 +17,7 @@ namespace espaceNetSAV.Testing
             Program._USER.GetUser(9);
             for (int i = 0; i < _LIMIT; i++)
             {
-                new Admin.History(String.Format("Old value {0}", i), String.Format("New Value {0}", i), Program._USER).Save();
+                //new Admin.History(String.Format("Old value {0}", i), String.Format("New Value {0}", i), Program._USER).Save();
 
                 listView1.Items.Add(new ListViewItem(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), String.Format("{0} Ajouter avec success!", i)));
             }

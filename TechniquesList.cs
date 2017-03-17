@@ -54,6 +54,7 @@ namespace espaceNetSAV
             BonDataGrid.Columns.Add(repeared);
             repeared.HeaderText = "Status";
             repeared.Name = "status";
+            repeared.Width = 20;
 
             //Adding a new text columns to the checkbox 
             //Why this Field?
@@ -162,7 +163,7 @@ namespace espaceNetSAV
                     //This where the value should be updated to 1 which means it was fixed 
                     techObject.updateItemStatus((cellValue) ? Status.Fixed : Status.BeingRepeared);
 
-                    new Admin.History("Bon N° état: En Cours ", "Réparé", Program._USER).Save();
+                    new Admin.History(Convert.ToInt32(AccessRow(e.RowIndex, "Bon N°")), "En Cours ", "Réparé", Program._USER).Save();
 
                     //Send mail to notify admin that the item is ready to be handed
 
@@ -177,7 +178,7 @@ namespace espaceNetSAV
                     //This is where the value updates to 0 which means the item was not fixed or its still being repeared
                     techObject.updateItemStatus((cellValue) ? Status.Fixed : Status.BeingRepeared);
 
-                    new Admin.History("Bon N° etat: Réparé", "En Cours", Program._USER).Save();
+                    new Admin.History(Convert.ToInt32(AccessRow(e.RowIndex, "Bon N°")), "Réparé", "En Cours", Program._USER).Save();
                 }
                 this.ClearStatusBarWithMessage("Etat bien changer");
             }
@@ -234,20 +235,20 @@ namespace espaceNetSAV
                 if (!initialDiagnostic.Equals(BonDataGrid.Rows[e.RowIndex].Cells["Diagnostics"].Value.ToString()))
                 {
                     var diagnostics = AccessRow(e.RowIndex, "Diagnostics");
-                    new Admin.History(String.Format("Bon N°: {0} - {1}", this.AccessRow(e.RowIndex, "Bon N°"), initialDiagnostic), diagnostics, Program._USER).Save();
+                    new Admin.History(Convert.ToInt32(AccessRow(e.RowIndex, "Bon N°")), String.Format("{1}", this.AccessRow(e.RowIndex, "Bon N°"), initialDiagnostic), diagnostics, Program._USER).Save();
                 }
 
                 if (!initialTasks.Equals(BonDataGrid.Rows[e.RowIndex].Cells["Tàches Effectuer"].Value.ToString()))
                 {
                     var tasks = AccessRow(e.RowIndex, "Tàches Effectuer");
-                    new Admin.History(String.Format("Bon N°: {0} - {1}", this.AccessRow(e.RowIndex, "Bon N°"), initialTasks), tasks, Program._USER).Save();
+                    new Admin.History(Convert.ToInt32(AccessRow(e.RowIndex, "Bon N°")), String.Format("{1}", this.AccessRow(e.RowIndex, "Bon N°"), initialTasks), tasks, Program._USER).Save();
                 }
 
 
                 if (!intitialPrice.Equals(BonDataGrid.Rows[e.RowIndex].Cells["Prix"].Value.ToString()))
                 {
                     //This is going to hold the history section*
-                    new Admin.History(String.Format("Ancienne Valeur: {0}", intitialPrice), String.Format("Nouvelle Valeur: {0}", AccessRow(e.RowIndex, "Prix")), Program._USER).Save();
+                    new Admin.History(Convert.ToInt32(AccessRow(e.RowIndex, "Bon N°")), String.Format("Ancienne Valeur: {0}", intitialPrice), String.Format("Nouvelle Valeur: {0}", AccessRow(e.RowIndex, "Prix")), Program._USER).Save();
                 }
 
             }

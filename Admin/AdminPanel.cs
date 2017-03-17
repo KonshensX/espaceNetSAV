@@ -287,7 +287,6 @@ namespace espaceNetSAV.Admin
 
         private void FillUserHistoryListView()
         {
-
             this.EmptyListView();
             //Fill the list view 
             History historyObject = new History(currentUser);
@@ -296,7 +295,9 @@ namespace espaceNetSAV.Admin
 
             foreach (History item in myList)
             {
-                ListViewItem tempItem = new ListViewItem(new string[] {item.Date.ToString("dd/MM/yyyy HH:mm"), item.OldValue, item.NewValue});
+                //Adds the row to the list temp item
+                ListViewItem tempItem = new ListViewItem(new string[] { item.Date.ToString("dd/MM/yyyy HH:mm"), item.OldValue, item.NewValue, item.BonNumero.ToString() });
+                //Adds the temp item to the list
                 listView1.Items.Add(tempItem);
             }
 
@@ -370,7 +371,6 @@ namespace espaceNetSAV.Admin
             if (temp.Parent == null)
                 return;
             temp.Text = usernameEditTbox.Text;
-
         }
 
         private void réceptionToolStripMenuItem_Click(object sender, EventArgs e)
