@@ -380,6 +380,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Notesd.txt" />
+    <None Include="Resources\149-cog.png" />
+    <None Include="Resources\277-exit.png" />
+    <None Include="Resources\150-cogs1.png" />
     <None Include="Resources\272-cross1.png" />
     <None Include="Resources\272-cross.png" />
   </ItemGroup>

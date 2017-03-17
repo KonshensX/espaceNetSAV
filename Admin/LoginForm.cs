@@ -99,7 +99,7 @@ namespace espaceNetSAV.Admin
                 }
 
                 Program._USER = userObject.GetUser(USERNAME, cryptedPwd);
-
+                /*
                 if (Program._USER.isAdmin())
                 {
                     Program._USER.Permissions.CanSeeHistory = true;
@@ -124,6 +124,11 @@ namespace espaceNetSAV.Admin
                     this.Hide();
 
                 }
+                 * */
+
+                FormulaireReception formObject = new FormulaireReception();
+                this.Hide();
+                formObject.Show();
                 return;
             }
 

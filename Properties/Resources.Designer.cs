@@ -153,9 +153,29 @@ namespace espaceNetSAV.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _149_cog {
+            get {
+                object obj = ResourceManager.GetObject("149-cog", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _150_cogs {
             get {
                 object obj = ResourceManager.GetObject("150-cogs", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _150_cogs1 {
+            get {
+                object obj = ResourceManager.GetObject("150-cogs1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -206,6 +226,16 @@ namespace espaceNetSAV.Properties {
         internal static System.Drawing.Bitmap _273_checkmark {
             get {
                 object obj = ResourceManager.GetObject("273-checkmark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _277_exit {
+            get {
+                object obj = ResourceManager.GetObject("277-exit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

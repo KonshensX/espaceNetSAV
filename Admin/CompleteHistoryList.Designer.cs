@@ -68,6 +68,7 @@
             // 
             // columnHeader1
             // 
+            this.columnHeader1.DisplayIndex = 1;
             this.columnHeader1.Text = "Utilisateur";
             this.columnHeader1.Width = 120;
             // 
@@ -90,6 +91,7 @@
             // 
             // columnHeader5
             // 
+            this.columnHeader5.DisplayIndex = 2;
             this.columnHeader5.Text = "Bon N°";
             // 
             // CompleteHistoryList

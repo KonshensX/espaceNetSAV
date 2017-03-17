@@ -205,5 +205,26 @@ namespace espaceNetSAV
         {
             this.Refresh();
         }
+
+        private void paneauDAdministrationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Open the admin panel 
+            //Maybe i should check if the user is admin first and then decide whether he can see it or nah
+            if (Program._USER.isAdmin())
+            {
+                Admin.AdminPanel formObject = new Admin.AdminPanel();
+                formObject.Show();
+            }
+            else
+            {
+                MessageBox.Show("Vous avez pas le droit d'acéder a cette page", "Access Refusé", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Exit from the entire application
+            Application.Exit();
+        }
     }
 }

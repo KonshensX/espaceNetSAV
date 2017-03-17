@@ -41,7 +41,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.faxTBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.buttonValider = new System.Windows.Forms.Button();
             this.problTBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.designTBox = new System.Windows.Forms.TextBox();
@@ -56,6 +55,10 @@
             this.oKOKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nOTOKOKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.technqiueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.paneauDAdministrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonValider = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.menuStrip2.SuspendLayout();
@@ -208,20 +211,6 @@
             this.label4.TabIndex = 13;
             this.label4.Text = "Fax";
             // 
-            // buttonValider
-            // 
-            this.buttonValider.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonValider.Image = global::espaceNetSAV.Properties.Resources._273_checkmark;
-            this.buttonValider.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonValider.Location = new System.Drawing.Point(820, 337);
-            this.buttonValider.Name = "buttonValider";
-            this.buttonValider.Size = new System.Drawing.Size(85, 38);
-            this.buttonValider.TabIndex = 10;
-            this.buttonValider.Text = "Valider";
-            this.buttonValider.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonValider.UseVisualStyleBackColor = true;
-            this.buttonValider.Click += new System.EventHandler(this.button1_Click);
-            // 
             // problTBox
             // 
             this.problTBox.Location = new System.Drawing.Point(540, 179);
@@ -318,7 +307,8 @@
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.oKOKToolStripMenuItem,
             this.nOTOKOKToolStripMenuItem,
-            this.technqiueToolStripMenuItem});
+            this.technqiueToolStripMenuItem,
+            this.optionsToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.Size = new System.Drawing.Size(929, 24);
@@ -348,6 +338,46 @@
             this.technqiueToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.technqiueToolStripMenuItem.Text = "Technqiue";
             this.technqiueToolStripMenuItem.Click += new System.EventHandler(this.technqiueToolStripMenuItem_Click);
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.paneauDAdministrationToolStripMenuItem,
+            this.quitterToolStripMenuItem});
+            this.optionsToolStripMenuItem.Image = global::espaceNetSAV.Properties.Resources._149_cog;
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.optionsToolStripMenuItem.Text = "Options";
+            // 
+            // paneauDAdministrationToolStripMenuItem
+            // 
+            this.paneauDAdministrationToolStripMenuItem.Image = global::espaceNetSAV.Properties.Resources._150_cogs1;
+            this.paneauDAdministrationToolStripMenuItem.Name = "paneauDAdministrationToolStripMenuItem";
+            this.paneauDAdministrationToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.paneauDAdministrationToolStripMenuItem.Text = "Paneau d\'Administration";
+            this.paneauDAdministrationToolStripMenuItem.Click += new System.EventHandler(this.paneauDAdministrationToolStripMenuItem_Click);
+            // 
+            // quitterToolStripMenuItem
+            // 
+            this.quitterToolStripMenuItem.Image = global::espaceNetSAV.Properties.Resources._277_exit;
+            this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
+            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.quitterToolStripMenuItem.Text = "Quitter";
+            this.quitterToolStripMenuItem.Click += new System.EventHandler(this.quitterToolStripMenuItem_Click);
+            // 
+            // buttonValider
+            // 
+            this.buttonValider.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonValider.Image = global::espaceNetSAV.Properties.Resources._273_checkmark;
+            this.buttonValider.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonValider.Location = new System.Drawing.Point(820, 337);
+            this.buttonValider.Name = "buttonValider";
+            this.buttonValider.Size = new System.Drawing.Size(85, 38);
+            this.buttonValider.TabIndex = 10;
+            this.buttonValider.Text = "Valider";
+            this.buttonValider.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonValider.UseVisualStyleBackColor = true;
+            this.buttonValider.Click += new System.EventHandler(this.button1_Click);
             // 
             // FormulaireReception
             // 
@@ -403,5 +433,8 @@
         private System.Windows.Forms.ToolStripMenuItem oKOKToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nOTOKOKToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem technqiueToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem paneauDAdministrationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
     }
 }
