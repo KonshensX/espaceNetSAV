@@ -15,7 +15,7 @@ namespace espaceNetSAV
         PdfWriter write;
 
         const float CELL_BORDER_WIDTH = 1.5f;
-        const int _MARGIN = 10;
+        const int _MARGIN = 20;
         const float CELLS_MIN_HEIGHT = 110;
 
         /// <summary>

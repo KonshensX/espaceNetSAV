@@ -12,6 +12,7 @@ namespace espaceNetSAV
         DataTable myDataSource;
         DataGridViewCheckBoxColumn repeared;
         DataGridViewButtonColumn myButton;
+        DataGridViewButtonColumn detailButton;
         bool isClicked = false;
 
         //DataGridViewTextBoxColumn myPrixColumn;
@@ -48,6 +49,7 @@ namespace espaceNetSAV
 
             BonDataGrid.DataSource = dataView;
             
+            
             //END OF A SECIOTN 
             repeared = new DataGridViewCheckBoxColumn();
 
@@ -73,14 +75,29 @@ namespace espaceNetSAV
             myButton.Name = "myButton";
             myButton.HeaderText = "Enregistrer";
             myButton.Text = "Enregistrer";
+            
+
 
             myButton.UseColumnTextForButtonValue = true;
             BonDataGrid.Columns.Add(myButton);
+           
+
+            //Details button
+            detailButton = new DataGridViewButtonColumn();
+
+            detailButton.Name = "detailButton";
+            detailButton.HeaderText = "Details";
+            detailButton.Text = "Details";
+
+            detailButton.UseColumnTextForButtonValue = true;
+            BonDataGrid.Columns.Add(detailButton);
+            
 
             //End of test 
 
             BonDataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 
+            #region Renaming the columns 
             BonDataGrid.Columns["Bon N°"].Visible = true;
             BonDataGrid.Columns["Client ID"].Visible = false;
             BonDataGrid.Columns["Designations ID"].Visible = false;
@@ -88,6 +105,7 @@ namespace espaceNetSAV
             BonDataGrid.Columns["Designation ID"].Visible = false;
             BonDataGrid.Columns["Clients ID"].Visible = false;
             BonDataGrid.Columns["Telephone"].Visible = false;
+            BonDataGrid.Columns["Client Type"].Visible = false;
             BonDataGrid.Columns["Ref Achat"].Visible = false;
             BonDataGrid.Columns["Devis"].Visible = false;
             BonDataGrid.Columns["Fax"].Visible = false;
@@ -99,6 +117,13 @@ namespace espaceNetSAV
             BonDataGrid.Columns["Validé"].Visible = false;
             BonDataGrid.Columns["Status"].HeaderText = "Validé";
             //MessageBox.Show(repeared.Index.ToString());
+            #endregion
+            #region Changing the columns width
+            //Change the width of the columns 
+            BonDataGrid.Columns["Bon N°"].Width = 40;
+            detailButton.Width = 30;
+            myButton.Width = 30;
+            #endregion
 
             this.onLoadCheckboxStatusChange();
 
@@ -183,6 +208,7 @@ namespace espaceNetSAV
                 this.ClearStatusBarWithMessage("Etat bien changer");
             }
             
+            
         }
 
         private void BonDataGrid_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
@@ -252,6 +278,13 @@ namespace espaceNetSAV
                 }
 
             }
+            else if (e.ColumnIndex == detailButton.Index)
+            {
+                Admin.Details formObject = new Admin.Details(new BonReception().getItem(Convert.ToInt32(AccessRow(e.RowIndex, "Bon N°"))));
+                formObject.Show();
+            }
+
+            
 
         }
 

@@ -127,6 +127,12 @@
       <DependentUpon>CreateNewUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\CrysptingService.cs" />
+    <Compile Include="Admin\Details.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\Details.Designer.cs">
+      <DependentUpon>Details.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\EmailNotification.cs" />
     <Compile Include="Admin\History.cs" />
     <Compile Include="Admin\LoginForm.cs">
@@ -233,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\CreateNewUser.resx">
       <DependentUpon>CreateNewUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Details.resx">
+      <DependentUpon>Details.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

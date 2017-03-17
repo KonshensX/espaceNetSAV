@@ -27,10 +27,6 @@ namespace espaceNetSAV
 
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
         int counter = 0;
         private void timer1_Tick(object sender, EventArgs e)
         {
