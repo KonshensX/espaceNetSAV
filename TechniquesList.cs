@@ -118,11 +118,12 @@ namespace espaceNetSAV
             BonDataGrid.Columns["Status"].HeaderText = "Validé";
             //MessageBox.Show(repeared.Index.ToString());
             #endregion
+
             #region Changing the columns width
             //Change the width of the columns 
             BonDataGrid.Columns["Bon N°"].Width = 40;
-            detailButton.Width = 30;
-            myButton.Width = 30;
+            detailButton.Width = 50;
+            myButton.Width = 80;
             #endregion
 
             this.onLoadCheckboxStatusChange();

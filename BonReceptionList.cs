@@ -76,6 +76,10 @@ namespace espaceNetSAV
 
             BonDataGrid.Columns.Add(myCheckbox);
 
+            #region Changing columns width 
+            BonDataGrid.Columns["Bon N°"].Width = 40;
+            #endregion
+
             //this.changeRowsColors();
             //this.onLoadCheckboxStatusChange();
             this.BonDataGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.BonDataGrid_CellValueChanged);
@@ -350,6 +354,17 @@ namespace espaceNetSAV
         private void BonDataGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             currentSelectedRow = BonDataGrid.Rows[e.RowIndex];
+        }
+
+        private void detailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var rowIndex = BonDataGrid.CurrentRow.Index;
+
+            BonReception bonObject = new BonReception();
+            var id = (int)BonDataGrid.Rows[rowIndex].Cells[0].Value;
+            bonObject.getItem((int)BonDataGrid.Rows[rowIndex].Cells[0].Value);
+            UpdateBon formObject = new UpdateBon(bonObject);
+            formObject.Show();
         }
 
     }

@@ -127,7 +127,7 @@ namespace espaceNetSAV.Admin
             {
                 List<History> myList = new List<History>();
 
-                string query = "SELECT * FROM historique, users WHERE user_id = @user_id AND (date(date)) > (date(now()) - interval 30 day)";
+                string query = "SELECT * FROM historique, users WHERE historique.user_id = users.id AND user_id = @user_id AND (date(date)) > (date(now()) - interval 30 day)";
 
                 using (MySqlCommand myCommand = new MySqlCommand(query, this.databaseObject.getConnection()))
                 {

@@ -18,12 +18,12 @@ namespace espaceNetSAV
         {
             try
             {
-                this.server = "127.0.0.1"; //local server 
-                this.uid = "root";
-                this.password = "";
-                //this.server = "192.168.1.2"; //Remote server A.K.A Actual Server 
-                //this.uid = "espacenet";
-                //this.password = "123456";
+                //this.server = "127.0.0.1"; //local server 
+                //this.uid = "root";
+                //this.password = "";
+                this.server = "192.168.1.2"; //Remote server A.K.A Actual Server 
+                this.uid = "espacenet";
+                this.password = "123456";
                 this.port = 3306;
                 this.database = "espaceNetSav";
                 string connectionString = "Server=" + server + ";Port= " + port + ";" + "Database=" + database + ";" + "Uid=" + uid + ";" + "Pwd=" + password + ";Max Pool Size= " + _MAX_POOL_SIZE;

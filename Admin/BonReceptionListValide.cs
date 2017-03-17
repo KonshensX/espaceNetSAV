@@ -53,6 +53,8 @@ namespace espaceNetSAV.Admin
             BonDataGrid.Columns.Add(myEtatColumn);
             //End of adding the text box
             BonDataGrid.Columns["Client Type"].Visible = false;
+
+            BonDataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             //PDF button 
             //DataGridViewButtonColumn pdfButton = new DataGridViewButtonColumn();
 
@@ -66,9 +68,11 @@ namespace espaceNetSAV.Admin
             ////End of PDF Button
 
             ////`Folder` Checbox 
+            #region Changing the columns width 
+            BonDataGrid.Columns["Bon N°"].Width = 40;
+            #endregion
 
 
-            
 
             //myCheckbox = new DataGridViewCheckBoxColumn();
 
